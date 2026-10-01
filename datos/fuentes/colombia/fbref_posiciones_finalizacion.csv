@@ -1,0 +1,21 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;notes
+1;América Cali;11;7;3;1;22;6;+16;24;2.18;D W L D W;
+2;Atlético Nacional;10;7;1;2;21;10;+11;22;2.20;W W L D W;
+3;Deportivo Cali;11;6;3;2;17;8;+9;21;1.91;D W W W W;
+4;Millonarios;13;5;6;2;18;11;+7;21;1.62;D W W D D;
+5;Bucaramanga;10;5;5;0;17;9;+8;20;2.00;D W D W W;
+6;Ind. Medellín;11;6;2;3;19;15;+4;20;1.82;L D W L D;
+7;Santa Fe;11;5;4;2;18;12;+6;19;1.73;D W W L W;
+8;Deportes Tolima;11;5;3;3;15;13;+2;18;1.64;W L L D D;
+9;Llaneros;11;4;2;5;14;14;0;14;1.27;L L L W L;
+10;Once Caldas;11;3;3;5;14;15;-1;12;1.09;L L W L L;
+11;La Equidad;12;2;6;4;13;17;-4;12;1.00;D W L L D;
+12;Cúcuta;11;3;3;5;11;19;-8;12;1.09;L D L L W;
+13;Águilas Doradas;10;2;5;3;12;15;-3;11;1.10;D L D L L;
+14;Boyacá Chicó;10;3;2;5;10;18;-8;11;1.10;W W L L W;
+15;Alianza Petrolera;11;3;2;6;11;21;-10;11;1.00;L W W L W;
+16;Junior;10;2;3;5;15;17;-2;9;0.90;D L W W L;
+17;Fortaleza FC;11;1;6;4;13;18;-5;9;0.82;L D D L D;
+18;Pereira;10;1;5;4;7;13;-6;8;0.80;D L D D L;
+19;Deportivo Pasto;11;2;2;7;9;18;-9;8;0.73;L D W W L;
+20;Jaguares;10;1;4;5;11;18;-7;7;0.70;D D D L L;

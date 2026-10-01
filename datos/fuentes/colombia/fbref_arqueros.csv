@@ -1,0 +1,59 @@
+﻿ranker;player;nationality;position;team;age;birth_year;gk_games;gk_games_starts;gk_minutes;minutes_90s;gk_goals_against;gk_goals_against_per90;gk_shots_on_target_against;gk_saves;gk_save_pct;gk_wins;gk_ties;gk_losses;gk_clean_sheets;gk_clean_sheets_pct;gk_pens_att;gk_pens_allowed;gk_pens_saved;gk_pens_missed;gk_pens_save_pct;matches
+1;Federico Abadía;ARG;GK;Cúcuta;28-111;1998;25;25;2220;24.7;41;1.66;140;99;70.7;5;9;11;5;20.0;5;3;2;0;40.0;Matches
+2;Diego Alejandro Martínez;COL;GK;Jaguares;36-306;1989;14;13;1171;13.0;25;1.92;73;48;65.8;3;1;9;3;23.1;2;2;0;0;0.0;Matches
+3;Guillermo de Amores;URU;GK;Millonarios;31-347;1994;4;4;360;4.0;7;1.75;15;8;53.3;1;1;2;1;25.0;0;0;0;0;;Matches
+4;Iván Arboleda;COL;GK;Águilas Doradas;30-163;1996;13;13;1087;12.1;15;1.24;62;47;75.8;5;4;4;3;23.1;2;2;0;0;0.0;Matches
+5;Franco Armani;ARG;GK;Atlético Nacional;39-350;1986;9;9;810;9.0;8;0.89;34;26;76.5;7;1;1;2;22.2;1;1;0;0;0.0;Matches
+6;Weimar Asprilla;COL;GK;Santa Fe;27-131;1999;9;7;664;7.4;9;1.22;35;26;74.3;1;5;1;2;28.6;0;0;0;0;;Matches
+7;Geovanni Banguera;COL;GK;Deportivo Pasto;30-290;1995;17;17;1421;15.8;19;1.20;70;51;72.9;8;3;6;7;41.2;1;1;0;0;0.0;Matches
+8;Williams Barlasina;ARG;GK;Fortaleza FC;28-094;1998;9;9;810;9.0;17;1.89;50;33;66.0;1;4;4;2;22.2;4;4;0;0;0.0;Matches
+9;Michael Barragán;COL;GK;Fortaleza FC;22-125;2004;2;2;180;2.0;4;2.00;8;4;50.0;0;1;1;0;0.0;0;0;0;0;;Matches
+10;Eduar Beltrán;COL;GK;Alianza Petrolera;26-223;2000;4;4;360;4.0;6;1.50;20;14;70.0;3;0;1;1;25.0;1;1;0;0;0.0;Matches
+11;Juan Betancourth;COL;GK;Pereira;22-219;2004;5;5;450;5.0;10;2.00;33;23;69.7;1;2;2;0;0.0;0;0;0;0;;Matches
+12;Javier Burrai;ECU;GK;Millonarios;35-357;1990;13;13;1170;13.0;11;0.85;40;29;72.5;5;6;2;5;38.5;0;0;0;0;;Matches
+13;Rogerio Caicedo;COL;GK;Boyacá Chicó;32-287;1993;5;5;450;5.0;3;0.60;13;10;76.9;2;1;2;2;40.0;0;0;0;0;;Matches
+14;Jesús Camargo;VEN;GK;Once Caldas;28-293;1997;1;1;90;1.0;3;3.00;5;2;40.0;0;0;1;0;0.0;0;0;0;0;;Matches
+15;Juan Camilo Chaverra;COL;GK;Alianza Petrolera;33-293;1992;6;6;540;6.0;13;2.17;30;17;56.7;0;2;4;0;0.0;2;2;0;0;0.0;Matches
+16;Harlen Castillo;COL;GK;Atlético Nacional;33-045;1993;12;12;1080;12.0;14;1.17;48;34;70.8;6;0;6;2;16.7;2;2;0;0;0.0;Matches
+17;Kevin Cataño;COL;GK;Atlético Nacional;23-114;2003;1;1;90;1.0;1;1.00;1;0;0.0;1;0;0;0;0.0;0;0;0;0;;Matches
+18;Kevin Cataño;COL;GK;La Equidad;23-114;2003;2;2;180;2.0;2;1.00;8;6;75.0;1;0;1;1;50.0;1;1;0;0;0.0;Matches
+19;Eder Chaux;COL;GK;Ind. Medellín;34-285;1991;15;15;1350;15.0;18;1.20;65;47;72.3;8;4;3;5;33.3;4;4;0;0;0.0;Matches
+20;Juan David Ramírez;COL;GK;Cúcuta;29-265;1997;7;5;480;5.3;13;2.44;37;24;64.9;1;1;3;0;0.0;0;0;0;0;;Matches
+21;Emiliano Denis;URU;GK;Boyacá Chicó;34-289;1991;14;14;1260;14.0;29;2.07;75;46;61.3;3;1;10;2;14.3;4;4;0;0;0.0;Matches
+22;Luis Erney Vasquez;COL;GK;Bucaramanga;30-214;1996;10;10;900;10.0;15;1.50;33;18;54.5;1;3;6;2;20.0;1;1;0;0;0.0;Matches
+23;Wuilker Faríñez;VEN;GK;La Equidad;28-228;1998;29;29;2587;28.7;42;1.46;136;94;69.1;8;13;8;6;20.7;5;4;1;0;20.0;Matches
+24;Cristopher Fiermarin;URU;GK;Bucaramanga;28-273;1998;9;9;810;9.0;8;0.89;29;21;72.4;4;5;0;3;33.3;4;2;2;0;50.0;Matches
+25;Pedro Gallese;PER;GK;Deportivo Cali;36-220;1990;26;26;2340;26.0;23;0.88;100;77;77.0;9;9;8;9;34.6;2;2;0;0;0.0;Matches
+26;Yimy Gómez;COL;GK;Pereira;27-058;1999;10;10;872;9.7;13;1.34;66;53;80.3;0;5;5;3;30.0;0;0;0;0;;Matches
+27;Iago Herrerín;ESP;GK;Deportivo Pasto;38-249;1988;9;9;810;9.0;15;1.67;37;22;59.5;4;1;4;2;22.2;1;1;0;0;0.0;Matches
+28;Salvador Ichazo;URU;GK;Ind. Medellín;34-248;1992;15;15;1350;15.0;21;1.40;48;27;56.3;5;3;7;2;13.3;3;3;0;0;0.0;Matches
+29;Jorge Iván Soto;COL;GK;Águilas Doradas;33-060;1993;10;10;900;10.0;15;1.50;45;30;66.7;2;5;3;0;0.0;3;3;0;0;0.0;Matches
+30;Jorge Iván Soto;COL;GK;América Cali;33-060;1993;8;8;720;8.0;4;0.50;24;20;83.3;5;2;1;5;62.5;0;0;0;0;;Matches
+31;Jean;BRA;GK;América Cali;30-340;1995;22;22;1934;21.5;21;0.98;80;59;73.8;11;4;7;10;45.5;7;4;3;0;42.9;Matches
+32;Juan Loaiza;COL;GK;Llaneros;24-042;2002;5;4;405;4.5;5;1.11;17;12;70.6;0;3;1;1;25.0;2;1;0;1;0.0;Matches
+33;Luis Marquines;COL;GK;Deportes Tolima;23-174;2003;7;7;630;7.0;9;1.29;28;19;67.9;0;3;4;1;14.3;2;2;0;0;0.0;Matches
+34;Luis Marquines;COL;GK;Atlético Nacional;23-174;2003;1;1;90;1.0;2;2.00;5;3;60.0;0;0;1;0;0.0;0;0;0;0;;Matches
+35;Jefferson Martinez;COL;GK;Junior;33-046;1993;7;6;541;6.0;11;1.83;26;15;57.7;3;1;2;2;33.3;0;0;0;0;;Matches
+36;Jorge Martínez;COL;GK;Pereira;19-273;2007;15;14;1288;14.3;22;1.54;74;52;70.3;1;5;8;3;21.4;4;4;0;0;0.0;Matches
+37;Juan Montoya;COL;GK;América Cali;27-351;1998;3;2;226;2.5;2;0.80;14;12;85.7;1;1;0;1;50.0;1;1;0;0;0.0;Matches
+38;Andrés Mosquera;COL;GK;Santa Fe;35-021;1991;27;27;2426;27.0;27;1.00;110;83;75.5;12;10;5;6;22.2;3;3;0;0;0.0;Matches
+39;Franklin Mosquera;COL;GK;Jaguares;27-179;1999;16;16;1439;16.0;26;1.63;84;58;69.0;3;6;7;3;18.8;3;2;0;1;0.0;Matches
+40;Diego Novoa;COL;GK;Bucaramanga;37-123;1989;1;1;90;1.0;1;1.00;12;11;91.7;1;0;0;0;0.0;0;0;0;0;;Matches
+41;Diego Novoa;COL;GK;Millonarios;37-123;1989;15;15;1350;15.0;16;1.07;60;44;73.3;6;4;5;5;33.3;3;2;0;1;0.0;Matches
+42;Miguel Ortega;MEX;GK;Deportes Tolima;31-171;1995;4;4;360;4.0;6;1.50;16;10;62.5;3;0;1;0;0.0;0;0;0;0;;Matches
+43;Miguel Ortega;MEX;GK;Llaneros;31-171;1995;15;15;1305;14.5;16;1.10;58;42;72.4;3;8;4;4;26.7;3;2;0;1;0.0;Matches
+44;David Ospina;COL;GK;Atlético Nacional;38-031;1988;12;12;1080;12.0;6;0.50;40;34;85.0;11;1;0;7;58.3;0;0;0;0;;Matches
+45;Joan Parra;COL;GK;Once Caldas;26-113;2000;31;31;2790;31.0;37;1.19;133;95;72.2;11;13;7;5;16.1;5;5;0;0;0.0;Matches
+46;Ederson Quiñónez;COL;GK;Deportivo Pasto;26-089;2000;8;6;646;7.2;12;1.67;36;24;66.7;0;2;4;0;0.0;1;0;1;0;100.0;Matches
+47;Aldair Quintana;COL;GK;Bucaramanga;32-082;1994;9;9;810;9.0;5;0.56;26;21;80.8;4;5;0;5;55.6;1;1;0;0;0.0;Matches
+48;Alejandro Rodríguez;COL;GK;Deportivo Cali;25-262;2001;4;4;360;4.0;1;0.25;13;12;92.3;4;0;0;3;75.0;2;1;1;0;50.0;Matches
+49;Roameth Romaña;COL;GK;Llaneros;29-266;1997;11;11;990;11.0;13;1.18;41;28;68.3;5;1;5;4;36.4;2;1;1;0;50.0;Matches
+50;Andrés Salazar;COL;GK;Águilas Doradas;32-317;1993;7;6;623;6.9;10;1.44;21;11;52.4;2;1;3;2;33.3;1;1;0;0;0.0;Matches
+51;Cristian Santander;COL;GK;Fortaleza FC;23-042;2003;4;4;360;4.0;6;1.50;15;9;60.0;0;3;1;1;25.0;0;0;0;0;;Matches
+52;David Santiago Agudelo;COL;GK;Boyacá Chicó;29-235;1997;7;7;630;7.0;8;1.14;37;29;78.4;3;2;2;3;42.9;2;2;0;0;0.0;Matches
+53;Miguel Silva;VEN;GK;Fortaleza FC;26-084;2000;15;15;1350;15.0;18;1.20;55;36;67.3;5;5;5;3;20.0;7;4;2;1;33.3;Matches
+54;Mauro Silveira;URU;GK;Junior;26-148;2000;29;29;2639;29.3;34;1.16;123;89;72.4;12;7;10;9;31.0;7;3;2;2;40.0;Matches
+55;Alvino Volpi Neto;BRA;GK;Deportes Tolima;34-061;1992;23;23;2070;23.0;19;0.83;77;58;75.3;12;7;4;9;39.1;1;1;0;0;0.0;Matches
+56;Johan Wallens;COL;GK;Alianza Petrolera;34-059;1992;20;20;1800;20.0;29;1.45;102;73;71.6;3;8;9;5;25.0;6;5;0;1;0.0;Matches
+57;Branndon Zapata;COL;GK;Boyacá Chicó;26-133;2000;3;3;270;3.0;10;3.33;20;10;50.0;0;0;3;0;0.0;0;0;0;0;;Matches
+58;Simón Zapata;COL;GK;La Equidad;20-233;2006;3;2;203;2.3;8;3.55;17;9;52.9;0;0;2;0;0.0;1;1;0;0;0.0;Matches
