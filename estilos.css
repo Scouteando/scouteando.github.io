@@ -948,3 +948,4 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .etiqueta--seguir { background: #3b82f6; color: #fff; }
 .etiqueta--descartado { background: #3a4258; color: #b8c0d2; text-decoration: line-through; }
 .resultados.parecidos__lista .lider { grid-template-columns: 36px 1fr auto; }
+.parecidos__por-que { color: var(--dorado) !important; }

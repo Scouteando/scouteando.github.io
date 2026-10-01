@@ -106,3 +106,7 @@ las condiciones de cada fuente.
 - FBref no publica pases para estas ligas, así que la ficha no mide la distribución del juego.
 - Las fotos cubren a los jugadores del plantel actual. Los que se fueron quedan con sus iniciales.
 - Los datos no se actualizan solos: hay que repetir el proceso de actualización.
+
+---
+
+© 2026 Scouteando. Todos los derechos reservados sobre el código y el diseño. Los datos pertenecen a sus fuentes (FBref, API-Football).

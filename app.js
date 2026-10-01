@@ -506,45 +506,72 @@ function abrirFicha(elegido) {
 }
 
 // ---------- Jugadores parecidos ----------
-// Compara el "perfil" de números cada 90 minutos con todos los del mismo puesto (450' o más),
-// de todas las ligas. Cada estadística se pasa a la misma escala, así pesan todas igual.
-const perfilesPorPuesto = {
-  ARQ: [j => j.atajadas, j => j.vallasInvictas, j => j.golesRecibidos],
-  otros: [j => j.goles, j => j.tirosAlArco, j => j.asistencias, j => j.quites, j => j.intercepciones, j => j.faltasRecibidas, j => j.centros]
+// Para cada jugador armamos un "perfil": en qué lugar del ranking de su puesto (dentro de SU liga)
+// está en cada estadística cada 90', más qué tan titular es en su equipo. Después buscamos
+// los perfiles más cercanos, en todas las ligas. Solo entran jugadores con 900' o más.
+const MINUTOS_PARECIDOS = 900;
+const metricasPerfil = {
+  ARQ: [["atajadas", j => j.atajadas], ["vallas invictas", j => j.vallasInvictas], ["goles recibidos", j => -j.golesRecibidos], ["% de atajadas", j => j.pctAtajadas, true]],
+  otros: [["goles", j => j.goles], ["tiros al arco", j => j.tirosAlArco], ["asistencias", j => j.asistencias], ["quites", j => j.quites],
+          ["intercepciones", j => j.intercepciones], ["faltas recibidas", j => j.faltasRecibidas], ["centros", j => j.centros]]
 };
+const cachePerfiles = {};
+
+// Perfiles de todos los jugadores de un puesto en una liga (se calculan una vez y se guardan)
+function perfilesDeLiga(ligaId, puesto) {
+  const clave = ligaId + "|" + puesto;
+  if (cachePerfiles[clave]) return cachePerfiles[clave];
+  const todos = unificadosDe(ligaId);
+  const partidosEquipo = {};
+  for (const j of window.DATOS_LIGAS[ligaId]) partidosEquipo[j.equipo] = Math.max(partidosEquipo[j.equipo] || 0, j.partidos);
+  const grupo = todos.filter(j => j.puesto === puesto && j.minutos >= MINUTOS_PARECIDOS);
+  const metricas = metricasPerfil[puesto === "ARQ" ? "ARQ" : "otros"];
+  const valores = metricas.map(([, f, yaEsTasa]) => grupo.map(j => yaEsTasa ? (f(j) || 0) : ((f(j) || 0) * 90) / j.minutos));
+  // Percentil: 1 = el mejor de su puesto en su liga, 0 = el peor
+  const percentil = (lista, v) => lista.length > 1 ? lista.filter(x => x < v).length / (lista.length - 1) : 0.5;
+  const perfiles = grupo.map((j, i) => ({
+    j,
+    p: valores.map(lista => percentil(lista, lista[i])),
+    // Importancia en el equipo: qué parte de los minutos posibles jugó (titular fijo ≈ 1)
+    titular: Math.min(1, j.minutos / (90 * Math.max(partidosEquipo[j.equipo] || j.partidos, 1)))
+  }));
+  return (cachePerfiles[clave] = { perfiles, nombres: metricas.map(m => m[0]) });
+}
 
 function jugadoresParecidos(j, cantidad) {
-  const campos = perfilesPorPuesto[j.puesto === "ARQ" ? "ARQ" : "otros"];
-  let pool = [];
+  const propio = perfilesDeLiga(j.liga || ligaActual.id, j.puesto);
+  const yo = propio.perfiles.find(x => x.j.nombre === j.nombre && x.j.edad === j.edad);
+  if (!yo) return [];
+  const candidatos = [];
   for (const liga of ligasDisponibles()) {
-    if (window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id]) pool = pool.concat(unificadosDe(liga.id));
+    if (!(window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id])) continue;
+    for (const otro of perfilesDeLiga(liga.id, j.puesto).perfiles) {
+      if (otro.j.nombre === yo.j.nombre && otro.j.edad === yo.j.edad) continue;
+      // Distancia: diferencias en cada percentil + la diferencia de "titularidad" (pesa doble)
+      let suma = 0;
+      yo.p.forEach((v, k) => (suma += (v - otro.p[k]) ** 2));
+      suma += 2 * (yo.titular - otro.titular) ** 2;
+      const d = Math.sqrt(suma / (yo.p.length + 2));
+      candidatos.push({ otro, d });
+    }
   }
-  pool = pool.filter(x => x.puesto === j.puesto && x.minutos >= 450);
-  const vector = x => campos.map(f => ((f(x) || 0) * 90) / Math.max(x.minutos, 1))
-    .concat(j.puesto === "ARQ" ? [x.pctAtajadas || 0] : []);
-  const vectores = pool.map(vector);
-  const n = vectores[0] ? vectores[0].length : 0;
-  const media = [], desvio = [];
-  for (let k = 0; k < n; k++) {
-    const col = vectores.map(v => v[k]);
-    media[k] = col.reduce((a, b) => a + b, 0) / col.length;
-    desvio[k] = Math.sqrt(col.reduce((a, b) => a + (b - media[k]) ** 2, 0) / col.length) || 1;
-  }
-  const escala = v => v.map((x, k) => (x - media[k]) / desvio[k]);
-  const propio = escala(vector(j));
-  const distancias = pool
-    .filter(x => !(x.nombre === j.nombre && x.edad === j.edad && x.liga === j.liga))
-    .map(x => ({ x, d: Math.sqrt(escala(vector(x)).reduce((a, v, k) => a + (v - propio[k]) ** 2, 0)) }))
-    .sort((a, b) => a.d - b.d);
-  // "% de parecido": 100% = mismo perfil; baja a medida que se aleja (relativo a todos los del puesto)
-  const lejos = distancias.length ? distancias[Math.floor(distancias.length * 0.9)].d || 1 : 1;
-  return distancias.slice(0, cantidad).map(({ x, d }) => ({ ...x, parecido: Math.max(1, Math.round((1 - d / lejos) * 100)) }));
+  candidatos.sort((a, b) => a.d - b.d);
+  return candidatos.slice(0, cantidad).map(function ({ otro, d }) {
+    // "Por qué se parecen": estadísticas donde los dos están arriba (top 25% o mejor)
+    const fuertes = propio.nombres
+      .map((nombre, k) => ({ nombre, minimo: Math.min(yo.p[k], otro.p[k]) }))
+      .filter(x => x.minimo >= 0.75)
+      .sort((a, b) => b.minimo - a.minimo)
+      .slice(0, 2)
+      .map(x => x.nombre);
+    return { ...otro.j, parecido: Math.round((1 - d) * 100), fuertes };
+  });
 }
 
 function llenarParecidos(j) {
   const caja = ficha.querySelector(".parecidos");
   if (!caja || fichaActual !== j) return;
-  if (j.minutos < 450) { caja.innerHTML = ""; return; }
+  if (j.minutos < MINUTOS_PARECIDOS) { caja.innerHTML = ""; return; }
   // Cargamos las demás ligas para buscar en todas
   const faltan = ligasDisponibles().filter(l => !(window.DATOS_LIGAS && window.DATOS_LIGAS[l.id]));
   faltan.forEach(l => cargarDatos(l.id, () => llenarParecidos(j)));
@@ -555,10 +582,11 @@ function llenarParecidos(j) {
     <ul class="resultados parecidos__lista">${lista.map(x => `
       <li class="lider" data-parecido="${x.liga}|${x.nombre}|${x.edad}">
         <span class="lider__foto">${x.foto ? `<img src="${x.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(x.nombre)}</span></span>
-        <span class="lider__nombre">${x.nombre}<small><img class="mini-escudo" src="${escudo(x.equipoId)}" alt="">${x.equipo} · ${nombreLiga(x.liga)} · ${x.edad ?? "-"} años</small></span>
+        <span class="lider__nombre">${x.nombre}<small><img class="mini-escudo" src="${escudo(x.equipoId)}" alt="">${x.equipo} · ${nombreLiga(x.liga)} · ${x.edad ?? "-"} años · ${x.puesto === "ARQ" ? x.vallasInvictas + " vallas inv." : x.goles + " goles"} en ${x.minutos}'</small>
+          ${x.fuertes.length ? `<small class="parecidos__por-que">Los dos, top 25% en ${x.fuertes.join(" y ")}</small>` : ""}</span>
         <span class="parecidos__valor">${x.parecido}%</span>
       </li>`).join("")}</ul>
-    <p class="ficha__nota">Comparamos sus números cada 90 minutos con los ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas que jugaron 450' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido estadístico, no de estilo de juego.</p>`;
+    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90') y qué tan titular es en su equipo. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>`;
 }
 
 // ---------- Notas de scouting (se guardan en el navegador) ----------
