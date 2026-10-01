@@ -238,21 +238,31 @@ function mostrarEquipos() {
 }
 
 // ---------- 6. Carta de un jugador ----------
+const pp = (v, j) => (j.partidos > 0 ? Math.round((v / j.partidos) * 10) / 10 : 0);
+const statsCarta = {
+  ARQ: [["Atajadas por partido", j => pp(j.atajadas || 0, j)], ["Vallas invictas", j => j.vallasInvictas || 0], ["Goles recibidos por partido", j => pp(j.golesRecibidos || 0, j), true]],
+  DEF: [["Recuperaciones por partido", j => pp(j.quites + j.intercepciones, j)], ["Intercepciones por partido", j => pp(j.intercepciones, j)], ["Goles + asistencias", j => j.goles + j.asistencias]],
+  MED: [["Recuperaciones por partido", j => pp(j.quites + j.intercepciones, j)], ["Goles", j => j.goles], ["Asistencias", j => j.asistencias]],
+  DEL: [["Goles", j => j.goles], ["Tiros al arco por partido", j => pp(j.tirosAlArco, j)], ["Asistencias", j => j.asistencias]]
+};
+// Percentil del valor de la carta contra los del mismo puesto de la liga con 450' o más (se calcula una vez)
+const cachePercentilCarta = {};
+function percentilCarta(j, nombre, f, menor) {
+  if (!ligaActual || j.minutos < 450) return null;
+  const clave = ligaActual.id + "|" + j.puesto + "|" + nombre;
+  const valores = cachePercentilCarta[clave] = cachePercentilCarta[clave] ||
+    jugadoresUnificados.filter(x => x.puesto === j.puesto && x.minutos >= 450).map(f).sort((a, b) => a - b);
+  if (valores.length < 5) return null;
+  const v = f(j);
+  const debajo = menor ? valores.filter(x => x > v).length : valores.filter(x => x < v).length;
+  return Math.round((debajo / (valores.length - 1)) * 100);
+}
 function crearCarta(j) {
   const foto = j.foto ? `<img src="${j.foto}" alt="${j.nombre}" loading="lazy" onerror="this.remove()">` : "";
   const tarjetas = j.rojas > 0 ? `${j.amarillas} 🟨 ${j.rojas} 🟥` : `${j.amarillas} 🟨`;
 
-  // Tres estadísticas según el puesto
-  let stats;
-  if (j.puesto === "ARQ") {
-    stats = [["Atajadas/PJ", porPartido(j.atajadas, j)], ["Vallas inv.", j.vallasInvictas], ["Goles rec./PJ", porPartido(j.golesRecibidos, j)]];
-  } else if (j.puesto === "DEF") {
-    stats = [["Recup./PJ", porPartido(j.quites + j.intercepciones, j)], ["Intercep.", j.intercepciones], ["G + A", j.goles + j.asistencias]];
-  } else if (j.puesto === "DEL") {
-    stats = [["Goles", j.goles], ["Tiros al arco", j.tirosAlArco], ["Asist.", j.asistencias]];
-  } else {
-    stats = [["Recup./PJ", porPartido(j.quites + j.intercepciones, j)], ["Goles", j.goles], ["Asist.", j.asistencias]];
-  }
+  // Tres estadísticas según el puesto, cada una con una barrita: dónde está en el ranking de su puesto
+  let stats = (statsCarta[j.puesto] || statsCarta.MED).map(([nombre, f, menor]) => [nombre, f(j), percentilCarta(j, nombre, f, menor)]);
   // Si el usuario ordena por una estadística, esa va primera y resaltada
   let destacada = null;
   if (ordenElegido !== "puesto") {
@@ -261,8 +271,12 @@ function crearCarta(j) {
     destacada = [est.nombre, valor ?? "–"];
     stats = [destacada, ...stats.filter(s => s[0] !== est.nombre)].slice(0, 3);
   }
-  const htmlStats = stats.map(s => `
-      <div class="${s === destacada ? "stat--destacada" : ""}"><span class="stat__valor">${s[1]}</span><span class="stat__nombre">${s[0]}</span></div>`).join("");
+  const htmlStats = stats.map(s => {
+    const p = s[2];
+    const barra = p == null ? "" : `<span class="stat__barra ${p >= 90 ? "stat__barra--elite" : p >= 75 ? "stat__barra--alto" : ""}" title="Mejor que el ${p}% de los ${nombresPuestos[j.puesto].toLowerCase()} de la liga"><i style="width:${Math.max(p, 3)}%"></i></span>`;
+    return `
+      <div class="${s === destacada ? "stat--destacada" : ""}"><span class="stat__valor">${s[1]}</span>${barra}<span class="stat__nombre">${s[0]}</span></div>`;
+  }).join("");
 
   return `
     <article class="carta ${j.enPlantel ? "" : "carta--fuera"}" style="--color: ${colores[j.puesto]}" data-clave="${j.nombre}|${j.edad}|${j.equipo}">
@@ -555,7 +569,11 @@ function jugadoresParecidos(j, cantidad) {
       let suma = 0;
       yo.p.forEach((v, k) => (suma += (v - otro.p[k]) ** 2));
       suma += 2 * (yo.titular - otro.titular) ** 2;
-      const d = Math.sqrt(suma / (yo.p.length + 2));
+      let dimensiones = yo.p.length + 2;
+      // Si los dos tienen altura y peso, también cuentan (20 cm o 20 kg de diferencia = muy distintos)
+      if (yo.j.altura && otro.j.altura) { suma += Math.min(1, Math.abs(yo.j.altura - otro.j.altura) / 20) ** 2; dimensiones++; }
+      if (yo.j.peso && otro.j.peso) { suma += 0.5 * Math.min(1, Math.abs(yo.j.peso - otro.j.peso) / 20) ** 2; dimensiones += 0.5; }
+      const d = Math.sqrt(suma / dimensiones);
       candidatos.push({ otro, d });
     }
   }
@@ -590,7 +608,7 @@ function llenarParecidos(j) {
           ${x.fuertes.length ? `<small class="parecidos__por-que">Los dos, top 25% en ${x.fuertes.join(" y ")}</small>` : ""}</span>
         <span class="parecidos__valor">${x.parecido}%</span>
       </li>`).join("")}</ul>
-    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90') y qué tan titular es en su equipo. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>`;
+    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90'), qué tan titular es en su equipo y, cuando hay datos, la altura y el peso. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>`;
 }
 
 // ---------- Notas de scouting (se guardan en el navegador) ----------
@@ -1247,6 +1265,112 @@ function posicionesDeEquipo(equipo) {
     .filter(x => x.fila);
 }
 
+// ---------- 7i. Equipo ideal (4-3-3) ----------
+const vistaIdeal = document.getElementById("vistaIdeal");
+let modoIdeal = "temporada"; // "temporada" | "sub23" | "sub21" | "fecha"
+
+// Qué pesa en cada puesto para elegir el 11 (estadísticas cada 90 minutos y su peso)
+const criteriosIdeal = {
+  ARQ: [[j => j.atajadas, 1], [j => j.vallasInvictas, 1], [j => -j.golesRecibidos, 1.5]],
+  DEF: [[j => j.quites + j.intercepciones, 2], [j => j.intercepciones, 1], [j => j.goles + j.asistencias, 1], [j => j.centros, 0.5]],
+  MED: [[j => j.quites + j.intercepciones, 1], [j => j.asistencias, 1.5], [j => j.goles, 1], [j => j.tirosAlArco, 1], [j => j.faltasRecibidas, 0.5]],
+  DEL: [[j => j.goles, 2.5], [j => j.tirosAlArco, 1], [j => j.asistencias, 1], [j => j.faltasRecibidas, 0.5]]
+};
+const formacion = [["DEL", 3], ["MED", 3], ["DEF", 4], ["ARQ", 1]];
+
+// Puntaje de temporada: promedio ponderado de percentiles (cada 90') dentro del puesto, con un plus por jugar mucho
+function onceDeTemporada(edadMaxima) {
+  const minimo = edadMaxima ? 600 : 900;
+  const once = {};
+  for (const [puesto, cantidad] of formacion) {
+    const pool = jugadoresUnificados.filter(j => j.puesto === puesto && j.minutos >= 450);
+    const criterios = criteriosIdeal[puesto];
+    const columnas = criterios.map(([f]) => pool.map(j => ((f(j) || 0) * 90) / j.minutos));
+    const maxMin = Math.max(...pool.map(j => j.minutos), 1);
+    const puntaje = pool.map(function (j, i) {
+      let suma = 0, pesos = 0;
+      criterios.forEach(([, peso], k) => {
+        const col = columnas[k];
+        suma += peso * (col.filter(v => v < col[i]).length / Math.max(col.length - 1, 1));
+        pesos += peso;
+      });
+      if (puesto === "ARQ" && j.pctAtajadas != null) { suma += j.pctAtajadas / 100; pesos += 1; }
+      return { j, puntaje: (suma / pesos) * (0.85 + 0.15 * (j.minutos / maxMin)) };
+    });
+    once[puesto] = puntaje
+      .filter(x => x.j.minutos >= minimo && (!edadMaxima || (x.j.edad != null && x.j.edad <= edadMaxima)))
+      .sort((a, b) => b.puntaje - a.puntaje).slice(0, cantidad)
+      .map(x => ({ ...x.j, motivo: motivoIdeal(x.j) }));
+  }
+  return once;
+}
+
+// Puntos de la fecha (lo que sumó desde la actualización anterior), estilo fantasy
+function onceDeLaFecha() {
+  const fecha = window.DATOS_FECHA && window.DATOS_FECHA[ligaActual.id];
+  if (!fecha || !fecha.jugadores.length) return null;
+  const puntos = function (d) {
+    let p = d.minutos >= 60 ? 2 : 1;
+    p += d.goles * ({ ARQ: 6, DEF: 6, MED: 5, DEL: 4 }[d.puesto] || 4) + d.asistencias * 3;
+    if (d.puesto === "ARQ" || d.puesto === "DEF") p += (d.vallasInvictas || 0) * 4;
+    p += (d.atajadas || 0) * 0.5 + (d.quites + d.intercepciones) * 0.3 + d.tirosAlArco * 0.5;
+    p -= d.amarillas + d.rojas * 3;
+    return Math.round(p * 10) / 10;
+  };
+  const once = {};
+  for (const [puesto, cantidad] of formacion) {
+    once[puesto] = fecha.jugadores.filter(d => d.puesto === puesto)
+      .map(d => ({ ...d, puntos: puntos(d) }))
+      .sort((a, b) => b.puntos - a.puntos).slice(0, cantidad)
+      .map(d => ({ ...d, motivo: [d.goles ? `${d.goles} ${d.goles === 1 ? "gol" : "goles"}` : "", d.asistencias ? `${d.asistencias} asist.` : "",
+        d.puesto === "ARQ" ? `${d.atajadas || 0} atajadas` : "", (d.quites + d.intercepciones) >= 4 ? `${d.quites + d.intercepciones} recup.` : "", `${d.puntos} pts`].filter(Boolean).join(" · ") }));
+  }
+  return { once, desde: fecha.desde, hasta: fecha.hasta };
+}
+
+function motivoIdeal(j) {
+  if (j.puesto === "ARQ") return `${j.vallasInvictas} vallas inv. · ${j.pctAtajadas ?? "-"}% atajadas`;
+  if (j.puesto === "DEF") return `${pp(j.quites + j.intercepciones, j)} recup./PJ · ${j.goles + j.asistencias} G+A`;
+  if (j.puesto === "MED") return `${j.goles} goles · ${j.asistencias} asist. · ${pp(j.quites + j.intercepciones, j)} recup./PJ`;
+  return `${j.goles} goles · ${j.asistencias} asist.`;
+}
+
+function mostrarIdeal() {
+  const botones = [["temporada", "Temporada"], ["sub23", "Sub-23"], ["sub21", "Sub-21"], ["fecha", "Última fecha"]]
+    .map(([c, t]) => `<button class="filtro ${modoIdeal === c ? "activo" : ""}" data-ideal="${c}">${t}</button>`).join("");
+  let datos, texto, aviso = "";
+  if (modoIdeal === "fecha") {
+    const f = onceDeLaFecha();
+    datos = f && f.once;
+    texto = f ? `Los que más sumaron entre la actualización del ${f.desde} y la del ${f.hasta}` : "";
+    if (!f) aviso = `<p class="vacio vacio--grande">El equipo de la fecha se arma comparando los datos de una actualización con la anterior. Va a aparecer después de la próxima actualización (los lunes).</p>`;
+  } else {
+    datos = onceDeTemporada({ sub23: 23, sub21: 21 }[modoIdeal]);
+    texto = modoIdeal === "temporada" ? "Los mejores de cada puesto en la temporada (900' o más)" : `Los mejores ${modoIdeal === "sub23" ? "Sub-23" : "Sub-21"} de cada puesto (600' o más)`;
+  }
+  const lineas = datos ? formacion.map(([puesto]) => `
+      <div class="cancha__linea">${(datos[puesto] || []).map(j => `
+        <button class="cancha__jugador" data-clave="${j.nombre}|${j.edad}" style="--color: ${colores[puesto]}">
+          <span class="carta__avatar cancha__foto">${j.foto ? `<img src="${j.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
+          <span class="cancha__nombre">${j.nombre}</span>
+          <span class="cancha__equipo"><img class="mini-escudo" src="${escudo(j.equipoId)}" alt="">${j.equipo}</span>
+          <span class="cancha__motivo">${j.motivo}</span>
+        </button>`).join("")}</div>`).join("") : "";
+  vistaIdeal.innerHTML = `<div class="filtros">${botones}</div>` + (aviso || `<div class="cancha">${lineas}</div><p class="ficha__nota">El 11 se elige con los números: en cada puesto, el promedio de su lugar en el ranking (cada 90') en lo más importante para ese puesto. Tocá un jugador para ver su ficha.</p>`);
+  titulo.textContent = "Equipo ideal";
+  resumen.textContent = texto ? `${texto} · ${ligaActual.nombre}` : ligaActual.nombre;
+}
+
+vistaIdeal.addEventListener("click", function (e) {
+  const modo = e.target.closest("[data-ideal]");
+  if (modo) { modoIdeal = modo.dataset.ideal; return mostrarIdeal(); }
+  const jug = e.target.closest(".cancha__jugador");
+  if (!jug) return;
+  const [nombre, edad] = jug.dataset.clave.split("|");
+  const j = jugadoresUnificados.find(x => x.nombre === nombre && String(x.edad) === edad);
+  if (j) abrirFicha(j);
+});
+
 // ---------- 8. Cambiar de vista ----------
 // Cada pantalla tiene su dirección (#/argentina/equipo/river-plate), así funcionan
 // el botón "atrás" del navegador y los links directos.
@@ -1254,7 +1378,7 @@ let fichaAbiertaPorNosotros = false;
 
 function rutaVista() {
   if (vista === "ligas" || !ligaActual) return "#/";
-  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos" }[vista] ?? "";
+  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal" }[vista] ?? "";
   return `#/${ligaActual.id}/${resto}`.replace(/\/$/, "");
 }
 const rutaJugador = j => `#/${ligaActual.id}/jugador/${slug(j.nombre)}-${j.edad ?? ""}`;
@@ -1291,7 +1415,7 @@ function aplicarRuta() {
       const equipo = [...new Set(jugadores.map(j => j.equipo))].find(e => slug(e) === valor);
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
-    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos" }[tipo] || "equipos", null, true);
+    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal" }[tipo] || "equipos", null, true);
   });
 }
 window.addEventListener("popstate", aplicarRuta);
@@ -1315,6 +1439,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   if (vista === "plantel") mostrarResumenEquipo();
   vistaLideres.hidden = vista !== "lideres";
   vistaSeguidos.hidden = vista !== "seguidos";
+  vistaIdeal.hidden = vista !== "ideal";
   vistaPosiciones.hidden = vista !== "posiciones";
   actualizarContadorSeguidos();
   filtrosLideres.hidden = vista !== "lideres";
@@ -1331,6 +1456,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   else if (vista === "equipos") mostrarEquipos();
   else if (vista === "lideres") mostrarLideres();
   else if (vista === "seguidos") mostrarSeguidos();
+  else if (vista === "ideal") mostrarIdeal();
   else if (vista === "posiciones") mostrarPosiciones();
   else mostrarJugadores();
   window.scrollTo({ top: 0 });

@@ -199,6 +199,33 @@ const tablas = (leerCsv("tablas.csv") || []).map(function (t) {
   };
 });
 
+// ---------- 4b. Lo que pasó en la última fecha (para el "Equipo de la fecha") ----------
+// Comparamos con el archivo generado la vez anterior: lo que cada jugador sumó desde entonces.
+// Si no cambió nada (ej. se volvió a generar sin datos nuevos), conservamos la fecha anterior.
+let fecha = null;
+const hoy = new Date().toLocaleDateString("es-AR");
+if (fs.existsSync(salida)) {
+  const anterior = fs.readFileSync(salida, "utf-8");
+  const caja = { window: {} };
+  try { require("vm").runInNewContext(anterior, caja); } catch (e) { /* archivo viejo ilegible: se ignora */ }
+  const previos = (caja.window.DATOS_LIGAS || {})[liga] || [];
+  const fechaPrevia = (caja.window.DATOS_FECHA || {})[liga] || null;
+  const desde = (anterior.match(/generado el (\S+)/) || [])[1] || "?";
+  const porClave = {};
+  for (const j of previos) porClave[j.nombre + "|" + j.equipo + "|" + j.edad] = j;
+  const campos = ["partidos", "minutos", "goles", "asistencias", "amarillas", "rojas", "quites", "intercepciones",
+    "tirosAlArco", "faltasRecibidas", "centros", "atajadas", "vallasInvictas", "golesRecibidos"];
+  const sumaron = [];
+  for (const j of jugadores) {
+    const antes = porClave[j.nombre + "|" + j.equipo + "|" + j.edad];
+    if (!antes || j.minutos <= antes.minutos) continue;
+    const d = { nombre: j.nombre, equipo: j.equipo, equipoId: j.equipoId, edad: j.edad, puesto: j.puesto, foto: j.foto };
+    for (const c of campos) d[c] = (j[c] || 0) - (antes[c] || 0);
+    sumaron.push(d);
+  }
+  fecha = sumaron.length ? { desde, hasta: hoy, jugadores: sumaron } : fechaPrevia;
+}
+
 // ---------- 5. Escritura del archivo para la app ----------
 const conFoto = jugadores.filter(j => j.foto).length;
 const conAltura = jugadores.filter(j => j.altura).length;
@@ -211,7 +238,9 @@ const cuerpo =
   jugadores.map(j => "  " + JSON.stringify(j)).join(",\n") +
   "\n];\n" +
   "window.DATOS_TABLAS = window.DATOS_TABLAS || {};\n" +
-  "window.DATOS_TABLAS[" + JSON.stringify(liga) + "] = " + JSON.stringify(tablas) + ";\n";
+  "window.DATOS_TABLAS[" + JSON.stringify(liga) + "] = " + JSON.stringify(tablas) + ";\n" +
+  "window.DATOS_FECHA = window.DATOS_FECHA || {};\n" +
+  "window.DATOS_FECHA[" + JSON.stringify(liga) + "] = " + JSON.stringify(fecha) + ";\n";
 
 fs.writeFileSync(salida, encabezado + cuerpo, "utf-8");
 console.log(`Listo: ${jugadores.length} jugadores de "${liga}" (${conFoto} con foto, ${conAltura} con altura) -> ${path.relative(process.cwd(), salida)}`);
