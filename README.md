@@ -70,7 +70,7 @@ las condiciones de cada fuente.
 1. Bajar de nuevo las 4 tablas de FBref (ver paso 2 de la sección siguiente) y reemplazarlas en
    `datos/fuentes/<liga>/`.
 2. En la terminal, parado en `scouting-app`: `node datos/convertir.js <liga>`
-3. En `ligas.js`, actualizar la fecha de `actualizado` de esa liga.
+3. En `ligas.js`, actualizar `actualizado` (la fecha del día) y `hasta` (hasta qué fecha del torneo llegan los datos, ej. "Clausura, hasta la fecha 11").
 
 ## Cómo agregar una liga
 

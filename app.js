@@ -995,7 +995,7 @@ function mostrarLigas() {
       <img class="liga__bandera" src="${bandera(l.bandera)}" alt="Bandera de ${l.pais}">
       <span class="liga__nombre">${l.nombre}</span>
       <span class="liga__pais">${l.pais} · ${l.temporada}</span>
-      <span class="liga__estado">${l.disponible ? "Actualizado " + l.actualizado : "Próximamente"}</span>
+      <span class="liga__estado">${l.disponible ? (l.hasta || "Actualizado " + l.actualizado) : "Próximamente"}</span>
     </button>`).join("") + (totalSeguidos() ? `
     <button class="liga liga--seguidos" data-seguidos>
       <span class="liga__nombre">⭐ Mis jugadores</span>

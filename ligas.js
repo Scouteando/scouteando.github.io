@@ -1,4 +1,5 @@
 // CONFIGURACIÓN DE LIGAS
+// hasta = hasta qué fecha del torneo llegan los datos (se muestra en la portada; actualizarlo junto con "actualizado")
 // bandera = código de país de 2 letras (la imagen sale de flagcdn.com)
 // Cada liga que muestra la app. Para sumar una liga nueva:
 //   1) cargá sus datos en datos/fuentes/<id>/ y generá el archivo con el conversor
@@ -6,8 +7,8 @@
 // (ver README.md, sección "Cómo agregar una liga")
 
 const LIGAS = [
-  { id: "argentina", nombre: "Liga Profesional", pais: "Argentina", bandera: "ar", temporada: "2026", actualizado: "30/09/2026", disponible: true },
-  { id: "brasil",    nombre: "Brasileirão Série A", pais: "Brasil",   bandera: "br", temporada: "2026", disponible: true, actualizado: "01/10/2026" },
+  { id: "argentina", nombre: "Liga Profesional", pais: "Argentina", bandera: "ar", temporada: "2026", actualizado: "30/09/2026", hasta: "Clausura, hasta la fecha 10", disponible: true },
+  { id: "brasil",    nombre: "Brasileirão Série A", pais: "Brasil",   bandera: "br", temporada: "2026", disponible: true, actualizado: "01/10/2026", hasta: "Hasta la fecha 28" },
   { id: "uruguay",   nombre: "Liga AUF",            pais: "Uruguay",  bandera: "uy", temporada: "2026", disponible: false },
   { id: "colombia",  nombre: "Liga BetPlay",        pais: "Colombia", bandera: "co", temporada: "2026", disponible: false },
   { id: "chile",     nombre: "Primera División",    pais: "Chile",    bandera: "cl", temporada: "2026", disponible: false },
