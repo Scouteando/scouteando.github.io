@@ -120,6 +120,8 @@ function porPartido(valor, j) {
 }
 
 function escudo(idEquipo) {
+  // Sin id (equipo que no está en API-Football): imagen transparente en vez de una rota
+  if (!idEquipo) return "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
   return "https://media.api-sports.io/football/teams/" + idEquipo + ".png";
 }
 function iniciales(nombre) {
@@ -161,7 +163,9 @@ let ordenRankingEquipos = "golesPP";
 
 // Números de cada equipo, sumando a todos los jugadores que jugaron para él
 function estadisticasDeEquipos() {
-  const tablaAnual = tablasLiga.find(t => !/promedio/i.test(t.competencia) && !t.grupo) || null;
+  // La tabla de toda la temporada = la que tiene más partidos jugados (sin contar promedios)
+  const tablaAnual = tablasLiga.filter(t => !/promedio/i.test(t.competencia))
+    .sort((a, b) => Math.max(...b.filas.map(f => f.pj)) - Math.max(...a.filas.map(f => f.pj)))[0] || null;
   const porEquipo = {};
   for (const j of jugadores) {
     const e = (porEquipo[j.equipo] = porEquipo[j.equipo] || { equipo: j.equipo, equipoId: j.equipoId, goles: 0, tirosAlArco: 0, recuperaciones: 0, faltasRecibidas: 0, minutos: 0, edadPorMinuto: 0, minutosSub23: 0, usados: 0, maxPartidos: 0 });
@@ -1179,6 +1183,7 @@ const tiposZona = {
   prelib: "Libertadores (fase previa)",
   sud: "Copa Sudamericana",
   play: "Clasifica a octavos",
+  cuadr: "Clasifica a cuadrangulares",
   desc: "Descenso"
 };
 const zonaDe = (t, pos) => (t.zonas || []).find(z => pos >= z.desde && pos <= z.hasta);
@@ -1223,7 +1228,7 @@ function mostrarPosiciones() {
   resumen.textContent = esPromedios
     ? "Promedio de puntos de las últimas temporadas: define los descensos"
     : `${competenciaElegida} · ${ligaActual.nombre}`;
-  if (tablasLiga.some(t => (t.zonas || []).some(z => z.tipo !== "play" && z.tipo !== "desc")))
+  if (tablasLiga.some(t => (t.zonas || []).some(z => !["play", "cuadr", "desc"].includes(z.tipo))))
     vistaPosiciones.insertAdjacentHTML("beforeend", `<p class="nota-zonas">Las zonas de copas son de referencia: las plazas finales dependen también de los campeones de las copas nacionales.</p>`);
 }
 

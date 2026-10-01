@@ -147,7 +147,9 @@ const jugadores = general.map(function (f) {
     tiros: num(t.shots),
     tirosAlArco: num(t.shots_on_target),
     // Si no tenemos planteles cargados, asumimos que todos siguen en el club
-    enPlantel: hayPlanteles ? sigueEnElClub[clave(f)] === true : true
+    // Si no tenemos el plantel de ESE equipo (ej. un ascendido que no está en API-Football),
+    // asumimos que sigue en el club para no esconderlo
+    enPlantel: hayPlanteles && planteles[equipo.id_apifootball] ? sigueEnElClub[clave(f)] === true : true
   };
 
   if (puesto === "ARQ") {

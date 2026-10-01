@@ -950,3 +950,4 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .resultados.parecidos__lista .lider { grid-template-columns: 36px 1fr auto; }
 .parecidos__por-que { color: var(--dorado) !important; }
 .pie__contacto { display: block; margin-top: 6px; }
+.zona--cuadr { --zona: #f2c230; }
