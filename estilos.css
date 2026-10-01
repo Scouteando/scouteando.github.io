@@ -738,7 +738,7 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
-.cabecera h1 { font-size: 60px; }
+.cabecera h1 { font-size: clamp(38px, 10vw, 60px); overflow-wrap: anywhere; }
 
 .carta__nombre {
   font-weight: 600;
@@ -893,3 +893,27 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 
 /* Textos chicos dentro de números grandes: letra normal para que se lean bien */
 .perfil__valor small, .stat__nombre, .lider__nombre small { font-family: var(--fuente-texto); font-style: normal; font-stretch: 100%; font-weight: 400; }
+
+/* ===== Ficha: botones Seguir y Compartir ===== */
+.ficha__acciones { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ===== Portada ===== */
+.ligas__proximas { grid-column: 1 / -1; font-size: 14px; color: var(--texto-suave); margin: 4px 0 0; }
+.cabecera__sub { max-width: 62ch; line-height: 1.5; }
+
+/* ===== Celu: menú en una sola línea y filtros compactos ===== */
+@media (max-width: 560px) {
+  .menu { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; margin-bottom: 16px; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu__opcion { white-space: nowrap; flex: none; margin-right: 4px; }
+
+  /* Botones de puesto: una fila que se desliza de costado */
+  #filtrosLideres .filtros, #vistaJugadores .filtros { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  #filtrosLideres .filtros::-webkit-scrollbar, #vistaJugadores .filtros::-webkit-scrollbar { display: none; }
+  #filtrosLideres .filtro, #vistaJugadores .filtro { flex: none; white-space: nowrap; }
+
+  /* Edad, nacionalidad y minutos: tres columnas chicas con el nombre arriba */
+  #filtrosLideres .controles__fila { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  #filtrosLideres .orden { display: flex; flex-direction: column; gap: 4px; font-size: 12px; min-width: 0; }
+  #filtrosLideres .orden select { width: 100%; min-width: 0; font-size: 13px; padding: 8px 6px; }
+}
