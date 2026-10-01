@@ -156,10 +156,73 @@ function buscarJugadores(lista, texto, cantidad) {
 }
 
 // ---------- 5. Vista EQUIPOS ----------
+let modoEquipos = "escudos"; // "escudos" | "ranking"
+let ordenRankingEquipos = "golesPP";
+
+// Números de cada equipo, sumando a todos los jugadores que jugaron para él
+function estadisticasDeEquipos() {
+  const tablaAnual = tablasLiga.find(t => !/promedio/i.test(t.competencia) && !t.grupo) || null;
+  const porEquipo = {};
+  for (const j of jugadores) {
+    const e = (porEquipo[j.equipo] = porEquipo[j.equipo] || { equipo: j.equipo, equipoId: j.equipoId, goles: 0, tirosAlArco: 0, recuperaciones: 0, faltasRecibidas: 0, minutos: 0, edadPorMinuto: 0, minutosSub23: 0, usados: 0, maxPartidos: 0 });
+    e.goles += j.goles; e.tirosAlArco += j.tirosAlArco; e.recuperaciones += j.quites + j.intercepciones;
+    e.faltasRecibidas += j.faltasRecibidas; e.minutos += j.minutos;
+    if (j.edad != null) e.edadPorMinuto += j.edad * j.minutos;
+    if (j.edad != null && j.edad <= 23) e.minutosSub23 += j.minutos;
+    if (j.minutos > 0) e.usados++;
+    e.maxPartidos = Math.max(e.maxPartidos, j.partidos);
+  }
+  return Object.values(porEquipo).map(function (e) {
+    const fila = tablaAnual && tablaAnual.filas.find(f => f.equipo === e.equipo);
+    const pj = (fila && fila.pj) || e.maxPartidos || 1;
+    const r = v => Math.round(v * 100) / 100;
+    return { ...e, pj, golesPP: r(e.goles / pj), tirosPP: r(e.tirosAlArco / pj), recupPP: r(e.recuperaciones / pj),
+      faltasPP: r(e.faltasRecibidas / pj), edadMedia: e.minutos ? Math.round((e.edadPorMinuto / e.minutos) * 10) / 10 : null,
+      pctSub23: e.minutos ? Math.round((e.minutosSub23 / e.minutos) * 100) : 0 };
+  });
+}
+
+const columnasRanking = [
+  ["golesPP", "Goles por partido"], ["tirosPP", "Tiros al arco por partido"], ["recupPP", "Recuperaciones por partido"],
+  ["faltasPP", "Faltas recibidas por partido"], ["edadMedia", "Edad promedio", true], ["pctSub23", "% de minutos Sub-23"], ["usados", "Jugadores usados"]
+];
+
+function htmlRankingEquipos() {
+  const [clave, , menorPrimero] = columnasRanking.find(c => c[0] === ordenRankingEquipos);
+  const filas = estadisticasDeEquipos().sort((a, b) => menorPrimero ? (a[clave] ?? 99) - (b[clave] ?? 99) : b[clave] - a[clave]);
+  return `
+    <div class="ranking-equipos">
+      <p class="ranking-equipos__ayuda">Ordenado por <strong>${columnasRanking.find(c => c[0] === clave)[1].toLowerCase()}</strong>. Tocá una columna para ordenar por otra. La edad promedio pesa más a los que más minutos jugaron.</p>
+      <div class="tabla-scroll">
+        <table>
+          <thead><tr><th>#</th><th>Equipo</th>${columnasRanking.map(([c, nombre]) =>
+            `<th class="${c === clave ? "activa" : ""}" data-orden-equipos="${c}" title="${nombre}">${{ golesPP: "Goles", tirosPP: "Tiros arco", recupPP: "Recup.", faltasPP: "Faltas rec.", edadMedia: "Edad", pctSub23: "% Sub-23", usados: "Usados" }[c]}</th>`).join("")}</tr></thead>
+          <tbody>${filas.map((e, i) => `
+            <tr>
+              <td class="pos">${i + 1}</td>
+              <td class="equipo-celda"><a href="#" class="carta__equipo" data-equipo="${e.equipo}"><img class="mini-escudo" src="${escudo(e.equipoId)}" alt="">${e.equipo}</a></td>
+              ${columnasRanking.map(([c]) => `<td class="${c === clave ? "activa" : ""}">${e[c] ?? "-"}${c === "pctSub23" ? "%" : ""}</td>`).join("")}
+            </tr>`).join("")}</tbody>
+        </table>
+      </div>
+    </div>`;
+}
+
 function mostrarEquipos() {
   const equipos = [...new Set(jugadores.map(j => j.equipo))].sort();
+  const pestanas = `
+    <div class="pestanas">
+      <button class="filtro ${modoEquipos === "escudos" ? "activo" : ""}" data-modo-equipos="escudos">Clubes</button>
+      <button class="filtro ${modoEquipos === "ranking" ? "activo" : ""}" data-modo-equipos="ranking">Ranking de equipos</button>
+    </div>`;
+  titulo.textContent = "Equipos";
+  if (modoEquipos === "ranking") {
+    vistaEquipos.innerHTML = pestanas + htmlRankingEquipos();
+    resumen.textContent = `Los ${equipos.length} equipos de ${ligaActual.nombre} comparados entre sí`;
+    return;
+  }
 
-  vistaEquipos.innerHTML = equipos.map(function (equipo) {
+  vistaEquipos.innerHTML = pestanas + equipos.map(function (equipo) {
     const plantel = jugadores.filter(j => j.equipo === equipo);
     return `
       <button class="equipo" data-equipo="${equipo}">
@@ -167,8 +230,6 @@ function mostrarEquipos() {
         <span class="equipo__nombre">${equipo}</span>
       </button>`;
   }).join("");
-
-  titulo.textContent = "Equipos";
   resumen.textContent = "Elegí un club para ver su plantel";
 }
 
@@ -320,6 +381,9 @@ const ordenFicha = {
 };
 
 function abrirFicha(elegido) {
+  // Si ya había una ficha abierta (ej. tocaste un "parecido"), reemplazamos su link en vez de apilar otro:
+  // así la X y el botón atrás siempre te devuelven a la pantalla de abajo.
+  const yaHabiaFicha = !ficha.hidden && /\/jugador\//.test(location.hash);
   // La ficha muestra siempre la TEMPORADA COMPLETA del jugador (todos sus clubes sumados)
   const j = jugadoresUnificados.find(x => x.nombre === elegido.nombre && x.edad === elegido.edad) || elegido;
   const porClub = jugadores.filter(x => x.nombre === j.nombre && x.edad === j.edad);
@@ -424,6 +488,9 @@ function abrirFicha(elegido) {
       <div class="perfil">${perfil}</div>
       ${avisoMinutos}
 
+      <div class="parecidos"></div>
+      ${htmlNotaFicha(j)}
+
       <div class="comp__buscador">
         <input class="campo campo--buscar comp__buscar" type="search" placeholder="⚖️ Comparar con otro jugador…">
         <ul class="resultados comp__resultados"></ul>
@@ -434,7 +501,87 @@ function abrirFicha(elegido) {
   ficha.hidden = false;
   fichaActual = j;
   document.title = `${j.nombre} · Scouteando`;
-  ponerRuta(rutaJugador(j));
+  ponerRuta(rutaJugador(j), yaHabiaFicha);
+  llenarParecidos(j);
+}
+
+// ---------- Jugadores parecidos ----------
+// Compara el "perfil" de números cada 90 minutos con todos los del mismo puesto (450' o más),
+// de todas las ligas. Cada estadística se pasa a la misma escala, así pesan todas igual.
+const perfilesPorPuesto = {
+  ARQ: [j => j.atajadas, j => j.vallasInvictas, j => j.golesRecibidos],
+  otros: [j => j.goles, j => j.tirosAlArco, j => j.asistencias, j => j.quites, j => j.intercepciones, j => j.faltasRecibidas, j => j.centros]
+};
+
+function jugadoresParecidos(j, cantidad) {
+  const campos = perfilesPorPuesto[j.puesto === "ARQ" ? "ARQ" : "otros"];
+  let pool = [];
+  for (const liga of ligasDisponibles()) {
+    if (window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id]) pool = pool.concat(unificadosDe(liga.id));
+  }
+  pool = pool.filter(x => x.puesto === j.puesto && x.minutos >= 450);
+  const vector = x => campos.map(f => ((f(x) || 0) * 90) / Math.max(x.minutos, 1))
+    .concat(j.puesto === "ARQ" ? [x.pctAtajadas || 0] : []);
+  const vectores = pool.map(vector);
+  const n = vectores[0] ? vectores[0].length : 0;
+  const media = [], desvio = [];
+  for (let k = 0; k < n; k++) {
+    const col = vectores.map(v => v[k]);
+    media[k] = col.reduce((a, b) => a + b, 0) / col.length;
+    desvio[k] = Math.sqrt(col.reduce((a, b) => a + (b - media[k]) ** 2, 0) / col.length) || 1;
+  }
+  const escala = v => v.map((x, k) => (x - media[k]) / desvio[k]);
+  const propio = escala(vector(j));
+  const distancias = pool
+    .filter(x => !(x.nombre === j.nombre && x.edad === j.edad && x.liga === j.liga))
+    .map(x => ({ x, d: Math.sqrt(escala(vector(x)).reduce((a, v, k) => a + (v - propio[k]) ** 2, 0)) }))
+    .sort((a, b) => a.d - b.d);
+  // "% de parecido": 100% = mismo perfil; baja a medida que se aleja (relativo a todos los del puesto)
+  const lejos = distancias.length ? distancias[Math.floor(distancias.length * 0.9)].d || 1 : 1;
+  return distancias.slice(0, cantidad).map(({ x, d }) => ({ ...x, parecido: Math.max(1, Math.round((1 - d / lejos) * 100)) }));
+}
+
+function llenarParecidos(j) {
+  const caja = ficha.querySelector(".parecidos");
+  if (!caja || fichaActual !== j) return;
+  if (j.minutos < 450) { caja.innerHTML = ""; return; }
+  // Cargamos las demás ligas para buscar en todas
+  const faltan = ligasDisponibles().filter(l => !(window.DATOS_LIGAS && window.DATOS_LIGAS[l.id]));
+  faltan.forEach(l => cargarDatos(l.id, () => llenarParecidos(j)));
+  const lista = jugadoresParecidos(j, 5);
+  const nombreLiga = id => (LIGAS.find(l => l.id === id) || {}).pais || "";
+  caja.innerHTML = `
+    <h3 class="ficha__subtitulo">Jugadores con perfil parecido</h3>
+    <ul class="resultados parecidos__lista">${lista.map(x => `
+      <li class="lider" data-parecido="${x.liga}|${x.nombre}|${x.edad}">
+        <span class="lider__foto">${x.foto ? `<img src="${x.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(x.nombre)}</span></span>
+        <span class="lider__nombre">${x.nombre}<small><img class="mini-escudo" src="${escudo(x.equipoId)}" alt="">${x.equipo} · ${nombreLiga(x.liga)} · ${x.edad ?? "-"} años</small></span>
+        <span class="parecidos__valor">${x.parecido}%</span>
+      </li>`).join("")}</ul>
+    <p class="ficha__nota">Comparamos sus números cada 90 minutos con los ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas que jugaron 450' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido estadístico, no de estilo de juego.</p>`;
+}
+
+// ---------- Notas de scouting (se guardan en el navegador) ----------
+let notas = {};
+try { notas = JSON.parse(localStorage.getItem("scouting-notas")) || {}; } catch (e) { notas = {}; }
+const claveNota = j => `${j.liga || ligaActual.id}|${j.nombre}|${j.edad}`;
+const etiquetas = { prioridad: "🔥 Prioridad", seguir: "👀 Seguir viendo", descartado: "✕ Descartado" };
+function guardarNota(j, cambios) {
+  const actual = notas[claveNota(j)] || {};
+  notas[claveNota(j)] = { ...actual, ...cambios };
+  if (!notas[claveNota(j)].nota && !notas[claveNota(j)].etiqueta) delete notas[claveNota(j)];
+  try { localStorage.setItem("scouting-notas", JSON.stringify(notas)); } catch (e) { /* sin almacenamiento */ }
+}
+function htmlNotaFicha(j) {
+  const n = notas[claveNota(j)] || {};
+  return `
+    <div class="nota-scouting">
+      <h3 class="ficha__subtitulo">Tu informe</h3>
+      <div class="nota-scouting__etiquetas">${Object.entries(etiquetas).map(([clave, texto]) =>
+        `<button class="filtro ${n.etiqueta === clave ? "activo" : ""}" data-etiqueta="${clave}">${texto}</button>`).join("")}</div>
+      <textarea class="campo nota-scouting__texto" rows="3" maxlength="600" placeholder="Anotá lo que viste: perfil, partidos, a quién reemplazaría…">${(n.nota || "").replace(/</g, "&lt;")}</textarea>
+      <p class="ficha__nota">Se guarda solo en este navegador. Las notas aparecen en ⭐ Mis jugadores.</p>
+    </div>`;
 }
 
 // ---------- Gráfico de perfil (radar) ----------
@@ -535,6 +682,17 @@ function abrirComparacion(a, b) {
   ficha.hidden = false;
 }
 
+// Texto de la nota: se guarda mientras escribís
+ficha.addEventListener("input", function (e) {
+  if (!e.target.matches(".nota-scouting__texto") || !fichaActual) return;
+  guardarNota(fichaActual, { nota: e.target.value.trim() });
+  if (e.target.value.trim() && !loSigo(fichaActual)) {
+    alternarSeguir(fichaActual);
+    const b = ficha.querySelector("[data-seguir]");
+    if (b) { b.classList.add("boton-seguir--activo"); b.textContent = "★ Siguiendo"; }
+  }
+});
+
 // Buscador "Comparar con…" dentro de la ficha
 ficha.addEventListener("input", function (e) {
   if (!e.target.matches(".comp__buscar")) return;
@@ -560,6 +718,29 @@ ficha.addEventListener("click", function (e) {
     const boton = e.target.closest("[data-seguir]");
     boton.classList.toggle("boton-seguir--activo", loSigo(fichaActual));
     boton.textContent = loSigo(fichaActual) ? "★ Siguiendo" : "☆ Seguir";
+    return;
+  }
+  const parecido = e.target.closest("[data-parecido]");
+  if (parecido) {
+    const [liga, nombre, edad] = parecido.dataset.parecido.split("|");
+    activarLiga(liga, function () {
+      const otro = jugadoresUnificados.find(x => x.nombre === nombre && String(x.edad) === edad);
+      if (otro) abrirFicha(otro);
+    });
+    return;
+  }
+  const etiqueta = e.target.closest("[data-etiqueta]");
+  if (etiqueta && fichaActual) {
+    const actual = (notas[claveNota(fichaActual)] || {}).etiqueta;
+    const nueva = actual === etiqueta.dataset.etiqueta ? "" : etiqueta.dataset.etiqueta;
+    guardarNota(fichaActual, { etiqueta: nueva });
+    // Poner una etiqueta también lo suma a "Mis jugadores"
+    if (nueva && !loSigo(fichaActual)) {
+      alternarSeguir(fichaActual);
+      const b = ficha.querySelector("[data-seguir]");
+      if (b) { b.classList.add("boton-seguir--activo"); b.textContent = "★ Siguiendo"; }
+    }
+    ficha.querySelectorAll("[data-etiqueta]").forEach(b => b.classList.toggle("activo", b.dataset.etiqueta === nueva));
     return;
   }
   const botonCompartir = e.target.closest("[data-compartir]");
@@ -900,8 +1081,11 @@ function actualizarContadorSeguidos() {
 
 const vistaSeguidos = document.getElementById("vistaSeguidos");
 
+let filtroEtiqueta = "";
+
 function mostrarSeguidos() {
   const ligasConSeguidos = LIGAS.filter(l => (seguidos[l.id] || []).length);
+  const cuenta = { "": 0 };
   let html = "";
   for (const liga of ligasConSeguidos) {
     // Si la liga todavía no se cargó, la cargamos y volvemos a dibujar
@@ -915,12 +1099,21 @@ function mostrarSeguidos() {
       .map(c => todos.find(j => claveJugador(j) === c))
       .filter(Boolean)
       .sort((x, y) => ordenPuestos[x.puesto] - ordenPuestos[y.puesto] || y.minutos - x.minutos);
-    if (!lista.length) continue;
+    lista.forEach(j => { const et = (notas[claveNota(j)] || {}).etiqueta || "sin"; cuenta[et] = (cuenta[et] || 0) + 1; cuenta[""]++; });
+    const visibles = filtroEtiqueta ? lista.filter(j => ((notas[claveNota(j)] || {}).etiqueta || "sin") === filtroEtiqueta) : lista;
+    if (!visibles.length) continue;
     html += `<h3 class="grupo"><img class="mini-escudo" src="${bandera(liga.bandera)}" alt=""> ${liga.nombre}</h3>` +
-      lista.map(j => crearCarta(j).replace("<article ", `<article data-liga="${liga.id}" `)).join("");
+      visibles.map(function (j) {
+        const n = notas[claveNota(j)] || {};
+        const extra = (n.etiqueta || n.nota) ? `<div class="carta__nota">${n.etiqueta ? `<span class="etiqueta etiqueta--${n.etiqueta}">${etiquetas[n.etiqueta]}</span>` : ""}${n.nota ? `<p>${n.nota.replace(/</g, "&lt;")}</p>` : ""}</div>` : "";
+        return crearCarta(j).replace("<article ", `<article data-liga="${liga.id}" `).replace('<div class="carta__stats">', extra + '<div class="carta__stats">');
+      }).join("");
   }
 
   const total = totalSeguidos();
+  const filtros = total ? `<div class="filtros filtros--seguidos">${[["", "Todos"], ...Object.entries(etiquetas), ["sin", "Sin etiqueta"]].map(([c, t]) =>
+    `<button class="filtro ${filtroEtiqueta === c ? "activo" : ""}" data-filtro-etiqueta="${c}">${t} (${cuenta[c] || 0})</button>`).join("")}</div>` : "";
+  html = filtros + (html || (total ? `<p class="vacio vacio--grande">No hay jugadores con esa etiqueta.</p>` : ""));
   titulo.textContent = "Mis jugadores";
   resumen.textContent = total ? `${total} jugador${total === 1 ? "" : "es"} en seguimiento · todas las ligas` : "";
   vistaSeguidos.innerHTML = html ||
@@ -931,6 +1124,8 @@ function mostrarSeguidos() {
 }
 
 vistaSeguidos.addEventListener("click", function (e) {
+  const filtro = e.target.closest("[data-filtro-etiqueta]");
+  if (filtro) { filtroEtiqueta = filtro.dataset.filtroEtiqueta; return mostrarSeguidos(); }
   const carta = e.target.closest(".carta");
   if (!carta) return;
   const link = e.target.closest(".carta__equipo");
@@ -1069,6 +1264,7 @@ function aplicarRuta() {
 window.addEventListener("popstate", aplicarRuta);
 
 function irA(nuevaVista, equipo, desdeRuta) {
+  if (!ficha.hidden) { ficha.hidden = true; fichaAbiertaPorNosotros = false; }
   vista = nuevaVista;
   if (equipo) equipoElegido = equipo;
   ordenElegido = "puesto";
@@ -1119,6 +1315,12 @@ for (const b of botonesMenu) {
 }
 
 vistaEquipos.addEventListener("click", function (e) {
+  const modo = e.target.closest("[data-modo-equipos]");
+  if (modo) { modoEquipos = modo.dataset.modoEquipos; return mostrarEquipos(); }
+  const columna = e.target.closest("[data-orden-equipos]");
+  if (columna) { ordenRankingEquipos = columna.dataset.ordenEquipos; return mostrarEquipos(); }
+  const link = e.target.closest(".carta__equipo");
+  if (link) { e.preventDefault(); return irA("plantel", link.dataset.equipo); }
   const boton = e.target.closest(".equipo");
   if (boton) irA("plantel", boton.dataset.equipo);
 });

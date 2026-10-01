@@ -917,3 +917,34 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   #filtrosLideres .orden { display: flex; flex-direction: column; gap: 4px; font-size: 12px; min-width: 0; }
   #filtrosLideres .orden select { width: 100%; min-width: 0; font-size: 13px; padding: 8px 6px; }
 }
+
+/* ===== Equipos: pestañas y ranking ===== */
+.pestanas { grid-column: 1 / -1; display: flex; gap: 8px; flex-wrap: wrap; }
+.ranking-equipos { grid-column: 1 / -1; background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px; min-width: 0; }
+.ranking-equipos__ayuda { font-size: 13px; color: var(--texto-suave); margin: 0 0 10px; }
+.tabla-scroll { overflow-x: auto; }
+.ranking-equipos table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; min-width: 640px; }
+.ranking-equipos th { font-size: 11px; text-transform: uppercase; color: var(--texto-suave); font-weight: 600; padding: 8px 6px; border-bottom: 1px solid var(--borde); text-align: center; cursor: pointer; white-space: nowrap; }
+.ranking-equipos th:nth-child(1), .ranking-equipos th:nth-child(2) { cursor: default; }
+.ranking-equipos th:nth-child(2), .ranking-equipos td.equipo-celda { text-align: left; }
+.ranking-equipos td { padding: 8px 6px; border-bottom: 1px solid var(--borde); text-align: center; font-size: 14px; }
+.ranking-equipos td.pos { color: var(--texto-suave); width: 26px; }
+.ranking-equipos .activa { color: var(--dorado); font-weight: 700; }
+.ranking-equipos .carta__equipo { border-bottom: none; font-weight: 600; white-space: nowrap; }
+
+/* ===== Ficha: parecidos y notas ===== */
+.parecidos__lista { margin: 0; }
+.parecidos__valor { margin-left: auto; font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 800; font-size: 22px; color: var(--dorado); }
+.nota-scouting { margin-top: 8px; }
+.nota-scouting__etiquetas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.nota-scouting__texto { width: 100%; box-sizing: border-box; resize: vertical; line-height: 1.5; font-family: var(--fuente-texto); }
+
+/* ===== Mis jugadores: etiquetas y notas en la carta ===== */
+.filtros--seguidos { grid-column: 1 / -1; }
+.carta__nota { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 10px; }
+.carta__nota p { margin: 0; font-size: 13px; color: var(--texto-suave); line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.etiqueta { align-self: flex-start; font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--borde); color: var(--texto); }
+.etiqueta--prioridad { background: #f2c230; color: #0b1220; }
+.etiqueta--seguir { background: #3b82f6; color: #fff; }
+.etiqueta--descartado { background: #3a4258; color: #b8c0d2; text-decoration: line-through; }
+.resultados.parecidos__lista .lider { grid-template-columns: 36px 1fr auto; }
