@@ -1,0 +1,21 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;attendance_per_g;top_team_scorers;top_keeper;notes
+1;Flamengo;28;18;6;4;55;23;+32;60;2.14;W W W W W;63232;Pedro - 16;Agustín Rossi;
+2;Palmeiras;28;16;9;3;47;21;+26;57;2.04;W D D W D;29092;Flaco López - 8;Carlos Miguel;
+3;Athletico–PR;28;14;7;7;43;32;+11;49;1.75;W D L D W;26288;Kevin Viveros - 18;Santos;
+4;Fluminense;28;13;9;6;44;36;+8;48;1.71;W D W L W;25240;John Kennedy - 9;Fábio;
+5;Bahia;28;12;10;6;43;35;+8;46;1.64;W W W W L;34121;Luciano Juba - 9;Ronaldo;
+6;Cruzeiro;28;13;6;9;42;40;+2;45;1.61;W L W L W;34131;Matheus Pereira - 9;Otávio;
+7;Atlético Mineiro;27;11;7;9;36;32;+4;40;1.48;D W L W D;26138;Tomás Cuello - 5;Éverson;
+8;Santos;27;10;8;9;41;40;+1;38;1.41;D W W W W;13830;Gabriel Barbosa - 11;Gabriel Brazão;
+9;Coritiba;28;10;8;10;37;43;-6;38;1.36;W W L D L;23846;Pedro Rocha Neves, Breno - 8;Pedro Rangel;
+10;RB Bragantino;27;10;6;11;33;31;+2;36;1.33;W L L D L;4296;Isidro Pitta - 6;Tiago Volpi;
+11;São Paulo;27;10;6;11;32;30;+2;36;1.33;L W W L W;26982;Luciano, Jonathan Calleri - 8;Rafael Pires;
+12;Botafogo–RJ;28;9;8;11;41;45;-4;35;1.25;L D D W L;15213;Danilo Santos - 9;Neto;
+13;Vitória;28;9;6;13;28;42;-14;33;1.18;L L W D L;19098;Renê Sousa - 9;Lucas Arcanjo;
+14;Corinthians;28;8;8;12;29;32;-3;32;1.14;L L L L L;37938;André, Matheus Bidu... - 3;Hugo Souza;
+15;Mirassol;28;8;8;12;33;42;-9;32;1.14;D L W D W;6031;Carlos Eduardo - 6;Walter;
+16;Vasco da Gama;27;8;7;12;34;41;-7;31;1.15;L W L W W;18686;Andrés Gómez - 5;Léo Jardim;
+17;Grêmio;28;7;8;13;30;38;-8;29;1.04;W L L L D;29121;Carlos Vinícius - 10;Wéverton;
+18;Internacional;28;6;10;12;30;36;-6;28;1.00;D L L W L;21543;Johan Carbonero - 7;Sergio Rochet;
+19;Remo;28;5;8;15;32;47;-15;23;0.82;L L L L L;25948;Jajá - 7;Marcelo Rangel;
+20;Chapecoense;27;3;9;15;29;53;-24;18;0.67;W L W L D;12494;Marcinho - 5;Anderson;

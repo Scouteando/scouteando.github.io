@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scouteando · Estadísticas de jugadores de fútbol</title>
+  <meta name="description" content="Estadísticas de jugadores de la Liga Profesional Argentina y el Brasileirão 2026: rankings por puesto, líderes, posiciones y comparador.">
+  <!-- Vista previa al compartir el link (WhatsApp, X, etc.). -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Scouteando · Estadísticas de jugadores de fútbol">
+  <meta property="og:description" content="Jugadores, rankings por puesto, líderes y posiciones de la Liga Profesional Argentina y el Brasileirão 2026.">
+  <meta property="og:image" content="https://joacotomada.github.io/scouteando/compartir.png">
+  <meta property="og:url" content="https://joacotomada.github.io/scouteando/">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Ícono de la pestaña: una pelota dibujada con SVG -->
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+
+  <!-- Tipografía de Google Fonts: Archivo (angosta e itálica en títulos y números, normal en el texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..800;1,62..125,400..800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="estilos.css?v=25">
+</head>
+<body>
+
+  <!-- Menú: dos secciones -->
+  <nav class="menu" id="menuLiga" hidden>
+    <button class="menu__opcion activo" data-vista="equipos">Equipos</button>
+    <button class="menu__opcion" data-vista="posiciones">Posiciones</button>
+    <button class="menu__opcion" data-vista="lideres">Líderes</button>
+    <button class="menu__opcion" data-vista="seguidos">⭐ Mis jugadores</button>
+  </nav>
+
+  <header class="cabecera">
+    <div class="marca"><img class="marca__logo" src="logo.svg" alt=""><p class="cabecera__liga" id="volver">Scouteando</p></div>
+    <h1 id="titulo">Equipos</h1>
+    <p class="cabecera__sub" id="resumen"></p>
+  </header>
+
+  <!-- VISTA LIGAS: pantalla de inicio -->
+  <main class="ligas" id="vistaLigas"></main>
+
+  <!-- Buscador de toda la liga (solo en la pantalla de inicio) -->
+  <section class="busqueda-global" id="busquedaGlobal">
+    <input id="buscadorGlobal" class="campo campo--grande" type="search" placeholder="Buscar cualquier jugador de la liga…">
+    <ul class="resultados" id="resultadosGlobal"></ul>
+  </section>
+
+  <!-- VISTA 1: grilla con los 30 equipos -->
+  <main class="equipos" id="vistaEquipos"></main>
+
+  <!-- Filtros de Líderes: edad y puesto -->
+  <section class="controles" id="filtrosLideres" hidden>
+    <div class="filtros">
+      <button class="filtro activo" data-puesto="TODOS">Todos los puestos</button>
+      <button class="filtro" data-puesto="ARQ">Arqueros</button>
+      <button class="filtro" data-puesto="DEF">Defensores</button>
+      <button class="filtro" data-puesto="MED">Mediocampistas</button>
+      <button class="filtro" data-puesto="DEL">Delanteros</button>
+    </div>
+    <div class="controles__fila">
+      <label class="orden">Edad
+        <select id="filtroEdad" class="campo">
+          <option value="">Todas</option>
+          <option value="0-21">Sub-21</option>
+          <option value="0-23">Sub-23</option>
+          <option value="24-29">24 a 29 años</option>
+          <option value="30-99">30 años o más</option>
+        </select>
+      </label>
+      <label class="orden">Nacionalidad
+        <!-- JavaScript la llena con los países de la liga -->
+        <select id="filtroPais" class="campo"></select>
+      </label>
+      <label class="orden">Minutos jugados
+        <select id="filtroMinutos" class="campo">
+          <option value="0">Cualquiera</option>
+          <option value="450">450' o más (5 partidos)</option>
+          <option value="900">900' o más (10 partidos)</option>
+          <option value="1350">1350' o más (15 partidos)</option>
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <!-- VISTA LÍDERES: tablas Top 10 -->
+  <main class="lideres" id="vistaLideres" hidden></main>
+
+  <!-- VISTA POSICIONES: tablas del torneo -->
+  <main class="vista-posiciones" id="vistaPosiciones" hidden></main>
+
+  <!-- VISTA MIS JUGADORES: lista de seguimiento -->
+  <main class="grilla" id="vistaSeguidos" hidden></main>
+
+  <!-- VISTA 2: jugadores (de un equipo o de toda la liga) -->
+  <section id="vistaJugadores" hidden>
+    <!-- Resumen del equipo: goleador, asistidor, etc. -->
+    <div class="resumen-equipo" id="resumenEquipo" hidden></div>
+
+    <div class="controles">
+      <div class="controles__fila">
+        <input id="buscador" class="campo campo--buscar" type="search" placeholder="Buscar jugador…">
+        <label class="orden">
+          Ordenar por
+          <!-- JavaScript llena esta lista con las estadísticas disponibles -->
+          <select id="orden" class="campo"></select>
+        </label>
+      </div>
+      <div class="filtros">
+        <button class="filtro activo" data-puesto="TODOS">Todos</button>
+        <button class="filtro" data-puesto="ARQ">Arqueros</button>
+        <button class="filtro" data-puesto="DEF">Defensores</button>
+        <button class="filtro" data-puesto="MED">Mediocampistas</button>
+        <button class="filtro" data-puesto="DEL">Delanteros</button>
+      </div>
+    </div>
+
+    <div class="grilla" id="grilla"></div>
+
+    <div class="mas">
+      <button id="verMas" class="filtro">Ver más jugadores</button>
+    </div>
+  </section>
+
+  <!-- Ficha individual (se abre al tocar una carta) -->
+  <div class="ficha" id="ficha" hidden></div>
+
+  <footer class="pie">
+    Estadísticas: FBref · Fotos y escudos: API-Football · Banderas: flagcdn.com ·
+    <button class="pie__link" id="abrirAcerca">Acerca de</button>
+  </footer>
+
+  <!-- La lista de ligas; los datos de cada liga se cargan al elegirla -->
+  <script src="ligas.js?v=25"></script>
+  <script src="app.js?v=25"></script>
+</body>
+</html>

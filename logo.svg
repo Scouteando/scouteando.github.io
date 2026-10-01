@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Scouteando">
+  <!-- Lupa con una pelota adentro: buscar jugadores -->
+  <defs><clipPath id="pelota"><circle cx="27" cy="27" r="15.2"/></clipPath></defs>
+  <rect width="64" height="64" rx="14" fill="#0b1220"/>
+  <line x1="40.5" y1="40.5" x2="54" y2="54" stroke="#f2c230" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="27" cy="27" r="19" fill="#131c2e"/>
+  <g clip-path="url(#pelota)">
+    <circle cx="27" cy="27" r="15.2" fill="#eef2f8"/>
+    <polygon points="27.00,22.40 31.37,25.58 29.70,30.72 24.30,30.72 22.63,25.58" fill="#0b1220"/>
+    <polygon points="27.00,17.20 22.82,14.16 24.41,9.24 29.59,9.24 31.18,14.16" fill="#0b1220"/><polygon points="36.32,23.97 37.92,19.05 43.09,19.05 44.69,23.97 40.51,27.01" fill="#0b1220"/><polygon points="32.76,34.93 37.93,34.93 39.53,39.85 35.35,42.89 31.16,39.85" fill="#0b1220"/><polygon points="21.24,34.93 22.84,39.85 18.65,42.89 14.47,39.85 16.07,34.93" fill="#0b1220"/><polygon points="17.68,23.97 13.49,27.01 9.31,23.97 10.91,19.05 16.08,19.05" fill="#0b1220"/>
+  </g>
+  <circle cx="27" cy="27" r="19" fill="none" stroke="#f2c230" stroke-width="4.5"/>
+</svg>

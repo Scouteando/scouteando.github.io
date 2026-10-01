@@ -1,0 +1,895 @@
+/* ===== Colores y tipografías reutilizables ===== */
+:root {
+  --fondo: #0b1220;
+  --superficie: #131c2e;
+  --borde: #24304a;
+  --texto: #eef2f8;
+  --texto-suave: #8e9ab3;
+  --dorado: #f2c230;
+
+  /* Un color por puesto, como en los juegos Fantasy */
+  --arq: #f59e0b;
+  --def: #3b82f6;
+  --med: #10b981;
+  --del: #ef4444;
+
+  --fuente-titulo: "Archivo", "Arial Narrow", sans-serif;
+  --fuente-texto: "Archivo", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-texto);
+  font-variant-numeric: tabular-nums;
+  padding: 32px 16px;
+}
+
+/* ===== Cabecera ===== */
+.cabecera {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+}
+
+.cabecera h1 {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.cabecera__liga {
+  color: var(--dorado);
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+}
+
+.cabecera__sub {
+  color: var(--texto-suave);
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== Controles: equipo, búsqueda, puesto y orden ===== */
+.controles {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.controles__fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.campo {
+  font-family: var(--fuente-texto);
+  font-size: 14px;
+  background: var(--superficie);
+  color: var(--texto);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.campo--buscar {
+  flex: 1;
+  min-width: 180px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtro {
+  font-family: var(--fuente-texto);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--texto-suave);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.filtro:hover {
+  color: var(--texto);
+}
+
+.filtro.activo {
+  background: var(--dorado);
+  border-color: var(--dorado);
+  color: #111;
+}
+
+.orden {
+  font-size: 14px;
+  color: var(--texto-suave);
+}
+
+.orden select {
+  margin-left: 6px;
+}
+
+.mas {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.vacio {
+  color: var(--texto-suave);
+}
+
+/* ===== Grilla de cartas ===== */
+.grilla {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  /* tantas columnas como entren, cada una de mínimo 240px */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Carta de jugador ===== */
+.carta {
+  /* --color se define en cada carta según el puesto (ver app.js) */
+  position: relative;
+  background: linear-gradient(170deg, var(--superficie) 60%, #0e1627);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--color);
+  border-radius: 16px;
+  padding: 20px;
+  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.carta:hover {
+  transform: translateY(-4px);
+  border-color: var(--color);
+}
+
+.carta__arriba {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.carta__rating {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--color);
+}
+
+.carta__puesto {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #0b1220;
+  background: var(--color);
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+
+.carta__avatar {
+  position: relative;
+  margin-left: auto;
+  width: 84px;
+  height: 84px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid var(--color);
+  display: grid;
+  place-items: center;
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-size: 24px;
+  color: var(--texto);
+  background: #1b2740;
+}
+
+/* La foto tapa las iniciales cuando carga */
+.carta__avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.carta__nombre {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 16px 0 4px;
+}
+
+.carta__info {
+  color: var(--texto-suave);
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Tres estadísticas clave */
+.carta__equipo {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted var(--texto-suave);
+}
+
+.carta__equipo:hover {
+  color: var(--dorado);
+}
+
+.carta__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--borde);
+}
+
+.stat__valor {
+  display: block;
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.stat__nombre {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* Datos secundarios abajo */
+.carta__extra {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+.pie {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
+/* ===== Menú superior ===== */
+.menu {
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.menu__opcion {
+  font-family: var(--fuente-texto);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--texto-suave);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 6px 4px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.menu__opcion.activo {
+  color: var(--texto);
+  border-bottom-color: var(--dorado);
+}
+
+.cabecera__liga.link {
+  cursor: pointer;
+}
+
+/* ===== Grilla de equipos (escudos) ===== */
+.equipos {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.equipo {
+  font-family: var(--fuente-texto);
+  color: var(--texto);
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 20px 12px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.equipo:hover {
+  transform: translateY(-3px);
+  border-color: var(--dorado);
+}
+
+.equipo__escudo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.equipo__nombre {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.titulo__escudo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 14px;
+}
+
+.mini-escudo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+/* Etiqueta debajo del número grande de la carta */
+.carta__etiqueta {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+  max-width: 120px;
+}
+
+.carta__info .carta__puesto {
+  margin-right: 6px;
+  font-size: 10px;
+  padding: 2px 6px;
+}
+
+/* Título de cada grupo de puesto dentro del plantel */
+.grupo {
+  grid-column: 1 / -1;
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 0;
+  color: var(--dorado);
+  margin: 12px 0 -4px;
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 4px;
+}
+
+/* ===== Jugadores que ya no están ===== */
+.carta { cursor: pointer; }
+.carta--fuera { opacity: 0.6; }
+.aviso-fuera {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin: 4px 4px 0 0;
+}
+
+/* ===== Ficha individual ===== */
+.ficha {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.ficha[hidden] { display: none; }
+
+.ficha__caja {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--color);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.ficha__cerrar {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.ficha__cabecera {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.ficha__foto {
+  margin-left: 0;
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+}
+
+.ficha__cabecera .carta__nombre { margin-top: 0; }
+
+.ficha__nombre {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-weight: 800;
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 8px 0 4px;
+}
+
+/* Cuatro números grandes */
+.cuadros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.cuadro {
+  background: #0e1627;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+.cuadro__valor {
+  display: block;
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-size: 34px;
+  line-height: 1;
+}
+.cuadro__nombre {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.ficha__subtitulo {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--texto-suave);
+  margin: 0 0 12px;
+}
+
+/* Perfil: una fila por métrica */
+.perfil__fila {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 92px;
+  gap: 14px;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid #1c2740;
+}
+.perfil__texto {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.perfil__nombre { font-size: 13px; color: var(--texto-suave); }
+.perfil__valor { font-size: 14px; font-weight: 700; }
+.perfil__barra {
+  height: 8px;
+  background: #1b2740;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.perfil__relleno {
+  height: 100%;
+  background: var(--color);
+  border-radius: 4px;
+}
+.perfil__lado { text-align: right; line-height: 1.2; }
+.perfil__top { display: block; font-size: 13px; font-weight: 700; }
+.perfil__nivel { display: block; font-size: 11px; color: var(--texto-suave); }
+
+@media (max-width: 560px) {
+  .cuadros { grid-template-columns: repeat(2, 1fr); }
+  .perfil__fila { grid-template-columns: 1fr 80px; }
+  .perfil__barra { grid-column: 1 / -1; grid-row: 2; }
+}
+
+.ficha__nota {
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-top: 14px;
+}
+
+/* ===== Líderes (Top 10) ===== */
+.lideres {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.tabla-lideres {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+}
+
+.tabla-lideres h2 {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: 0;
+  color: var(--dorado);
+  margin: 0 0 8px;
+}
+
+.tabla-lideres ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lider {
+  display: grid;
+  grid-template-columns: 22px 36px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 7px 4px;
+  border-bottom: 1px solid #1c2740;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.lider:hover { background: #1a2438; }
+.lider:last-child { border-bottom: none; }
+
+.lider__pos {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--texto-suave);
+  text-align: center;
+}
+.lider:first-child .lider__pos { color: var(--dorado); }
+
+.lider__foto {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #1b2740;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.lider__foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.lider__nombre {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  min-width: 0;
+}
+.lider__nombre small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+.lider__valor {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-size: 24px;
+}
+
+.tabla-lideres__nota {
+  font-size: 11px;
+  color: var(--texto-suave);
+  margin: 6px 0 0;
+}
+
+/* Cualquier elemento con el atributo hidden se oculta siempre */
+[hidden] {
+  display: none !important;
+}
+
+/* ===== Buscador de la liga ===== */
+.busqueda-global {
+  max-width: 1100px;
+  margin: 0 auto 22px;
+  position: relative;
+}
+.campo--grande {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+}
+.resultados {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  background: var(--superficie);
+  border-radius: 12px;
+}
+.resultados:empty { display: none; }
+.resultados .lider { grid-template-columns: 36px 1fr; padding: 8px 12px; }
+.resultados .vacio { padding: 12px; }
+
+/* ===== Resumen del equipo ===== */
+.resumen-equipo {
+  max-width: 1100px;
+  margin: 0 auto 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.destacado {
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 12px;
+}
+.resumen-equipo .lider { grid-template-columns: 44px 1fr; border-bottom: 1px solid var(--borde); }
+.resumen-equipo .lider__foto { width: 44px; height: 44px; }
+.destacado--total { display: flex; flex-direction: column; justify-content: center; }
+.destacado__valor { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 40px; line-height: 1; color: var(--dorado); }
+.destacado__rol { font-size: 11px; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.5px; }
+
+.perfil__top small { font-size: 10px; font-weight: 400; color: var(--texto-suave); }
+
+/* ===== Ligas (pantalla de inicio) ===== */
+.ligas {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+.liga {
+  font-family: var(--fuente-texto);
+  color: var(--texto);
+  text-align: left;
+  background: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.liga:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--dorado); }
+.liga__bandera { width: 48px; height: 32px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
+.liga__nombre { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 28px; letter-spacing: 0; line-height: 1.05; }
+.liga__pais { font-size: 13px; color: var(--texto-suave); }
+.liga__estado { font-size: 11px; color: var(--dorado); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.liga--pronto { opacity: 0.45; cursor: default; }
+.liga--pronto .liga__estado { color: var(--texto-suave); }
+
+.perfil__valor small { font-size: 11px; font-weight: 400; color: var(--texto-suave); }
+
+/* ===== Tipografía (Archivo: angosta e itálica en títulos y números, normal en el texto) ===== */
+body { font-size: 15px; -webkit-font-smoothing: antialiased; }
+
+.cabecera h1, .ficha__nombre, .liga__nombre, .equipo__nombre, .grupo, .tabla-lideres h2 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.cabecera h1 { font-size: 60px; }
+
+.carta__nombre {
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.2px;
+  line-height: 1.05;
+}
+
+/* Números: ancho fijo para que se alineen */
+.carta__rating, .stat__valor, .cuadro__valor, .lider__valor, .destacado__valor, .perfil__valor, .perfil__top {
+  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.carta__rating { font-size: 54px; }
+.stat__valor { font-size: 26px; }
+.lider__valor { font-size: 26px; }
+.equipo__nombre { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 17px; }
+
+.perfil__top { font-size: 20px; line-height: 1; }
+.perfil__top small { font-family: var(--fuente-texto); font-size: 11px; font-weight: 500; color: var(--texto-suave); }
+
+/* Nivel como etiqueta de color (con el texto, no solo el color) */
+.nivel {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--borde);
+  color: var(--texto-suave);
+}
+.nivel--1 { background: rgba(242, 194, 48, 0.15); border-color: var(--dorado); color: var(--dorado); }
+.nivel--2 { border-color: var(--texto-suave); color: var(--texto); }
+.nivel--3 { color: var(--texto-suave); }
+.nivel--4 { color: var(--texto-suave); opacity: 0.7; }
+.perfil__fila { grid-template-columns: 1fr 1.1fr 100px; }
+
+/* ===== Carta sin número grande: foto + nombre arriba ===== */
+.carta__arriba { align-items: center; gap: 14px; }
+.carta__arriba .carta__avatar { margin-left: 0; flex-shrink: 0; width: 72px; height: 72px; }
+.carta__titulo { min-width: 0; }
+.carta__titulo .carta__nombre { margin: 6px 0 4px; font-size: 24px; }
+.carta__titulo .carta__info { margin: 0; }
+.carta__puesto { display: inline-block; }
+.carta .aviso-fuera { margin-top: 10px; }
+.stat--destacada .stat__valor { color: var(--color); }
+.stat--destacada .stat__nombre { color: var(--texto); font-weight: 600; }
+
+.perfil__texto { flex-direction: column; justify-content: center; gap: 2px; }
+.perfil__valor { font-size: 18px; }
+
+/* ===== Comparador ===== */
+.comp__buscador { margin-top: 18px; }
+.comp__buscador .campo { width: 100%; }
+.comp__cabeza { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; text-align: center; margin: 10px 0 14px; }
+.comp__jugador { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.comp__jugador .ficha__foto { width: 84px; height: 84px; margin: 0; }
+.comp__jugador h3 { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0; line-height: 1; }
+.comp__jugador .carta__info { margin: 0; }
+.comp__vs { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 28px; color: var(--dorado); font-weight: 700; }
+.comp__marcador { text-align: center; font-size: 12px; color: var(--texto-suave); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.comp__marcador span { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 26px; color: var(--texto); margin: 0 10px; vertical-align: middle; }
+.comp__fila { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; padding: 8px 0; border-bottom: 1px solid #1c2740; }
+.comp__nombre { text-align: center; font-size: 13px; color: var(--texto-suave); }
+.comp__valor { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 22px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; color: var(--texto-suave); }
+.comp__valor--mejor { color: #34d399; }
+.comp__volver { margin-top: 12px; }
+#filtrosLideres { gap: 8px; }
+
+/* ===== Lista de seguimiento ===== */
+.boton-seguir {
+  font-family: var(--fuente-texto);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto);
+  background: none;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 5px 14px;
+  margin: 4px 0 6px;
+  cursor: pointer;
+}
+.boton-seguir:hover { border-color: var(--dorado); }
+.boton-seguir--activo { background: rgba(242, 194, 48, 0.15); border-color: var(--dorado); color: var(--dorado); }
+.seguido { font-size: 16px; vertical-align: 2px; }
+.vacio--grande { grid-column: 1 / -1; text-align: center; padding: 40px 16px; border: 1px dashed var(--borde); border-radius: 14px; }
+
+/* ===== Posiciones ===== */
+.vista-posiciones { max-width: 1100px; margin: 0 auto; }
+.vista-posiciones > .filtros { margin-bottom: 18px; }
+.posiciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 18px; }
+.tabla-posiciones { background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px; overflow-x: auto; }
+.tabla-posiciones h2 { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 700; text-transform: uppercase; color: var(--dorado); font-size: 24px; margin: 0 0 8px; }
+.tabla-posiciones table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.tabla-posiciones th { font-size: 11px; text-transform: uppercase; color: var(--texto-suave); font-weight: 600; padding: 6px 4px; border-bottom: 1px solid var(--borde); text-align: center; }
+.tabla-posiciones td { font-size: 14px; font-weight: 400; padding: 7px 4px; border-bottom: 1px solid #1c2740; text-align: center; }
+.tabla-posiciones th:nth-child(2), .tabla-posiciones td.equipo-celda { text-align: left; }
+.tabla-posiciones td.pos { color: var(--texto-suave); width: 26px; }
+.tabla-posiciones td.pts { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 18px; font-weight: 700; }
+.tabla-posiciones .carta__equipo { border-bottom: none; font-weight: 600; }
+.forma { display: inline-block; width: 18px; height: 18px; line-height: 18px; border-radius: 4px; font-size: 10px; font-weight: 700; margin: 0 1px; color: #0b1220; }
+.forma--G { background: #34d399; }
+.forma--E { background: #8e9ab3; }
+.forma--P { background: #f87171; }
+@media (max-width: 560px) {
+  .posiciones { grid-template-columns: 1fr; }
+  .ocultar-celu { display: none; }
+}
+
+/* ===== Ficha: modo y radar ===== */
+.modo { display: inline-flex; background: #0e1627; border: 1px solid var(--borde); border-radius: 999px; padding: 3px; margin-bottom: 10px; }
+.modo__opcion { font-family: var(--fuente-texto); font-size: 12px; font-weight: 600; color: var(--texto-suave); background: none; border: none; border-radius: 999px; padding: 5px 12px; cursor: pointer; }
+.modo__opcion.activo { background: var(--dorado); color: #111; }
+.radar { display: block; width: 100%; max-width: 420px; margin: 4px auto 10px; }
+.radar__anillo { fill: none; stroke: #24304a; stroke-width: 1; }
+.radar__eje { stroke: #24304a; stroke-width: 1; }
+.radar__forma { fill: var(--color); fill-opacity: 0.25; stroke: var(--color); stroke-width: 2; stroke-linejoin: round; }
+.radar__punto { fill: var(--color); stroke: var(--superficie); stroke-width: 2; }
+.radar__texto { fill: var(--texto-suave); font-family: var(--fuente-texto); font-size: 12px; }
+
+/* ===== Zonas de la tabla de posiciones ===== */
+.zona--lib { --zona: #34d399; }
+.zona--prelib { --zona: #a7f3d0; }
+.zona--sud { --zona: #60a5fa; }
+.zona--play { --zona: #f2c230; }
+.zona--desc { --zona: #f87171; }
+.tabla-posiciones tr.zona td.pos { box-shadow: inset 3px 0 0 var(--zona); color: var(--texto); font-weight: 700; }
+.zonas { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 10px 0 0; padding: 0; font-size: 12px; color: var(--texto-suave); }
+.zonas li { display: flex; align-items: center; gap: 6px; }
+.zona-color { width: 10px; height: 10px; border-radius: 2px; background: var(--zona); }
+.nota-zonas { font-size: 12px; color: var(--texto-suave); margin: 12px 0 0; }
+
+/* Acceso a "Mis jugadores" en la pantalla de inicio */
+.liga--seguidos { border-style: dashed; justify-content: center; }
+
+/* ===== Acerca de ===== */
+.pie__link { background: none; border: none; padding: 0; color: var(--dorado); font: inherit; cursor: pointer; text-decoration: underline; }
+.acerca h2 { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 34px; text-transform: uppercase; margin: 0 0 12px; }
+.acerca h3 { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 18px; text-transform: uppercase; letter-spacing: 0; color: var(--dorado); margin: 20px 0 6px; }
+.acerca p, .acerca li { line-height: 1.55; color: var(--texto); }
+.acerca ul { padding-left: 18px; margin: 0; }
+.acerca__nota { font-size: 13px; color: var(--texto-suave) !important; margin-top: 18px; }
+
+/* ===== Logo ===== */
+.marca { display: flex; align-items: center; gap: 10px; }
+.marca__logo { width: 30px; height: 30px; flex: none; }
+.marca .cabecera__liga { margin: 0; }
+
+/* Textos chicos dentro de números grandes: letra normal para que se lean bien */
+.perfil__valor small, .stat__nombre, .lider__nombre small { font-family: var(--fuente-texto); font-style: normal; font-stretch: 100%; font-weight: 400; }

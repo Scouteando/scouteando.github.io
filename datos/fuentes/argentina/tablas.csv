@@ -1,0 +1,5 @@
+archivo;competencia;grupo;zonas
+fbref_posiciones_clausura_a.csv;Clausura 2026;Zona A;1-8:play
+fbref_posiciones_clausura_b.csv;Clausura 2026;Zona B;1-8:play
+fbref_posiciones_anual.csv;Tabla anual 2026;;1-3:lib,4-9:sud,30:desc
+fbref_posiciones_promedios.csv;Promedios (descenso);;30:desc
