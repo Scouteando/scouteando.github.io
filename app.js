@@ -475,7 +475,7 @@ function abrirFicha(elegido) {
             <button class="boton-seguir" data-compartir>🔗 Compartir</button>
           </div>
           <p class="carta__info"><img class="mini-escudo" src="${escudo(j.equipoId)}" alt="">${(j.clubes || [j.equipo]).join(" / ")}
-             · ${j.pais} · ${j.edad ?? "-"} años</p>
+             · ${j.pais} · ${j.edad ?? "-"} años${j.altura ? ` · ${(j.altura / 100).toFixed(2).replace(".", ",")} m` : ""}${j.peso ? ` · ${j.peso} kg` : ""}</p>
           ${j.enPlantel ? "" : `<span class="aviso-fuera">Ya no está en el club</span>`}
         </div>
       </div>

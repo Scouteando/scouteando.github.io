@@ -12,6 +12,7 @@
 //   fbref_arqueros.csv    -> atajadas, vallas invictas, goles recibidos
 //   equipos.csv           -> nombre del equipo en FBref, nombre a mostrar, id en API-Football
 //   apifootball_planteles.csv (opcional) -> plantel actual con id de foto
+//   apifootball_fisico.csv (opcional) -> altura y peso (id|nombre|altura|peso)
 //   tablas.csv (opcional) -> lista de tablas de posiciones (archivo;competencia;grupo;zonas)
 //     zonas: puestos que clasifican o descienden, ej. 1-4:lib,5-6:prelib,7-12:sud,17-20:desc,1-8:play
 
@@ -115,6 +116,10 @@ for (const f of general) {
   if (otro) fotoDe[clave(f)] = fotoDe[clave(otro)];
 }
 
+// Altura y peso (opcional): apifootball_fisico.csv con id|nombre|altura|peso
+const fisico = {};
+for (const x of leerCsv("apifootball_fisico.csv", "|") || []) fisico[x.id] = x;
+
 // ---------- 3. Armado de cada jugador ----------
 const puestos = { GK: "ARQ", DF: "DEF", MF: "MED", FW: "DEL" };
 const hayPlanteles = Object.keys(planteles).length > 0;
@@ -160,6 +165,13 @@ const jugadores = general.map(function (f) {
     j.vallasInvictas = num(a.gk_clean_sheets);
   }
   if (fotoDe[clave(f)]) j.foto = fotoDe[clave(f)];
+  // Altura y peso: se cruzan por el id del jugador en API-Football (el mismo número de la foto)
+  const idApi = (j.foto || "").match(/players\/(\d+)\.png/);
+  const fis = idApi && fisico[idApi[1]];
+  if (fis) {
+    if (fis.altura) j.altura = Number(fis.altura);
+    if (fis.peso) j.peso = Number(fis.peso);
+  }
   return j;
 });
 
@@ -189,6 +201,7 @@ const tablas = (leerCsv("tablas.csv") || []).map(function (t) {
 
 // ---------- 5. Escritura del archivo para la app ----------
 const conFoto = jugadores.filter(j => j.foto).length;
+const conAltura = jugadores.filter(j => j.altura).length;
 const encabezado =
   "// ARCHIVO GENERADO AUTOMÁTICAMENTE por datos/convertir.js — no editar a mano.\n" +
   "// Liga: " + liga + " · generado el " + new Date().toLocaleDateString("es-AR") + "\n\n";
@@ -201,6 +214,6 @@ const cuerpo =
   "window.DATOS_TABLAS[" + JSON.stringify(liga) + "] = " + JSON.stringify(tablas) + ";\n";
 
 fs.writeFileSync(salida, encabezado + cuerpo, "utf-8");
-console.log(`Listo: ${jugadores.length} jugadores de "${liga}" (${conFoto} con foto) -> ${path.relative(process.cwd(), salida)}`);
+console.log(`Listo: ${jugadores.length} jugadores de "${liga}" (${conFoto} con foto, ${conAltura} con altura) -> ${path.relative(process.cwd(), salida)}`);
 const sinEquipo = [...new Set(general.filter(f => !equipos[f.team]).map(f => f.team))];
 if (sinEquipo.length) console.log("Ojo: equipos sin cargar en equipos.csv:", sinEquipo.join(", "));
