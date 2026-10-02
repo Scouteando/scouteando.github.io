@@ -100,7 +100,6 @@ const estadisticas = {
   tirosAlArcoPP:  { nombre: "Tiros al arco por partido", valor: j => porPartido(j.tirosAlArco, j), minimo: 450 },
   pctAlArco:      { nombre: "% de tiros al arco",  valor: j => j.tiros >= 10 ? Math.round((j.tirosAlArco / j.tiros) * 100) : null },
   efectividad:    { nombre: "Efectividad (% de tiros que son gol)", valor: j => j.tiros >= 15 ? Math.round((j.goles / j.tiros) * 100) : null },
-  golesSinPenal:  { nombre: "Goles sin contar penales", valor: j => j.goles - (j.penalesConvertidos || 0) },
   faltasCometidas: { nombre: "Faltas cometidas",   valor: j => j.faltasCometidas ?? null },
   fueraDeJuego:   { nombre: "Fuera de juego",      valor: j => j.fueraDeJuego ?? null },
   penalesAtajados: { nombre: "Penales atajados",   valor: j => j.penalesAtajados ?? null },
@@ -406,9 +405,9 @@ function claseNivel(p) {
 
 // Orden de las estadísticas en la ficha: primero lo más importante de cada puesto
 const ordenFicha = {
-  DEF: ["Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados", "Centros", "Asistencias", "Goles", "Goles sin contar penales", "Tiros al arco", "Tiros", "Efectividad", "Faltas recibidas"],
-  MED: ["Recuperaciones", "Asistencias", "Centros", "Faltas recibidas", "Goles", "Goles sin contar penales", "Tiros al arco", "Tiros", "Efectividad", "Intercepciones", "Faltas cometidas", "Minutos jugados"],
-  DEL: ["Goles", "Goles sin contar penales", "Efectividad", "Tiros al arco", "Tiros", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados"]
+  DEF: ["Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados", "Centros", "Asistencias", "Goles", "Tiros al arco", "Tiros", "Efectividad", "Faltas recibidas"],
+  MED: ["Recuperaciones", "Asistencias", "Centros", "Faltas recibidas", "Goles", "Tiros al arco", "Tiros", "Efectividad", "Intercepciones", "Faltas cometidas", "Minutos jugados"],
+  DEL: ["Goles", "Efectividad", "Tiros al arco", "Tiros", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados"]
 };
 
 function abrirFicha(elegido) {
@@ -450,7 +449,6 @@ function abrirFicha(elegido) {
       m("Centros", x => x.centros),
       m("Tiros", x => x.tiros),
       ["Efectividad", j.tiros >= 15 ? Math.round((j.goles / j.tiros) * 100) + "% de sus tiros son gol" : "pocos tiros para medirla", null, x => x.tiros >= 15 ? x.goles / x.tiros : null],
-      m("Goles sin contar penales", x => x.goles - (x.penalesConvertidos || 0)),
       m("Faltas cometidas", x => x.faltasCometidas, true),
       ["Minutos jugados", j.minutos, null, x => x.minutos]
     ];
@@ -468,7 +466,7 @@ function abrirFicha(elegido) {
     const r = alcanza ? rankingEnPuesto(j, m[3], m[4]) : null;
     // Barra y nivel salen del mismo ranking: 1º de 100 = 100, 50º de 100 = 51
     const p = r ? Math.round((1 - (r.lugar - 1) / r.total) * 100) : null;
-    const enRadar = !["Minutos jugados", "Tiros", "Goles sin contar penales", "Faltas cometidas", "Tiros al arco recibidos", "Penales atajados", "% de vallas invictas"].includes(m[0]);
+    const enRadar = !["Minutos jugados", "Tiros", "Faltas cometidas", "Tiros al arco recibidos", "Penales atajados", "% de vallas invictas"].includes(m[0]);
     if (p != null && enRadar) datosRadar.push({ nombre: m[0], p: p });
     else if (p != null && m[0] !== "Minutos jugados" && m[0] !== "Faltas cometidas") extrasFuertes.push({ nombre: m[0], p: p });
     const lado = p == null
@@ -941,7 +939,6 @@ const tablasLideres = [
   ["Vallas invictas", "vallas", 0],
   ["% de atajadas", "pctAtajadas", 900],
   ["Tiros al arco", "tirosAlArco", 0],
-  ["Goles sin contar penales", "golesSinPenal", 0],
   ["Efectividad (% de tiros que son gol)", "efectividad", 900],
   ["% de tiros al arco", "pctAlArco", 900],
   ["Faltas cometidas", "faltasCometidas", 0],
