@@ -36,6 +36,7 @@
     <button class="menu__opcion" data-vista="lideres">Líderes</button>
     <button class="menu__opcion" data-vista="ideal">Equipo de la fecha</button>
     <button class="menu__opcion" data-vista="posiciones">Posiciones</button>
+    <button class="menu__opcion" data-vista="comparar">Comparar</button>
     <button class="menu__opcion" data-vista="seguidos">⭐ Mis jugadores</button>
   </nav>
 
@@ -100,6 +101,9 @@
   <!-- VISTA MIS JUGADORES: lista de seguimiento -->
   <main class="grilla" id="vistaSeguidos" hidden></main>
 
+  <!-- VISTA COMPARAR: dos jugadores de cualquier liga -->
+  <main class="vista-comparar" id="vistaComparar" hidden></main>
+
   <!-- VISTA EQUIPO DE LA FECHA: 4-3-3 dibujado en una cancha -->
   <main class="vista-ideal" id="vistaIdeal" hidden></main>
 
@@ -110,7 +114,7 @@
 
     <div class="controles">
       <div class="controles__fila">
-        <input id="buscador" class="campo campo--buscar" type="search" placeholder="Buscar jugador…">
+        <input id="buscador" class="campo campo--buscar" type="search" placeholder="Filtrar este plantel…">
         <label class="orden">
           Ordenar por
           <!-- JavaScript llena esta lista con las estadísticas disponibles -->
@@ -145,6 +149,11 @@
   </footer>
 
   <!-- La lista de ligas; los datos de cada liga se cargan al elegirla -->
+  <!-- Aviso mientras se cargan los datos de una liga -->
+  <div class="cargando" id="cargando" role="status" hidden></div>
+
+  <script src="novedades.js?v=37"></script>
+  <script src="datos/generados/portada.js?v=37"></script>
   <script src="ligas.js?v=37"></script>
   <script src="app.js?v=37"></script>
 </body>

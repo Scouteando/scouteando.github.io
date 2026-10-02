@@ -467,6 +467,9 @@ function abrirFicha(elegido) {
       </div>`;
   }).join("");
   const radar = datosRadar.length >= 3 ? dibujarRadar(datosRadar) : "";
+  // Puntos fuertes: lo mejor de su perfil (top 25% de su puesto o mejor), para leerlo de un vistazo
+  const fuertes = datosRadar.filter(d => d.p >= 75).sort((x, y) => y.p - x.p).slice(0, 3)
+    .map(d => `<span class="fuerte ${d.p >= 90 ? "fuerte--elite" : ""}">Top ${Math.max(1, 100 - d.p)}% en ${d.nombre.toLowerCase()}</span>`).join("");
   const avisoMinutos = alcanza ? "" :
     `<p class="ficha__nota">Jugó ${j.minutos}' en la temporada: con menos de 450' no lo comparamos con los demás ${grupoTexto}.</p>`;
   const detalleClubes = porClub.length > 1
@@ -498,6 +501,7 @@ function abrirFicha(elegido) {
         </div>
       </div>
 
+      ${fuertes ? `<div class="fuertes"><span class="fuertes__titulo">Se destaca en</span>${fuertes}</div>` : ""}
       <div class="cuadros">${htmlCuadros}</div>
 
       ${detalleClubes}
@@ -701,11 +705,22 @@ function metricasComparacion(a, b) {
 }
 
 function abrirComparacion(a, b) {
+  ficha.innerHTML = `
+    <div class="ficha__caja comp">
+      <button class="ficha__cerrar" aria-label="Cerrar">✕</button>
+      ${htmlComparacion(a, b)}
+      <button class="filtro comp__volver" data-volver="${a.nombre}|${a.edad}">← Volver a la ficha de ${a.nombre}</button>
+    </div>`;
+  ficha.hidden = false;
+}
+
+function htmlComparacion(a, b) {
+  const nombreLiga = x => (LIGAS.find(l => l.id === x.liga) || {}).nombre || "";
   const cabeza = x => `
     <div class="comp__jugador">
       <div class="carta__avatar ficha__foto" style="--color: ${colores[x.puesto]}">${x.foto ? `<img src="${x.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(x.nombre)}</span></div>
       <h3>${x.nombre}</h3>
-      <p class="carta__info"><img class="mini-escudo" src="${escudo(x.equipoId)}" alt="">${x.equipo} · ${x.edad ?? "-"} años</p>
+      <p class="carta__info"><img class="mini-escudo" src="${escudo(x.equipoId)}" alt="">${x.equipo} · ${x.edad ?? "-"} años${a.liga !== b.liga ? ` · ${nombreLiga(x)}` : ""}</p>
     </div>`;
   let ganaA = 0, ganaB = 0;
   const filas = metricasComparacion(a, b).map(function ([nombre, f, menor]) {
@@ -722,19 +737,69 @@ function abrirComparacion(a, b) {
       </div>`;
   }).join("");
 
-  ficha.innerHTML = `
-    <div class="ficha__caja comp">
-      <button class="ficha__cerrar" aria-label="Cerrar">✕</button>
-      <h3 class="ficha__subtitulo">Comparación · temporada ${ligaActual.temporada}</h3>
+  return `
+      <h3 class="ficha__subtitulo">Comparación · temporada ${ligaActual ? ligaActual.temporada : "2026"}</h3>
       <div class="comp__cabeza">${cabeza(a)}<span class="comp__vs">VS</span>${cabeza(b)}</div>
       <div class="comp__marcador"><span>${ganaA}</span> estadísticas mejores <span>${ganaB}</span></div>
       <div class="comp__tabla">${filas}</div>
       <p class="ficha__nota">En verde, el mejor en cada estadística. Los promedios son por partido jugado.
-      ${a.puesto !== b.puesto ? "Ojo: juegan en puestos distintos, la comparación es orientativa." : ""}</p>
-      <button class="filtro comp__volver" data-volver="${a.nombre}|${a.edad}">← Volver a la ficha de ${a.nombre}</button>
-    </div>`;
-  ficha.hidden = false;
+      ${a.puesto !== b.puesto ? "Ojo: juegan en puestos distintos, la comparación es orientativa." : ""}
+      ${a.liga !== b.liga ? "Juegan en ligas distintas: el nivel de cada liga no es el mismo." : ""}</p>`;
 }
+
+// ---------- Sección COMPARAR: dos jugadores de cualquier liga ----------
+const vistaComparar = document.getElementById("vistaComparar");
+const elegidosComparar = [null, null];
+
+function mostrarComparar() {
+  const caja = (i) => {
+    const j = elegidosComparar[i];
+    return `
+      <div class="comparar__lado">
+        ${j ? `<div class="comparar__elegido"><strong>${j.nombre}</strong> <small>${j.equipo}</small>
+                 <button class="filtro" data-quitar="${i}">Cambiar</button></div>`
+            : `<input class="campo campo--buscar comparar__buscar" data-lado="${i}" type="search" placeholder="Buscá el jugador ${i + 1}…">
+               <ul class="resultados comparar__resultados" data-lado-res="${i}"></ul>`}
+      </div>`;
+  };
+  const [a, b] = elegidosComparar;
+  vistaComparar.innerHTML = `
+    <div class="comparar__elegir">${caja(0)}<span class="comp__vs">VS</span>${caja(1)}</div>
+    ${a && b ? `<div class="ficha__caja comp comparar__resultado">${htmlComparacion(a, b)}</div>`
+             : `<p class="vacio vacio--grande">Elegí dos jugadores, de la misma liga o de ligas distintas, para compararlos lado a lado.</p>`}`;
+  titulo.textContent = "Comparar";
+  resumen.textContent = "Dos jugadores, estadística por estadística";
+}
+
+vistaComparar.addEventListener("input", function (e) {
+  const campo = e.target.closest(".comparar__buscar");
+  if (!campo) return;
+  const lado = campo.dataset.lado;
+  const lista = vistaComparar.querySelector(`[data-lado-res="${lado}"]`);
+  const texto = campo.value;
+  if (normalizar(texto.trim()).length < 2) { lista.innerHTML = ""; return; }
+  let candidatos = [];
+  for (const liga of ligasDisponibles()) {
+    if (window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id]) candidatos = candidatos.concat(unificadosDe(liga.id));
+    else cargarDatos(liga.id, () => campo.dispatchEvent(new Event("input", { bubbles: true })));
+  }
+  lista.innerHTML = buscarJugadores(candidatos, texto, 6).map(x => `
+    <li class="lider" data-elegir="${lado}|${x.liga}|${x.nombre}|${x.edad}">
+      <span class="lider__foto">${x.foto ? `<img src="${x.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(x.nombre)}</span></span>
+      <span class="lider__nombre">${x.nombre}<small>${x.equipo} · ${nombresPuestos[x.puesto]} · ${(LIGAS.find(l => l.id === x.liga) || {}).pais || ""}</small></span>
+    </li>`).join("");
+});
+
+vistaComparar.addEventListener("click", function (e) {
+  const elegir = e.target.closest("[data-elegir]");
+  if (elegir) {
+    const [lado, liga, nombre, edad] = elegir.dataset.elegir.split("|");
+    elegidosComparar[lado] = unificadosDe(liga).find(x => x.nombre === nombre && String(x.edad) === edad);
+    return mostrarComparar();
+  }
+  const quitar = e.target.closest("[data-quitar]");
+  if (quitar) { elegidosComparar[quitar.dataset.quitar] = null; mostrarComparar(); }
+});
 
 // Texto de la nota: se guarda mientras escribís
 ficha.addEventListener("input", function (e) {
@@ -965,8 +1030,8 @@ const ligasDisponibles = () => LIGAS.filter(l => l.disponible);
 function mostrarResultadosGlobales() {
   const texto = buscadorGlobal.value;
   if (normalizar(texto.trim()).length < 2) { resultadosGlobal.innerHTML = ""; return; }
-  const enPortada = vista === "ligas";
-  const ligas = enPortada ? ligasDisponibles() : [ligaActual];
+  const enPortada = true; // el buscador de arriba siempre busca en todas las ligas
+  const ligas = ligasDisponibles();
   let candidatos = [];
   let cargando = false;
   for (const liga of ligas) {
@@ -998,9 +1063,12 @@ resultadosGlobal.addEventListener("click", function (e) {
     const j = jugadoresUnificados.find(x => x.nombre === nombre && String(x.edad) === edad);
     if (j) abrirFicha(j);
   };
-  // Desde la portada: primero entramos a la liga del jugador
-  if (vista === "ligas") activarLiga(fila.dataset.liga, () => { irA("equipos"); abrir(); });
-  else abrir();
+  buscadorGlobal.value = "";
+  resultadosGlobal.innerHTML = "";
+  // Si es de otra liga (o estamos en la portada), primero entramos a su liga
+  if (vista === "ligas" || !ligaActual || ligaActual.id !== fila.dataset.liga) {
+    abrirJugadorDeLiga(fila.dataset.liga, nombre, edad, "equipos");
+  } else abrir();
 });
 
 // ---------- 7e. Resumen del equipo (arriba del plantel) ----------
@@ -1055,7 +1123,7 @@ function mostrarLigas() {
       <span class="liga__nombre">⭐ Mis jugadores</span>
       <span class="liga__pais">${totalSeguidos()} en seguimiento, de todas las ligas</span>
     </button>` : "") + (proximas.length ? `
-    <p class="ligas__proximas">Próximamente: ${proximas.map(l => `${l.nombre} (${l.pais})`).join(", ")}.</p>` : "");
+    <p class="ligas__proximas">Próximamente: ${proximas.map(l => `${l.nombre} (${l.pais})`).join(", ")}.</p>` : "") + htmlPortada();
   titulo.textContent = "Scouting de jugadores";
   // Subtítulo: las ligas disponibles, armado solo desde ligas.js
   const paises = LIGAS.filter(l => l.disponible).map(l => l.pais);
@@ -1063,15 +1131,87 @@ function mostrarLigas() {
   buscadorGlobal.placeholder = "Buscá un jugador de cualquier liga…";
 }
 
+// Destacados de la portada (salen de datos/generados/portada.js, un archivo chico)
+function htmlPortada() {
+  const P = window.PORTADA || {};
+  const ligas = LIGAS.filter(l => l.disponible && P[l.id]);
+  if (!ligas.length) return "";
+  const fila = (l, j, valor) => !j ? "" : `
+      <li class="lider" data-destacado="${l.id}|${j.nombre}|${j.edad}">
+        <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
+        <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(l.bandera)}" alt="">${j.equipo}</small></span>
+        <span class="lider__valor">${valor}</span>
+      </li>`;
+  const bloque = (tituloBloque, f) => `
+      <section class="tabla-lideres destacados__bloque"><h2>${tituloBloque}</h2><ol>${ligas.map(l => f(l, P[l.id])).join("")}</ol></section>`;
+
+  // Jugador del día: cambia cada día, elegido entre los que más goles + asistencias hacen cada 90'
+  const candidatos = ligas.flatMap(l => P[l.id].candidatos.map(j => ({ ...j, liga: l })));
+  const hoy = new Date();
+  const semilla = hoy.getFullYear() * 1000 + Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / 864e5);
+  const dia = candidatos.length ? candidatos[semilla % candidatos.length] : null;
+  const htmlDia = !dia ? "" : `
+      <button class="jugador-dia" data-destacado="${dia.liga.id}|${dia.nombre}|${dia.edad}">
+        <span class="jugador-dia__etiqueta">Jugador del día</span>
+        <span class="carta__avatar jugador-dia__foto">${dia.foto ? `<img src="${dia.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(dia.nombre)}</span></span>
+        <span class="jugador-dia__nombre">${dia.nombre}</span>
+        <span class="jugador-dia__info"><img class="mini-escudo" src="${escudo(dia.equipoId)}" alt="">${dia.equipo} · ${dia.liga.nombre}</span>
+        <span class="jugador-dia__numeros">${dia.goles} goles · ${dia.asistencias} asistencias en ${dia.partidos} partidos</span>
+      </button>`;
+
+  const novedades = (typeof NOVEDADES !== "undefined" ? NOVEDADES : []).slice(0, 4);
+  const htmlNovedades = !novedades.length ? "" : `
+      <section class="novedades"><h2>Novedades</h2>
+        <ul>${novedades.map(n => `<li><span class="novedades__fecha">${n.fecha}</span> ${n.texto}</li>`).join("")}</ul>
+      </section>`;
+
+  return `
+    <div class="destacados">
+      ${htmlDia}
+      ${bloque("Goleadores", (l, d) => fila(l, d.goleador, d.goleador.goles))}
+      ${bloque("Asistidores", (l, d) => fila(l, d.asistidor, d.asistidor.asistencias))}
+      ${bloque("Sub-21 destacados", (l, d) => fila(l, d.sub21, d.sub21 ? d.sub21.goles + d.sub21.asistencias : ""))}
+      <p class="destacados__nota">Sub-21: más goles + asistencias, con 450' o más. Tocá un jugador para ver su ficha.</p>
+    </div>${htmlNovedades}`;
+}
+
+// Abre la ficha de un jugador de cualquier liga (entra primero a su liga)
+function abrirJugadorDeLiga(ligaId, nombre, edad, vistaDestino) {
+  activarLiga(ligaId, function () {
+    if (vistaDestino) irA(vistaDestino);
+    const j = jugadoresUnificados.find(x => x.nombre === nombre && String(x.edad) === String(edad));
+    if (j) abrirFicha(j);
+  });
+}
+
 // Carga el archivo de datos de una liga (datos/generados/<id>.js) solo cuando hace falta
 const unificadosPorLiga = {};
+const cargando = {}; // id de liga -> funciones que esperan que termine de cargar
+const avisoCarga = document.getElementById("cargando");
+function actualizarAvisoCarga() {
+  const ids = Object.keys(cargando);
+  avisoCarga.hidden = ids.length === 0;
+  if (ids.length) avisoCarga.textContent = "Cargando " + ids.map(id => LIGAS.find(l => l.id === id).nombre).join(", ") + "…";
+}
 function cargarDatos(id, listo) {
   if (window.DATOS_LIGAS && window.DATOS_LIGAS[id]) return listo();
+  if (cargando[id]) return cargando[id].push(listo); // ya se está cargando: esperamos esa misma carga
+  cargando[id] = [listo];
+  actualizarAvisoCarga();
   const liga = LIGAS.find(l => l.id === id);
   const script = document.createElement("script");
   script.src = `datos/generados/${id}.js?v=${liga.actualizado}`;
-  script.onload = listo;
-  script.onerror = () => console.error("No se pudieron cargar los datos de " + liga.nombre);
+  script.onload = function () {
+    const esperando = cargando[id];
+    delete cargando[id];
+    actualizarAvisoCarga();
+    esperando.forEach(f => f());
+  };
+  script.onerror = function () {
+    delete cargando[id];
+    avisoCarga.hidden = false;
+    avisoCarga.textContent = "No se pudieron cargar los datos de " + liga.nombre + ". Revisá tu conexión y volvé a intentar.";
+  };
   document.body.appendChild(script);
 }
 // Jugadores unificados de una liga ya cargada (cada uno sabe de qué liga es)
@@ -1098,6 +1238,11 @@ function cargarLiga(id) {
 }
 
 vistaLigas.addEventListener("click", function (e) {
+  const destacado = e.target.closest("[data-destacado]");
+  if (destacado) {
+    const [ligaId, nombre, edad] = destacado.dataset.destacado.split("|");
+    return abrirJugadorDeLiga(ligaId, nombre, edad, "equipos");
+  }
   const boton = e.target.closest(".liga");
   if (!boton || boton.disabled) return;
   if (boton.dataset.seguidos !== undefined) {
@@ -1332,7 +1477,7 @@ let fichaAbiertaPorNosotros = false;
 
 function rutaVista() {
   if (vista === "ligas" || !ligaActual) return "#/";
-  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal" }[vista] ?? "";
+  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar" }[vista] ?? "";
   return `#/${ligaActual.id}/${resto}`.replace(/\/$/, "");
 }
 const rutaJugador = j => `#/${ligaActual.id}/jugador/${slug(j.nombre)}-${j.edad ?? ""}`;
@@ -1369,7 +1514,7 @@ function aplicarRuta() {
       const equipo = [...new Set(jugadores.map(j => j.equipo))].find(e => slug(e) === valor);
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
-    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal" }[tipo] || "equipos", null, true);
+    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar" }[tipo] || "equipos", null, true);
   });
 }
 window.addEventListener("popstate", aplicarRuta);
@@ -1385,8 +1530,8 @@ function irA(nuevaVista, equipo, desdeRuta) {
   vistaLigas.hidden = vista !== "ligas";
   menuLiga.hidden = vista === "ligas";
   vistaEquipos.hidden = vista !== "equipos";
-  busquedaGlobal.hidden = vista !== "equipos" && vista !== "ligas";
-  if (vista === "equipos") buscadorGlobal.placeholder = `Buscar un jugador de ${ligaActual.nombre}…`;
+  busquedaGlobal.hidden = false;
+  buscadorGlobal.placeholder = "Buscá un jugador de cualquier liga…";
   resultadosGlobal.innerHTML = "";
   buscadorGlobal.value = "";
   resumenEquipo.hidden = vista !== "plantel";
@@ -1394,6 +1539,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   vistaLideres.hidden = vista !== "lideres";
   vistaSeguidos.hidden = vista !== "seguidos";
   vistaIdeal.hidden = vista !== "ideal";
+  vistaComparar.hidden = vista !== "comparar";
   vistaPosiciones.hidden = vista !== "posiciones";
   actualizarContadorSeguidos();
   filtrosLideres.hidden = vista !== "lideres";
@@ -1411,6 +1557,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   else if (vista === "lideres") mostrarLideres();
   else if (vista === "seguidos") mostrarSeguidos();
   else if (vista === "ideal") mostrarIdeal();
+  else if (vista === "comparar") mostrarComparar();
   else if (vista === "posiciones") mostrarPosiciones();
   else mostrarJugadores();
   window.scrollTo({ top: 0 });
