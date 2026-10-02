@@ -1139,24 +1139,22 @@ function htmlPortada() {
   const fila = (l, j, valor) => !j ? "" : `
       <li class="lider" data-destacado="${l.id}|${j.nombre}|${j.edad}">
         <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
-        <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(l.bandera)}" alt="">${j.equipo}</small></span>
+        <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(l.bandera)}" alt="">${j.equipo}${j.ahoraEn ? ` · ahora en ${j.ahoraEn}` : ""}</small></span>
         <span class="lider__valor">${valor}</span>
       </li>`;
   const bloque = (tituloBloque, f) => `
       <section class="tabla-lideres destacados__bloque"><h2>${tituloBloque}</h2><ol>${ligas.map(l => f(l, P[l.id])).join("")}</ol></section>`;
 
-  // Jugador del día: cambia cada día, elegido entre los que más goles + asistencias hacen cada 90'
-  const candidatos = ligas.flatMap(l => P[l.id].candidatos.map(j => ({ ...j, liga: l })));
-  const hoy = new Date();
-  const semilla = hoy.getFullYear() * 1000 + Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / 864e5);
-  const dia = candidatos.length ? candidatos[semilla % candidatos.length] : null;
+  // Figura de la fecha: el que más puntos sumó en la última fecha (de todas las ligas). Si no hay fecha nueva, no se muestra.
+  const figuras = ligas.filter(l => P[l.id].figura).map(l => ({ ...P[l.id].figura, liga: l })).sort((a, b) => b.puntos - a.puntos);
+  const dia = figuras[0] || null;
   const htmlDia = !dia ? "" : `
       <button class="jugador-dia" data-destacado="${dia.liga.id}|${dia.nombre}|${dia.edad}">
-        <span class="jugador-dia__etiqueta">Jugador del día</span>
+        <span class="jugador-dia__etiqueta">Figura de la última fecha</span>
         <span class="carta__avatar jugador-dia__foto">${dia.foto ? `<img src="${dia.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(dia.nombre)}</span></span>
         <span class="jugador-dia__nombre">${dia.nombre}</span>
         <span class="jugador-dia__info"><img class="mini-escudo" src="${escudo(dia.equipoId)}" alt="">${dia.equipo} · ${dia.liga.nombre}</span>
-        <span class="jugador-dia__numeros">${dia.goles} goles · ${dia.asistencias} asistencias en ${dia.partidos} partidos</span>
+        <span class="jugador-dia__numeros">${[dia.golesFecha ? `${dia.golesFecha} ${dia.golesFecha === 1 ? "gol" : "goles"}` : "", dia.asistFecha ? `${dia.asistFecha} asist.` : "", `${dia.puntos} puntos`].filter(Boolean).join(" · ")}</span>
       </button>`;
 
   const novedades = (typeof NOVEDADES !== "undefined" ? NOVEDADES : []).slice(0, 4);
@@ -1171,7 +1169,7 @@ function htmlPortada() {
       ${bloque("Goleadores", (l, d) => fila(l, d.goleador, d.goleador.goles))}
       ${bloque("Asistidores", (l, d) => fila(l, d.asistidor, d.asistidor.asistencias))}
       ${bloque("Sub-21 destacados", (l, d) => fila(l, d.sub21, d.sub21 ? d.sub21.goles + d.sub21.asistencias : ""))}
-      <p class="destacados__nota">Sub-21: más goles + asistencias, con 450' o más. Tocá un jugador para ver su ficha.</p>
+      <p class="destacados__nota">Solo jugadores que siguen en su club (o que ahora juegan en otra de estas ligas). Sub-21: más goles + asistencias, con 450' o más. Tocá un jugador para ver su ficha.</p>
     </div>${htmlNovedades}`;
 }
 
