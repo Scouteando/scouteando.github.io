@@ -1057,7 +1057,9 @@ function mostrarLigas() {
     </button>` : "") + (proximas.length ? `
     <p class="ligas__proximas">Próximamente: ${proximas.map(l => `${l.nombre} (${l.pais})`).join(", ")}.</p>` : "");
   titulo.textContent = "Scouting de jugadores";
-  resumen.textContent = "Cada jugador comparado con los de su mismo puesto: quién recupera más, quién patea más al arco, quién está en el top 10% de su liga.";
+  // Subtítulo: las ligas disponibles, armado solo desde ligas.js
+  const paises = LIGAS.filter(l => l.disponible).map(l => l.pais);
+  resumen.textContent = `Estadísticas de jugadores de ${paises.slice(0, -1).join(", ")}${paises.length > 1 ? " y " : ""}${paises.slice(-1)}.`;
   buscadorGlobal.placeholder = "Buscá un jugador de cualquier liga…";
 }
 
