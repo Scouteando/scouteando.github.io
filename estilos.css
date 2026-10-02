@@ -13,9 +13,9 @@
   --med: #10b981;
   --del: #ef4444;
 
-  --fuente-titulo: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --fuente-serif: "Source Serif 4", Georgia, serif;
-  --fuente-texto: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulo: "Archivo", "Arial Black", Arial, sans-serif;
+  --fuente-serif: "Archivo", Arial, sans-serif;
+  --fuente-texto: "Archivo", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -1029,10 +1029,20 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .destacados__bloque .lider__nombre { min-width: 0; }
 
 /* ===== Tipografía "Diario deportivo" =====
-   Schibsted Grotesk (gruesa y apretada) para títulos y datos; Source Serif 4 en itálica para bajadas y notas, como un diario. */
+   (Tipografía anterior; ahora se pisa con el bloque "Transmisión" del final.) */
 .cabecera h1, .ficha__nombre, .liga__nombre, .grupo, .tabla-lideres h2, .tabla-posiciones h2, .acerca h2, .jugador-dia__nombre, .carta__nombre, .equipo__nombre, .comp__jugador h3 { font-weight: 800; letter-spacing: -0.03em; }
 .tabla-lideres h2, .tabla-posiciones h2, .grupo { font-size: 22px; }
 .stat__valor, .cuadro__valor, .lider__valor, .perfil__valor, .perfil__top, .destacado__valor, .parecidos__valor { font-weight: 800; letter-spacing: -0.02em; }
 .cabecera__sub, .ficha__nota, .destacados__nota, .tabla-lideres__nota, .ranking-equipos__ayuda, .ligas__proximas, .acerca__nota { font-family: var(--fuente-serif); font-style: italic; }
 .cabecera__sub { font-size: 17px; }
 .ficha__subtitulo, .cuadro__nombre, .carta__puesto, .liga__estado, .comp__marcador { letter-spacing: 0; }
+
+/* ===== Tipografía "Transmisión": Archivo ancha en títulos, como los zócalos de TV ===== */
+.cabecera h1, .ficha__nombre, .carta__nombre, .tabla-lideres h2, .liga__nombre, .equipo__nombre,
+.jugador-dia__nombre, .grupo, .tabla-posiciones h2, .acerca h2, .comp__jugador h3 {
+  font-stretch: 125%; font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em;
+}
+.cabecera h1 { font-size: clamp(34px, 9.5vw, 64px); letter-spacing: -0.02em; overflow-wrap: normal; }
+.ficha__nombre { font-size: clamp(26px, 7.5vw, 34px); line-height: 1; }
+.carta__rating, .stat__valor, .cuadro__valor, .lider__valor, .destacado__valor, .perfil__valor,
+.comp__valor, .parecidos__valor { font-stretch: 112%; }
