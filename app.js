@@ -1269,72 +1269,10 @@ function posicionesDeEquipo(equipo) {
     .filter(x => x.fila);
 }
 
-// ---------- 7i. Equipo ideal (4-3-3) ----------
+// ---------- 7i. Equipo de la fecha (4-3-3) ----------
 const vistaIdeal = document.getElementById("vistaIdeal");
-let modoIdeal = "temporada"; // "temporada" | "sub23" | "sub21" | "fecha"
 
-// Qué pesa en cada puesto para elegir el 11 (estadísticas cada 90 minutos y su peso)
-const criteriosIdeal = {
-  ARQ: [[j => j.vallasInvictas, 1], [j => -j.golesRecibidos, 1]], // + % de atajadas (pesa más), se suma aparte
-  DEF: [[j => j.quites + j.intercepciones, 2.5], [j => j.intercepciones, 1], [j => j.goles + j.asistencias, 1.5]],
-  MED: [[j => j.quites + j.intercepciones, 1], [j => j.asistencias, 1.5], [j => j.goles, 1], [j => j.tirosAlArco, 1], [j => j.faltasRecibidas, 0.5]],
-  DEL: [[j => j.goles, 2.5], [j => j.tirosAlArco, 1], [j => j.asistencias, 1], [j => j.faltasRecibidas, 0.5]]
-};
 const formacion = [["DEL", 3], ["MED", 3], ["DEF", 4], ["ARQ", 1]];
-
-// Puntaje de temporada: promedio ponderado de percentiles (cada 90') dentro del puesto.
-// Además pesan: cómo le va a su equipo (puntos por partido) y qué tanto juega (regularidad).
-function onceDeTemporada(edadMaxima) {
-  const once = {}, suplentes = {};
-  const tabla = tablasLiga.filter(t => !/promedio/i.test(t.competencia))
-    .sort((a, b) => Math.max(...b.filas.map(f => f.pj)) - Math.max(...a.filas.map(f => f.pj)))[0];
-  const ppg = {}, gcpp = {};
-  if (tabla) for (const f of tabla.filas) { ppg[f.equipo] = f.pj ? f.pts / f.pj : 0; gcpp[f.equipo] = f.pj ? f.gc / f.pj : 0; }
-  const rango = (mapa, j, menorMejor) => {
-    const valores = Object.values(mapa);
-    if (valores.length < 2 || mapa[j.equipo] == null) return 0.5;
-    const v = mapa[j.equipo];
-    return valores.filter(x => (menorMejor ? x > v : x < v)).length / (valores.length - 1);
-  };
-  // Cuánto pesa cada cosa según el puesto. En defensores pesa mucho que su equipo reciba pocos goles:
-  // con estos datos (sin duelos, juego aéreo ni pases) es la mejor señal de que defiende bien.
-  const pesos = {
-    ARQ: { propio: 0.8, puntos: 0.12, valla: 0, minutos: 0.08 },
-    DEF: { propio: 0.5, puntos: 0.1, valla: 0.3, minutos: 0.1 },
-    MED: { propio: 0.8, puntos: 0.12, valla: 0, minutos: 0.08 },
-    DEL: { propio: 0.8, puntos: 0.12, valla: 0, minutos: 0.08 }
-  };
-  for (const [puesto, cantidad] of formacion) {
-    const pool = jugadoresUnificados.filter(j => j.puesto === puesto && j.minutos >= 450);
-    const criterios = criteriosIdeal[puesto];
-    const columnas = criterios.map(([f]) => pool.map(j => ((f(j) || 0) * 90) / j.minutos));
-    const maxMin = Math.max(...pool.map(j => j.minutos), 1);
-    // Mínimo: 900' (600' para juveniles) y además haber jugado al menos el 40% de los minutos del que más jugó
-    const minimo = Math.max(edadMaxima ? 600 : 900, maxMin * (edadMaxima ? 0.25 : 0.4));
-    const puntaje = pool.map(function (j, i) {
-      let suma = 0, pesosSuma = 0;
-      criterios.forEach(([, peso], k) => {
-        const col = columnas[k];
-        suma += peso * (col.filter(v => v < col[i]).length / Math.max(col.length - 1, 1));
-        pesosSuma += peso;
-      });
-      if (puesto === "ARQ") {
-        const pcts = pool.map(x => x.pctAtajadas ?? 0);
-        suma += 2 * (pcts.filter(v => v < (j.pctAtajadas ?? 0)).length / Math.max(pcts.length - 1, 1));
-        pesosSuma += 2;
-      }
-      const w = pesos[puesto];
-      return { j, puntaje: w.propio * (suma / pesosSuma) + w.puntos * rango(ppg, j) + w.valla * rango(gcpp, j, true) + w.minutos * (j.minutos / maxMin) };
-    });
-    const ordenados = puntaje
-      .filter(x => x.j.minutos >= minimo && (!edadMaxima || (x.j.edad != null && x.j.edad <= edadMaxima)))
-      .sort((a, b) => b.puntaje - a.puntaje);
-    once[puesto] = ordenados.slice(0, cantidad).map(x => ({ ...x.j, motivo: motivoIdeal(x.j) }));
-    suplentes[puesto] = ordenados.slice(cantidad, cantidad + 2).map(x => x.j);
-  }
-  once.suplentes = suplentes;
-  return once;
-}
 
 // Puntos de la fecha (lo que sumó desde la actualización anterior), estilo fantasy
 function onceDeLaFecha() {
@@ -1359,54 +1297,28 @@ function onceDeLaFecha() {
   return { once, desde: fecha.desde, hasta: fecha.hasta };
 }
 
-function motivoIdeal(j) {
-  if (j.puesto === "ARQ") return `${j.vallasInvictas} vallas inv. · ${j.pctAtajadas ?? "-"}% atajadas`;
-  if (j.puesto === "DEF") return `${pp(j.quites + j.intercepciones, j)} recup./PJ · ${j.goles + j.asistencias} G+A`;
-  if (j.puesto === "MED") return `${j.goles} goles · ${j.asistencias} asist. · ${pp(j.quites + j.intercepciones, j)} recup./PJ`;
-  return `${j.goles} goles · ${j.asistencias} asist.`;
-}
-
 function mostrarIdeal() {
-  const botones = [["temporada", "Temporada"], ["sub23", "Sub-23"], ["sub21", "Sub-21"], ["fecha", "Última fecha"]]
-    .map(([c, t]) => `<button class="filtro ${modoIdeal === c ? "activo" : ""}" data-ideal="${c}">${t}</button>`).join("");
-  let datos, texto, aviso = "";
-  if (modoIdeal === "fecha") {
-    const f = onceDeLaFecha();
-    datos = f && f.once;
-    texto = f ? `Los que más sumaron entre la actualización del ${f.desde} y la del ${f.hasta}` : "";
-    if (!f) aviso = `<p class="vacio vacio--grande">El equipo de la fecha se arma comparando los datos de una actualización con la anterior. Va a aparecer después de la próxima actualización (los lunes).</p>`;
-  } else {
-    datos = onceDeTemporada({ sub23: 23, sub21: 21 }[modoIdeal]);
-    texto = modoIdeal === "temporada" ? "Los mejores de cada puesto en la temporada (900' o más)" : `Los mejores ${modoIdeal === "sub23" ? "Sub-23" : "Sub-21"} de cada puesto (600' o más)`;
-  }
-  const lineas = datos ? formacion.map(([puesto]) => `
-      <div class="cancha__linea">${(datos[puesto] || []).map(j => `
+  const f = onceDeLaFecha();
+  const lineas = f ? formacion.map(([puesto]) => `
+      <div class="cancha__linea">${(f.once[puesto] || []).map(j => `
         <button class="cancha__jugador" data-clave="${j.nombre}|${j.edad}" style="--color: ${colores[puesto]}">
           <span class="carta__avatar cancha__foto">${j.foto ? `<img src="${j.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
           <span class="cancha__nombre">${j.nombre}</span>
           <span class="cancha__equipo"><img class="mini-escudo" src="${escudo(j.equipoId)}" alt="">${j.equipo}</span>
           <span class="cancha__motivo">${j.motivo}</span>
         </button>`).join("")}</div>`).join("") : "";
-  const banco = datos && datos.suplentes ? `
-    <div class="banco"><h3 class="ficha__subtitulo">Les siguen</h3>
-      <ul>${formacion.map(([puesto]) => `<li><strong>${nombresPuestos[puesto]}:</strong> ${datos.suplentes[puesto].map(j =>
-        `<a href="#" data-suplente="${j.nombre}|${j.edad}">${j.nombre}</a> (${j.equipo})`).join(", ") || "–"}</li>`).join("")}</ul></div>` : "";
-  const explicacion = modoIdeal === "fecha"
-    ? "Puntos de la fecha: goles, asistencias, vallas invictas, atajadas, recuperaciones y minutos; las tarjetas restan."
-    : "Cómo se elige: en cada puesto cuenta sobre todo su lugar en el ranking (cada 90') en lo más importante para ese puesto (en arqueros, el % de atajadas, las vallas invictas y los goles recibidos). En defensores pesa mucho que su equipo reciba pocos goles, porque no tenemos datos de duelos, juego aéreo ni pases. También cuentan cómo le va a su equipo y que juegue seguido. Tocá un jugador para ver su ficha.";
-  vistaIdeal.innerHTML = `<div class="filtros">${botones}</div>` + (aviso || `<div class="cancha">${lineas}</div>${banco}<p class="ficha__nota">${explicacion}</p>`);
-  titulo.textContent = "Equipo ideal";
-  resumen.textContent = texto ? `${texto} · ${ligaActual.nombre}` : ligaActual.nombre;
+  vistaIdeal.innerHTML = f
+    ? `<div class="cancha">${lineas}</div>
+       <p class="ficha__nota">Los que más puntos sumaron en la última fecha: goles, asistencias, vallas invictas, atajadas, recuperaciones y minutos; las tarjetas restan. Tocá un jugador para ver su ficha.</p>`
+    : `<p class="vacio vacio--grande">El equipo de la fecha se arma después de cada actualización de datos (los lunes), comparando lo que sumó cada jugador en la última fecha. ¡Volvé el lunes!</p>`;
+  titulo.textContent = "Equipo de la fecha";
+  resumen.textContent = f ? `Datos del ${f.desde} al ${f.hasta} · ${ligaActual.nombre}` : ligaActual.nombre;
 }
 
 vistaIdeal.addEventListener("click", function (e) {
-  const modo = e.target.closest("[data-ideal]");
-  if (modo) { modoIdeal = modo.dataset.ideal; return mostrarIdeal(); }
-  const supl = e.target.closest("[data-suplente]");
-  if (supl) e.preventDefault();
   const jug = e.target.closest(".cancha__jugador");
-  if (!jug && !supl) return;
-  const [nombre, edad] = (jug ? jug.dataset.clave : supl.dataset.suplente).split("|");
+  if (!jug) return;
+  const [nombre, edad] = jug.dataset.clave.split("|");
   const j = jugadoresUnificados.find(x => x.nombre === nombre && String(x.edad) === edad);
   if (j) abrirFicha(j);
 });
