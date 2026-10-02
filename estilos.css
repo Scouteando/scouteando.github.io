@@ -13,8 +13,9 @@
   --med: #10b981;
   --del: #ef4444;
 
-  --fuente-titulo: "Archivo", "Arial Narrow", sans-serif;
-  --fuente-texto: "Archivo", Arial, sans-serif;
+  --fuente-titulo: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --fuente-serif: "Source Serif 4", Georgia, serif;
+  --fuente-texto: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
 }
 
 * {
@@ -37,7 +38,7 @@ body {
 }
 
 .cabecera h1 {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-size: 64px;
   font-weight: 800;
   letter-spacing: 0;
@@ -170,7 +171,7 @@ body {
 }
 
 .carta__rating {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-family: var(--fuente-titulo); font-weight: 800;
   font-size: 52px;
   line-height: 0.9;
   color: var(--color);
@@ -196,7 +197,7 @@ body {
   border: 2px solid var(--color);
   display: grid;
   place-items: center;
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-family: var(--fuente-titulo); font-weight: 800;
   font-size: 24px;
   color: var(--texto);
   background: #1b2740;
@@ -213,7 +214,7 @@ body {
 }
 
 .carta__nombre {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-weight: 800;
   font-size: 30px;
   letter-spacing: 0;
@@ -249,7 +250,7 @@ body {
 
 .stat__valor {
   display: block;
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-family: var(--fuente-titulo); font-weight: 800;
   font-size: 28px;
   line-height: 1;
 }
@@ -258,7 +259,6 @@ body {
   display: block;
   font-size: 11px;
   color: var(--texto-suave);
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
 }
@@ -372,7 +372,6 @@ body {
   display: block;
   font-size: 11px;
   color: var(--texto-suave);
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
   max-width: 120px;
@@ -387,7 +386,7 @@ body {
 /* Título de cada grupo de puesto dentro del plantel */
 .grupo {
   grid-column: 1 / -1;
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-weight: 800;
   font-size: 28px;
   letter-spacing: 0;
@@ -463,7 +462,7 @@ body {
 .ficha__cabecera .carta__nombre { margin-top: 0; }
 
 .ficha__nombre {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-weight: 800;
   font-size: 40px;
   letter-spacing: 0;
@@ -487,7 +486,7 @@ body {
 }
 .cuadro__valor {
   display: block;
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-family: var(--fuente-titulo); font-weight: 800;
   font-size: 34px;
   line-height: 1;
 }
@@ -495,14 +494,12 @@ body {
   display: block;
   font-size: 11px;
   color: var(--texto-suave);
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-top: 4px;
 }
 
 .ficha__subtitulo {
   font-size: 13px;
-  text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--texto-suave);
   margin: 0 0 12px;
@@ -568,7 +565,7 @@ body {
 }
 
 .tabla-lideres h2 {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-weight: 800;
   font-size: 26px;
   letter-spacing: 0;
@@ -638,7 +635,7 @@ body {
 }
 
 .lider__valor {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic;
+  font-family: var(--fuente-titulo); font-weight: 800;
   font-size: 24px;
 }
 
@@ -693,8 +690,8 @@ body {
 .resumen-equipo .lider { grid-template-columns: 44px 1fr; border-bottom: 1px solid var(--borde); }
 .resumen-equipo .lider__foto { width: 44px; height: 44px; }
 .destacado--total { display: flex; flex-direction: column; justify-content: center; }
-.destacado__valor { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 40px; line-height: 1; color: var(--dorado); }
-.destacado__rol { font-size: 11px; color: var(--texto-suave); text-transform: uppercase; letter-spacing: 0.5px; }
+.destacado__valor { font-family: var(--fuente-titulo); font-weight: 800; font-size: 40px; line-height: 1; color: var(--dorado); }
+.destacado__rol { font-size: 11px; color: var(--texto-suave); letter-spacing: 0.5px; }
 
 .perfil__top small { font-size: 10px; font-weight: 400; color: var(--texto-suave); }
 
@@ -722,23 +719,22 @@ body {
 }
 .liga:hover:not(:disabled) { transform: translateY(-3px); border-color: var(--dorado); }
 .liga__bandera { width: 48px; height: 32px; object-fit: cover; border-radius: 4px; margin-bottom: 10px; }
-.liga__nombre { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 28px; letter-spacing: 0; line-height: 1.05; }
+.liga__nombre { font-family: var(--fuente-titulo); font-weight: 800; font-size: 28px; letter-spacing: 0; line-height: 1.05; }
 .liga__pais { font-size: 13px; color: var(--texto-suave); }
-.liga__estado { font-size: 11px; color: var(--dorado); margin-top: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.liga__estado { font-size: 11px; color: var(--dorado); margin-top: 8px; letter-spacing: 0.5px; }
 .liga--pronto { opacity: 0.45; cursor: default; }
 .liga--pronto .liga__estado { color: var(--texto-suave); }
 
 .perfil__valor small { font-size: 11px; font-weight: 400; color: var(--texto-suave); }
 
-/* ===== Tipografía (Archivo: angosta e itálica en títulos y números, normal en el texto) ===== */
+/* ===== Tamaños de tipografía ===== */
 body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 
 .cabecera h1, .ficha__nombre, .liga__nombre, .equipo__nombre, .grupo, .tabla-lideres h2 {
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-transform: uppercase;
 }
-.cabecera h1 { font-size: clamp(38px, 10vw, 60px); overflow-wrap: anywhere; }
+.cabecera h1 { font-size: clamp(36px, 9vw, 56px); overflow-wrap: anywhere; letter-spacing: -1.5px; line-height: 1.02; }
 
 .carta__nombre {
   font-weight: 600;
@@ -749,14 +745,14 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 
 /* Números: ancho fijo para que se alineen */
 .carta__rating, .stat__valor, .cuadro__valor, .lider__valor, .destacado__valor, .perfil__valor, .perfil__top {
-  font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic;
+  font-family: var(--fuente-titulo);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
 .carta__rating { font-size: 54px; }
 .stat__valor { font-size: 26px; }
 .lider__valor { font-size: 26px; }
-.equipo__nombre { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 17px; }
+.equipo__nombre { font-family: var(--fuente-titulo); font-weight: 800; font-size: 17px; }
 
 .perfil__top { font-size: 20px; line-height: 1; }
 .perfil__top small { font-family: var(--fuente-texto); font-size: 11px; font-weight: 500; color: var(--texto-suave); }
@@ -767,7 +763,6 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   margin-top: 4px;
   font-size: 10px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 2px 7px;
   border-radius: 999px;
@@ -800,14 +795,14 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .comp__cabeza { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; text-align: center; margin: 10px 0 14px; }
 .comp__jugador { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .comp__jugador .ficha__foto { width: 84px; height: 84px; margin: 0; }
-.comp__jugador h3 { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0; line-height: 1; }
+.comp__jugador h3 { font-family: var(--fuente-titulo); font-size: 24px; font-weight: 700; margin: 0; line-height: 1; }
 .comp__jugador .carta__info { margin: 0; }
-.comp__vs { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 28px; color: var(--dorado); font-weight: 700; }
-.comp__marcador { text-align: center; font-size: 12px; color: var(--texto-suave); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-.comp__marcador span { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 26px; color: var(--texto); margin: 0 10px; vertical-align: middle; }
+.comp__vs { font-family: var(--fuente-titulo); font-size: 28px; color: var(--dorado); font-weight: 700; }
+.comp__marcador { text-align: center; font-size: 12px; color: var(--texto-suave); margin-bottom: 10px; letter-spacing: 0.5px; }
+.comp__marcador span { font-family: var(--fuente-titulo); font-weight: 800; font-size: 26px; color: var(--texto); margin: 0 10px; vertical-align: middle; }
 .comp__fila { display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; padding: 8px 0; border-bottom: 1px solid #1c2740; }
 .comp__nombre { text-align: center; font-size: 13px; color: var(--texto-suave); }
-.comp__valor { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 22px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; color: var(--texto-suave); }
+.comp__valor { font-family: var(--fuente-titulo); font-size: 22px; font-weight: 800; text-align: center; font-variant-numeric: tabular-nums; color: var(--texto-suave); }
 .comp__valor--mejor { color: #34d399; }
 .comp__volver { margin-top: 12px; }
 #filtrosLideres { gap: 8px; }
@@ -835,13 +830,13 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .vista-posiciones > .filtros { margin-bottom: 18px; }
 .posiciones { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 18px; }
 .tabla-posiciones { background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px; overflow-x: auto; }
-.tabla-posiciones h2 { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 700; text-transform: uppercase; color: var(--dorado); font-size: 24px; margin: 0 0 8px; }
+.tabla-posiciones h2 { font-family: var(--fuente-titulo); font-weight: 700; color: var(--dorado); font-size: 24px; margin: 0 0 8px; }
 .tabla-posiciones table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .tabla-posiciones th { font-size: 11px; text-transform: uppercase; color: var(--texto-suave); font-weight: 600; padding: 6px 4px; border-bottom: 1px solid var(--borde); text-align: center; }
 .tabla-posiciones td { font-size: 14px; font-weight: 400; padding: 7px 4px; border-bottom: 1px solid #1c2740; text-align: center; }
 .tabla-posiciones th:nth-child(2), .tabla-posiciones td.equipo-celda { text-align: left; }
 .tabla-posiciones td.pos { color: var(--texto-suave); width: 26px; }
-.tabla-posiciones td.pts { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-size: 18px; font-weight: 700; }
+.tabla-posiciones td.pts { font-family: var(--fuente-titulo); font-size: 18px; font-weight: 700; }
 .tabla-posiciones .carta__equipo { border-bottom: none; font-weight: 600; }
 .forma { display: inline-block; width: 18px; height: 18px; line-height: 18px; border-radius: 4px; font-size: 10px; font-weight: 700; margin: 0 1px; color: #0b1220; }
 .forma--G { background: #34d399; }
@@ -880,8 +875,8 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 
 /* ===== Acerca de ===== */
 .pie__link { background: none; border: none; padding: 0; color: var(--dorado); font: inherit; cursor: pointer; text-decoration: underline; }
-.acerca h2 { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 34px; text-transform: uppercase; margin: 0 0 12px; }
-.acerca h3 { font-family: var(--fuente-titulo); font-stretch: 62%; font-weight: 800; font-style: italic; font-size: 18px; text-transform: uppercase; letter-spacing: 0; color: var(--dorado); margin: 20px 0 6px; }
+.acerca h2 { font-family: var(--fuente-titulo); font-weight: 800; font-size: 34px; margin: 0 0 12px; }
+.acerca h3 { font-family: var(--fuente-titulo); font-weight: 800; font-size: 18px; letter-spacing: 0; color: var(--dorado); margin: 20px 0 6px; }
 .acerca p, .acerca li { line-height: 1.55; color: var(--texto); }
 .acerca ul { padding-left: 18px; margin: 0; }
 .acerca__nota { font-size: 13px; color: var(--texto-suave) !important; margin-top: 18px; }
@@ -892,7 +887,7 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .marca .cabecera__liga { margin: 0; }
 
 /* Textos chicos dentro de números grandes: letra normal para que se lean bien */
-.perfil__valor small, .stat__nombre, .lider__nombre small { font-family: var(--fuente-texto); font-style: normal; font-stretch: 100%; font-weight: 400; }
+.perfil__valor small, .stat__nombre, .lider__nombre small { font-family: var(--fuente-texto); font-weight: 400; }
 
 /* ===== Ficha: botones Seguir y Compartir ===== */
 .ficha__acciones { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -934,7 +929,7 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 
 /* ===== Ficha: parecidos y notas ===== */
 .parecidos__lista { margin: 0; }
-.parecidos__valor { margin-left: auto; font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 800; font-size: 22px; color: var(--dorado); }
+.parecidos__valor { margin-left: auto; font-family: var(--fuente-titulo); font-weight: 800; font-size: 22px; color: var(--dorado); }
 .nota-scouting { margin-top: 8px; }
 .nota-scouting__etiquetas { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .nota-scouting__texto { width: 100%; box-sizing: border-box; resize: vertical; line-height: 1.5; font-family: var(--fuente-texto); }
@@ -1006,11 +1001,11 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .jugador-dia { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr; grid-template-areas: "foto etiqueta" "foto nombre" "foto info" "foto numeros"; column-gap: 16px; row-gap: 2px; align-items: center; text-align: left; background: linear-gradient(120deg, rgba(242,194,48,.14), transparent 60%), var(--superficie); border: 1px solid var(--dorado); border-radius: 16px; padding: 16px 18px; color: var(--texto); font-family: var(--fuente-texto); cursor: pointer; }
 .jugador-dia__etiqueta { grid-area: etiqueta; font-size: 13px; font-weight: 700; color: var(--dorado); }
 .jugador-dia__foto { grid-area: foto; width: 76px; height: 76px; margin: 0; }
-.jugador-dia__nombre { grid-area: nombre; font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 800; font-size: 34px; line-height: 1; text-transform: uppercase; }
+.jugador-dia__nombre { grid-area: nombre; font-family: var(--fuente-titulo); font-weight: 800; font-size: 34px; line-height: 1; }
 .jugador-dia__info { grid-area: info; font-size: 13px; color: var(--texto-suave); display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .jugador-dia__numeros { grid-area: numeros; font-size: 14px; font-weight: 600; }
 .novedades { grid-column: 1 / -1; background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 14px 16px; }
-.novedades h2 { font-family: var(--fuente-titulo); font-stretch: 62%; font-style: italic; font-weight: 800; text-transform: uppercase; color: var(--dorado); font-size: 24px; margin: 0 0 8px; }
+.novedades h2 { font-family: var(--fuente-titulo); font-weight: 800; color: var(--dorado); font-size: 24px; margin: 0 0 8px; }
 .novedades ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; }
 .novedades__fecha { color: var(--texto-suave); font-variant-numeric: tabular-nums; margin-right: 6px; }
 
@@ -1032,3 +1027,12 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .fuerte--elite { background: rgba(242, 194, 48, .18); color: var(--dorado); }
 .destacados__bloque .lider { grid-template-columns: 36px minmax(0, 1fr) auto; }
 .destacados__bloque .lider__nombre { min-width: 0; }
+
+/* ===== Tipografía "Diario deportivo" =====
+   Schibsted Grotesk (gruesa y apretada) para títulos y datos; Source Serif 4 en itálica para bajadas y notas, como un diario. */
+.cabecera h1, .ficha__nombre, .liga__nombre, .grupo, .tabla-lideres h2, .tabla-posiciones h2, .acerca h2, .jugador-dia__nombre, .carta__nombre, .equipo__nombre, .comp__jugador h3 { font-weight: 800; letter-spacing: -0.03em; }
+.tabla-lideres h2, .tabla-posiciones h2, .grupo { font-size: 22px; }
+.stat__valor, .cuadro__valor, .lider__valor, .perfil__valor, .perfil__top, .destacado__valor, .parecidos__valor { font-weight: 800; letter-spacing: -0.02em; }
+.cabecera__sub, .ficha__nota, .destacados__nota, .tabla-lideres__nota, .ranking-equipos__ayuda, .ligas__proximas, .acerca__nota { font-family: var(--fuente-serif); font-style: italic; }
+.cabecera__sub { font-size: 17px; }
+.ficha__subtitulo, .cuadro__nombre, .carta__puesto, .liga__estado, .comp__marcador { letter-spacing: 0; }
