@@ -818,6 +818,94 @@ vistaComparar.addEventListener("click", function (e) {
   if (quitar) { elegidosComparar[quitar.dataset.quitar] = null; mostrarComparar(); }
 });
 
+
+// ---------- Sección SUB-21: los jóvenes de todas las ligas cargadas ----------
+const vistaSub21 = document.getElementById("vistaSub21");
+const filtroSub21 = { liga: "todas", puesto: "todos", orden: "ga" };
+const ordenesSub21 = [
+  ["ga", "Goles + asistencias", j => j.goles + j.asistencias, j => `${j.goles} G · ${j.asistencias} A`],
+  ["minutos", "Minutos", j => j.minutos, j => `${j.titular} de titular`],
+  ["goles", "Goles", j => j.goles, j => `en ${j.partidos} partidos`],
+  ["asistencias", "Asistencias", j => j.asistencias, j => `en ${j.partidos} partidos`],
+  ["recuperaciones", "Recuperaciones", j => (j.quites || 0) + (j.intercepciones || 0), j => `${j.quites || 0} quites · ${j.intercepciones || 0} interc.`],
+  ["atajadas", "Atajadas (arqueros)", j => j.atajadas || 0, j => `${j.vallas || 0} vallas invictas`]
+];
+
+function mostrarSub21() {
+  titulo.textContent = "Sub-21";
+  resumen.textContent = "Los jóvenes de 21 años o menos con más rodaje, de todas las ligas";
+  let todos = [];
+  const faltan = [];
+  for (const liga of ligasDisponibles()) {
+    if (window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id]) todos = todos.concat(unificadosDe(liga.id));
+    else { faltan.push(liga.nombre); cargarDatos(liga.id, () => { if (vista === "sub21") mostrarSub21(); }); }
+  }
+  const orden = ordenesSub21.find(o => o[0] === filtroSub21.orden);
+  const lista = todos
+    .filter(j => j.edad != null && j.edad <= 21 && j.minutos >= 450)
+    .filter(j => filtroSub21.liga === "todas" || j.liga === filtroSub21.liga)
+    .filter(j => filtroSub21.puesto === "todos" || j.puesto === filtroSub21.puesto)
+    .filter(j => filtroSub21.orden !== "atajadas" || j.puesto === "ARQ")
+    .sort((x, y) => orden[2](y) - orden[2](x) || y.minutos - x.minutos)
+    .slice(0, 50);
+
+  const boton = (grupo, valor, texto) =>
+    `<button class="filtro ${filtroSub21[grupo] === valor ? "activo" : ""}" data-sub21="${grupo}|${valor}">${texto}</button>`;
+  let lugar = 0, anterior = null;
+  const filas = lista.map((j, i) => {
+    const v = orden[2](j);
+    if (v !== anterior) { lugar = i + 1; anterior = v; }
+    const liga = LIGAS.find(l => l.id === j.liga) || {};
+    return `
+      <li class="lider" data-sub21-jugador="${j.liga}|${j.nombre}|${j.edad}">
+        <span class="lider__pos">${lugar}</span>
+        <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
+        <span class="lider__nombre">${j.nombre}
+          <small><img class="mini-escudo" src="${bandera(liga.bandera)}" alt="">${j.equipo} · ${j.edad} años · ${{ ARQ: "Arquero", DEF: "Defensor", MED: "Mediocampista", DEL: "Delantero" }[j.puesto] || ""}</small>
+          <small>${orden[3](j)} · ${j.minutos}'</small></span>
+        <span class="lider__valor">${v}</span>
+      </li>`;
+  }).join("");
+
+  vistaSub21.innerHTML = `
+    <div class="sub21__filtros">
+      <div class="filtros">${boton("liga", "todas", "Todas las ligas")}${ligasDisponibles().map(l => boton("liga", l.id, l.pais)).join("")}</div>
+      <div class="filtros">${boton("puesto", "todos", "Todos los puestos")}${["ARQ", "DEF", "MED", "DEL"].map(p => boton("puesto", p, nombresPuestos[p])).join("")}</div>
+      <label class="sub21__orden">Ordenar por
+        <select class="campo" data-sub21-orden>${ordenesSub21.map(o => `<option value="${o[0]}" ${o[0] === filtroSub21.orden ? "selected" : ""}>${o[1]}</option>`).join("")}</select>
+      </label>
+    </div>
+    ${faltan.length ? `<p class="vacio">Cargando ${faltan.join(", ")}…</p>` : ""}
+    <section class="tabla-lideres sub21__lista">
+      <h2>${orden[1]}</h2>
+      ${filas ? `<ol>${filas}</ol>` : `<p class="vacio">No hay jugadores Sub-21 con 450' o más para este filtro.</p>`}
+    </section>
+    <p class="destacados__nota">Jugadores de 21 años o menos que siguen en su club y jugaron 450' o más en la temporada. Se muestran los 50 primeros. Tocá un jugador para ver su ficha.</p>`;
+}
+
+vistaSub21.addEventListener("click", function (e) {
+  const b = e.target.closest("[data-sub21]");
+  if (b) {
+    const [grupo, valor] = b.dataset.sub21.split("|");
+    filtroSub21[grupo] = valor;
+    return mostrarSub21();
+  }
+  const j = e.target.closest("[data-sub21-jugador]");
+  if (j) {
+    const [liga, nombre, edad] = j.dataset.sub21Jugador.split("|");
+    const jugador = unificadosDe(liga).find(x => x.nombre === nombre && String(x.edad) === edad);
+    if (!jugador) return;
+    if (liga === ligaActual.id) abrirFicha(jugador);
+    else abrirJugadorDeLiga(liga, nombre, edad, "sub21");
+  }
+});
+vistaSub21.addEventListener("change", function (e) {
+  if (!e.target.matches("[data-sub21-orden]")) return;
+  filtroSub21.orden = e.target.value;
+  if (filtroSub21.orden === "atajadas") filtroSub21.puesto = "ARQ";
+  mostrarSub21();
+});
+
 // Texto de la nota: se guarda mientras escribís
 ficha.addEventListener("input", function (e) {
   if (!e.target.matches(".nota-scouting__texto") || !fichaActual) return;
@@ -1159,14 +1247,21 @@ function htmlPortada() {
   const P = window.PORTADA || {};
   const ligas = LIGAS.filter(l => l.disponible && P[l.id]);
   if (!ligas.length) return "";
-  const fila = (l, j, valor) => !j ? "" : `
+  const fila = (l, j, valor, unidad, extra) => `
       <li class="lider" data-destacado="${l.id}|${j.nombre}|${j.edad}">
         <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
-        <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(l.bandera)}" alt="">${j.equipo}${j.ahoraEn ? ` · ahora en ${j.ahoraEn}` : ""}</small></span>
-        <span class="lider__valor">${valor}</span>
+        <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(l.bandera)}" alt="">${j.equipo}${j.ahoraEn ? ` · ahora en ${j.ahoraEn}` : ""}${extra ? " · " + extra : ""}</small></span>
+        <span class="lider__valor">${valor}<small class="lider__unidad">${unidad}</small></span>
       </li>`;
-  const bloque = (tituloBloque, f) => `
-      <section class="tabla-lideres destacados__bloque"><h2>${tituloBloque}</h2><ol>${ligas.map(l => f(l, P[l.id])).join("")}</ol></section>`;
+  // Un jugador por liga, ordenados de mayor a menor
+  const bloque = (tituloBloque, sacar, unidad, extra, pie) => {
+    const items = ligas.map(l => ({ l, j: sacar(P[l.id]) })).filter(x => x.j)
+      .map(x => ({ ...x, v: x.j.valor })).sort((a, b) => b.v - a.v);
+    return `
+      <section class="tabla-lideres destacados__bloque"><h2>${tituloBloque}</h2>
+        <ol>${items.map(x => fila(x.l, x.j, x.v, unidad, extra ? extra(x.j) : "")).join("")}</ol>${pie || ""}</section>`;
+  };
+  const con = (j, valor) => j ? { ...j, valor } : null;
 
   // Figura de la fecha: el que más puntos sumó en la última fecha (de todas las ligas). Si no hay fecha nueva, no se muestra.
   const figuras = ligas.filter(l => P[l.id].figura).map(l => ({ ...P[l.id].figura, liga: l })).sort((a, b) => b.puntos - a.puntos);
@@ -1183,10 +1278,12 @@ function htmlPortada() {
   return `
     <div class="destacados">
       ${htmlDia}
-      ${bloque("Goleadores", (l, d) => fila(l, d.goleador, d.goleador.goles))}
-      ${bloque("Asistidores", (l, d) => fila(l, d.asistidor, d.asistidor.asistencias))}
-      ${bloque("Sub-21 destacados", (l, d) => fila(l, d.sub21, d.sub21 ? d.sub21.goles + d.sub21.asistencias : ""))}
-      <p class="destacados__nota">Solo jugadores que siguen en su club (o que ahora juegan en otra de estas ligas). Sub-21: más goles + asistencias, con 450' o más. Tocá un jugador para ver su ficha.</p>
+      ${bloque("Goleadores", d => con(d.goleador, d.goleador && d.goleador.goles), "goles")}
+      ${bloque("Asistidores", d => con(d.asistidor, d.asistidor && d.asistidor.asistencias), "asist.")}
+      ${bloque("Sub-21 destacados", d => con(d.sub21, d.sub21 && d.sub21.goles + d.sub21.asistencias), "G + A",
+          j => `${j.goles} G · ${j.asistencias} A`,
+          `<button class="link destacados__ver" data-ir-sub21>Ver todos los Sub-21 →</button>`)}
+      <p class="destacados__nota">El mejor de cada liga. Solo jugadores que siguen en su club (o que ahora juegan en otra de estas ligas). Sub-21: goles + asistencias (G + A), con 450' o más. Tocá un jugador para ver su ficha.</p>
     </div>`;
 }
 
@@ -1259,6 +1356,7 @@ vistaLigas.addEventListener("click", function (e) {
     const [ligaId, nombre, edad] = destacado.dataset.destacado.split("|");
     return abrirJugadorDeLiga(ligaId, nombre, edad, "equipos");
   }
+  if (e.target.closest("[data-ir-sub21]")) return activarLiga(ligasDisponibles()[0].id, () => irA("sub21"));
   const boton = e.target.closest(".liga");
   if (!boton || boton.disabled) return;
   if (boton.dataset.seguidos !== undefined) {
@@ -1497,7 +1595,7 @@ let fichaAbiertaPorNosotros = false;
 
 function rutaVista() {
   if (vista === "ligas" || !ligaActual) return "#/";
-  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar" }[vista] ?? "";
+  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21" }[vista] ?? "";
   return `#/${ligaActual.id}/${resto}`.replace(/\/$/, "");
 }
 const rutaJugador = j => `#/${ligaActual.id}/jugador/${slug(j.nombre)}-${j.edad ?? ""}`;
@@ -1534,7 +1632,7 @@ function aplicarRuta() {
       const equipo = [...new Set(jugadores.map(j => j.equipo))].find(e => slug(e) === valor);
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
-    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar" }[tipo] || "equipos", null, true);
+    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21" }[tipo] || "equipos", null, true);
   });
 }
 window.addEventListener("popstate", aplicarRuta);
@@ -1560,6 +1658,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   vistaSeguidos.hidden = vista !== "seguidos";
   vistaIdeal.hidden = vista !== "ideal";
   vistaComparar.hidden = vista !== "comparar";
+  vistaSub21.hidden = vista !== "sub21";
   vistaPosiciones.hidden = vista !== "posiciones";
   actualizarContadorSeguidos();
   filtrosLideres.hidden = vista !== "lideres";
@@ -1578,6 +1677,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   else if (vista === "seguidos") mostrarSeguidos();
   else if (vista === "ideal") mostrarIdeal();
   else if (vista === "comparar") mostrarComparar();
+  else if (vista === "sub21") mostrarSub21();
   else if (vista === "posiciones") mostrarPosiciones();
   else mostrarJugadores();
   window.scrollTo({ top: 0 });
