@@ -1509,12 +1509,34 @@ document.getElementById("abrirAcerca").addEventListener("click", function () {
       <h3>Cómo se calcula el ranking</h3>
       <p>En la ficha, cada jugador se compara con los de su mismo puesto en su liga que jugaron al menos 450 minutos.
          Los valores se muestran por partido o cada 90 minutos. "Top 10%" y "Top 25%" indican en qué parte del ranking está.</p>
+      <h3>Instalarla en el celular</h3>
+      <p><strong>Android (Chrome):</strong> menú ⋮ → "Instalar app" o "Agregar a la pantalla principal".<br>
+         <strong>iPhone (Safari):</strong> botón Compartir ⬆️ → "Agregar a inicio".</p>
       <h3>Contacto</h3>
       <p>¿Sos de un club, una agencia o un medio, o encontraste un error en los datos? Escribí a
          <a class="pie__link" href="mailto:scouteando.contacto@gmail.com">scouteando.contacto@gmail.com</a>.</p>
       <p class="acerca__nota">Los datos se actualizan a mano después de cada fecha, así que puede haber algunos días de diferencia con la realidad.</p>
     </div>`;
   ficha.hidden = false;
+});
+
+// ---------- 9c. Instalar como app (celular y compu) ----------
+if ("serviceWorker" in navigator && location.protocol === "https:") {
+  navigator.serviceWorker.register("sw.js").catch(() => { /* sin app instalable, la página funciona igual */ });
+}
+let pedidoInstalar = null;
+window.addEventListener("beforeinstallprompt", function (e) {
+  // Chrome/Android: mostramos nuestro propio botón "Instalar app" en el pie
+  e.preventDefault();
+  pedidoInstalar = e;
+  document.getElementById("instalarApp").hidden = false;
+});
+document.getElementById("instalarApp").addEventListener("click", async function () {
+  if (!pedidoInstalar) return;
+  pedidoInstalar.prompt();
+  await pedidoInstalar.userChoice;
+  pedidoInstalar = null;
+  this.hidden = true;
 });
 
 // ---------- 10. Arranque ----------
