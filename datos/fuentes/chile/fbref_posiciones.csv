@@ -1,0 +1,17 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;attendance_per_g;top_team_scorers;top_keeper;notes
+1;Colo-Colo;23;17;3;3;48;22;+26;54;2.35;D W W D D;28988;Javier Marcelo Correa - 12;Gabriel Maureira;
+2;U. Católica;23;13;3;7;50;33;+17;42;1.83;L W W W W;14981;Fernando Zampedri - 25;Vicente Bernedo;
+3;Univ. de Chile;23;12;6;5;35;19;+16;42;1.83;W L L W W;26434;Eduardo Vargas - 9;Gabriel Castellón;
+4;Everton;23;10;6;7;37;25;+12;36;1.57;D W W L W;5388;Alan Medina - 11;José Ignacio González;
+5;Palestino;23;11;3;9;36;33;+3;36;1.57;W W L W L;1994;Nelson Da Silva - 9;Sebastián Pérez Kirby;
+6;CD Limache;23;10;3;10;43;35;+8;33;1.43;W L W W L;2504;Daniel Castro - 13;Claudio González;
+7;Ñublense;23;8;8;7;28;31;-3;32;1.39;W L L L L;4649;Ignacio Jeraldino - 5;Nicola Pérez;
+8;D. Concepción;23;9;4;10;25;26;-1;31;1.35;W D W L D;8897;Joaquín Larrivey - 7;Nicolás Araya;
+9;La Serena;23;7;9;7;34;38;-4;30;1.30;W D W W L;4052;Jeisson Vargas - 7;Federico Lanzillota;
+10;Coquimbo Unido;23;8;5;10;31;32;-1;29;1.26;L W L L L;6189;Nicolas Johansen - 7;Diego Sánchez Carvajal;
+11;Audax Italiano;23;7;7;9;26;31;-5;28;1.22;D D L W W;2020;Giovani Chiaverano - 6;Tomás Ahumada;
+12;Huachipato;22;8;4;10;30;39;-9;28;1.27;L L L D W;5117;Lionel Altamirano - 9;Christian Bravo;
+13;O'Higgins;23;8;3;12;28;36;-8;27;1.17;D L L W L;5146;Arnaldo Castillo - 8;Omar Carabalí;
+14;Cobresal;23;7;3;13;34;44;-10;24;1.04;L D W L W;765;Steffan Pino - 7;Alejandro Santander;
+15;U Concepción;22;6;4;12;17;37;-20;22;1.00;L L W L L;4152;Cecilio Waterman - 5;José Sanhueza;
+16;Unión La Calera;23;4;5;14;19;40;-21;17;0.74;L D L L W;2639;Sebastián Sáez - 9;Nicolás Avellaneda;

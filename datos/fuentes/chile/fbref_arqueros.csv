@@ -1,0 +1,35 @@
+﻿ranker;player;nationality;position;team;age;birth_year;gk_games;gk_games_starts;gk_minutes;minutes_90s;gk_goals_against;gk_goals_against_per90;gk_shots_on_target_against;gk_saves;gk_save_pct;gk_wins;gk_ties;gk_losses;gk_clean_sheets;gk_clean_sheets_pct;gk_pens_att;gk_pens_allowed;gk_pens_saved;gk_pens_missed;gk_pens_save_pct;matches
+1;Tomás Ahumada;CHI;GK;Audax Italiano;25-100;2001;23;23;2070;23.0;31;1.35;102;70;69.6;7;7;9;9;39.1;3;3;0;0;0.0;Matches
+2;Nicolás Araya;CHI;GK;D. Concepción;27-119;1999;16;16;1440;16.0;14;0.87;63;49;77.8;8;3;5;7;43.8;3;3;0;0;0.0;Matches
+3;Nicolás Avellaneda;ARG;GK;Unión La Calera;33-220;1993;22;22;1980;22.0;33;1.50;97;64;66.0;4;5;13;5;22.7;0;0;0;0;;Matches
+4;Vicente Bernedo;CHI;GK;U. Católica;25-253;2001;20;20;1800;20.0;26;1.30;90;64;71.1;12;2;6;5;25.0;1;1;0;0;0.0;Matches
+5;Matías Bórquez;CHI;GK;CD Limache;28-044;1998;10;10;900;10.0;17;1.70;45;28;62.2;4;2;4;1;10.0;1;0;0;1;;Matches
+6;Christian Bravo;CHI;GK;Huachipato;20-075;2006;14;14;1239;13.8;25;1.82;77;52;67.5;5;4;5;4;28.6;3;3;0;0;0.0;Matches
+7;Jorge Broun;ARG;GK;U Concepción;40-129;1986;5;5;449;5.0;9;1.80;27;18;66.7;1;0;4;0;0.0;3;1;1;1;50.0;Matches
+8;Omar Carabalí;CHI;GK;O'Higgins;29-112;1997;21;21;1890;21.0;30;1.43;88;58;65.9;8;3;10;4;19.0;4;2;0;2;0.0;Matches
+9;Gabriel Castellón;CHI;GK;Univ. de Chile;33-024;1993;23;23;2070;23.0;19;0.83;92;72;79.3;12;6;5;10;43.5;4;3;1;0;25.0;Matches
+10;César;BRA;GK;D. Concepción;34-248;1992;7;7;630;7.0;12;1.71;35;23;65.7;1;1;5;1;14.3;0;0;0;0;;Matches
+11;Nelson Espinoza;CHI;GK;Unión La Calera;31-010;1995;1;1;90;1.0;2;2.00;5;3;60.0;0;0;1;0;0.0;0;0;0;0;;Matches
+12;Gonzalo Flores;CHI;GK;Coquimbo Unido;26-215;2000;3;3;270;3.0;4;1.33;10;6;60.0;2;1;0;0;0.0;1;1;0;0;0.0;Matches
+13;Claudio González;CHI;GK;CD Limache;36-159;1990;13;13;1170;13.0;18;1.38;64;46;71.9;6;1;6;4;30.8;2;2;0;0;0.0;Matches
+14;José Ignacio González;CHI;GK;Everton;36-304;1989;19;19;1710;19.0;21;1.11;72;51;70.8;8;5;6;6;31.6;4;2;1;1;33.3;Matches
+15;Esteban Kirkman;CHI;GK;Everton;24-078;2002;4;4;360;4.0;5;1.25;17;12;70.6;2;1;1;1;25.0;1;0;1;0;100.0;Matches
+16;Federico Lanzillota;ARG;GK;La Serena;33-305;1992;14;14;1203;13.4;24;1.80;62;38;61.3;4;5;5;4;28.6;3;2;1;0;33.3;Matches
+17;Gabriel Maureira;CHI;GK;Colo-Colo;19-237;2007;13;12;1101;12.2;16;1.31;44;27;63.6;11;1;0;1;8.3;3;3;0;0;0.0;Matches
+18;Sebastián Mella;CHI;GK;Huachipato;21-063;2005;5;4;381;4.2;6;1.42;16;10;62.5;2;0;2;1;25.0;1;1;0;0;0.0;Matches
+19;Darío Melo;CHI;GK;U. Católica;32-192;1994;3;3;270;3.0;7;2.33;13;6;46.2;1;1;1;0;0.0;1;1;0;0;0.0;Matches
+20;Rodrigo Odriozola López;URU;GK;Huachipato;38-032;1988;4;4;360;4.0;8;2.00;19;11;57.9;1;0;3;0;0.0;1;1;0;0;0.0;Matches
+21;Matias Olguin;CHI;GK;Cobresal;30-196;1996;7;7;630;7.0;12;1.71;48;35;75.0;3;1;3;2;28.6;1;1;0;0;0.0;Matches
+22;Fernando de Paul;CHI;GK;Colo-Colo;35-160;1991;9;9;789;8.8;5;0.57;18;13;72.2;6;0;3;6;66.7;0;0;0;0;;Matches
+23;Jorge Peña;CHI;GK;O'Higgins;26-077;2000;2;2;180;2.0;6;3.00;14;8;57.1;0;0;2;0;0.0;2;1;1;0;50.0;Matches
+24;Pepe;;GK;La Serena;;;9;9;810;9.0;14;1.56;43;29;67.4;3;4;2;2;22.2;1;1;0;0;0.0;Matches
+25;Sebastián Pérez Kirby;CHI;GK;Palestino;36-030;1990;23;23;2070;23.0;33;1.43;106;72;68.9;11;3;9;5;21.7;6;6;0;0;0.0;Matches
+26;Nicola Pérez;URU;GK;Ñublense;36-239;1990;23;23;2070;23.0;31;1.35;103;72;69.9;8;8;7;7;30.4;7;6;1;0;14.3;Matches
+27;Jorge Pinos;ECU;GK;Cobresal;36-359;1989;6;6;540;6.0;19;3.17;41;22;53.7;0;0;6;0;0.0;2;2;0;0;0.0;Matches
+28;Diego Sánchez Carvajal;CHI;GK;Coquimbo Unido;39-147;1987;20;20;1799;20.0;28;1.40;77;49;63.6;6;4;10;4;20.0;4;4;0;0;0.0;Matches
+29;José Sanhueza;CHI;GK;U Concepción;25-213;2001;9;9;810;9.0;14;1.56;44;30;68.2;2;2;5;3;33.3;2;2;0;0;0.0;Matches
+30;Eryin Sanhueza Mora;CHI;GK;La Serena;30-246;1996;1;0;57;0.6;0;0.00;3;3;100.0;0;0;0;1;;0;0;0;0;;Matches
+31;Alejandro Santander;CHI;GK;Cobresal;23-331;2002;10;10;900;10.0;16;1.60;49;33;67.3;4;2;4;3;30.0;4;3;1;0;25.0;Matches
+32;Santiago Silva;URU;GK;U Concepción;27-144;1999;8;8;720;8.0;14;1.75;46;32;69.6;3;2;3;2;25.0;0;0;0;0;;Matches
+33;Vicente Villegas;CHI;GK;Coquimbo Unido;17-040;2009;1;0;1;0.0;0;0.00;2;2;100.0;0;0;0;0;;0;0;0;0;;Matches
+34;Vozinha;CPV;GK;Colo-Colo;40-121;1986;2;2;180;2.0;1;0.50;1;0;0.0;0;2;0;1;50.0;0;0;0;0;;Matches
