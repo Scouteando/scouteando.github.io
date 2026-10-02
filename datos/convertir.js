@@ -88,21 +88,59 @@ function coincide(nombreFbref, nombreApi) {
          (resto[0] === f[0] && resto[resto.length - 1] === f[f.length - 1]);
 }
 
-// Tres pasadas: coincidencia clara, apellido único en el plantel, y reusar foto si cambió de club
+// Nombres que se escriben distinto en FBref y en API-Football y no se pueden adivinar
+// (ej. "Memphis" en FBref es "M. Depay" en API-Football): alias.csv con nombre_fbref|nombre_api
+const alias = {};
+for (const x of leerCsv("alias.csv", "|") || []) alias[x.nombre_fbref] = simple(x.nombre_api);
+
+// Distancia de edición (cuántas letras hay que cambiar para pasar de un nombre al otro)
+function distancia(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++)
+      d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+
+// Pasadas, de la más segura a la más flexible (en las flexibles solo vale si hay UN candidato):
+//  1. alias o coincidencia clara      2. mismo apellido (último)
+//  3. inicial + apellido en cualquier lugar ("Lucas Martínez Quarta" = "L. Martinez")
+//  4. casi igual, error de tipeo ("Facundo Guch" = "Facundo Gauch")
+//  5. inicial + primer apellido, cuando API trae los dos apellidos ("Santiago Alzate" = "S. Alzate Uribe")
 const fotoDe = {};
 const sigueEnElClub = {};
-for (const pasada of [1, 2]) {
+for (const pasada of [1, 2, 3, 4, 5]) {
   for (const f of general) {
     if (fotoDe[clave(f)]) continue;
     const plantel = planteles[(equipos[f.team] || {}).id_apifootball] || [];
+    const libres = plantel.filter(p => !p.usado);
+    const fb = simple(f.player);
+    const tokens = fb.split(" ");
     let candidato;
+    let mismos = [];
     if (pasada === 1) {
-      candidato = plantel.find(p => !p.usado && coincide(f.player, p.nombre));
+      candidato = alias[f.player] ? libres.find(p => p.nombre === alias[f.player]) : libres.find(p => coincide(f.player, p.nombre));
+    } else if (pasada === 2) {
+      mismos = libres.filter(p => p.nombre.split(" ").pop() === tokens[tokens.length - 1]);
+    } else if (pasada === 3) {
+      mismos = libres.filter(function (p) {
+        const partes = p.nombre.split(" ");
+        const inicial = partes.find(t => t.endsWith("."));
+        const apellidos = partes.filter(t => !t.endsWith(".") && t.length > 2);
+        return apellidos.length > 0 && apellidos.every(t => tokens.includes(t)) && (!inicial || inicial[0] === fb[0]);
+      });
+    } else if (pasada === 4) {
+      mismos = libres.filter(p => !p.nombre.includes(".") && distancia(fb, p.nombre) <= 2);
     } else {
-      const apellido = simple(f.player).split(" ").pop();
-      const mismos = plantel.filter(p => !p.usado && p.nombre.split(" ").pop() === apellido);
-      if (mismos.length === 1) candidato = mismos[0];
+      mismos = libres.filter(function (p) {
+        const partes = p.nombre.split(" ");
+        const inicial = partes.find(t => t.endsWith("."));
+        const primerApellido = partes.find(t => !t.endsWith(".") && t.length > 2);
+        return inicial && inicial[0] === fb[0] && primerApellido && tokens.slice(1).includes(primerApellido);
+      });
     }
+    if (pasada > 1 && mismos.length === 1) candidato = mismos[0];
     if (candidato) {
       candidato.usado = true;
       fotoDe[clave(f)] = "https://media.api-sports.io/football/players/" + candidato.id + ".png";

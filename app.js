@@ -1157,12 +1157,6 @@ function htmlPortada() {
         <span class="jugador-dia__numeros">${[dia.golesFecha ? `${dia.golesFecha} ${dia.golesFecha === 1 ? "gol" : "goles"}` : "", dia.asistFecha ? `${dia.asistFecha} asist.` : "", `${dia.puntos} puntos`].filter(Boolean).join(" · ")}</span>
       </button>`;
 
-  const novedades = (typeof NOVEDADES !== "undefined" ? NOVEDADES : []).slice(0, 4);
-  const htmlNovedades = !novedades.length ? "" : `
-      <section class="novedades"><h2>Novedades</h2>
-        <ul>${novedades.map(n => `<li><span class="novedades__fecha">${n.fecha}</span> ${n.texto}</li>`).join("")}</ul>
-      </section>`;
-
   return `
     <div class="destacados">
       ${htmlDia}
@@ -1170,7 +1164,7 @@ function htmlPortada() {
       ${bloque("Asistidores", (l, d) => fila(l, d.asistidor, d.asistidor.asistencias))}
       ${bloque("Sub-21 destacados", (l, d) => fila(l, d.sub21, d.sub21 ? d.sub21.goles + d.sub21.asistencias : ""))}
       <p class="destacados__nota">Solo jugadores que siguen en su club (o que ahora juegan en otra de estas ligas). Sub-21: más goles + asistencias, con 450' o más. Tocá un jugador para ver su ficha.</p>
-    </div>${htmlNovedades}`;
+    </div>`;
 }
 
 // Abre la ficha de un jugador de cualquier liga (entra primero a su liga)
@@ -1216,7 +1210,8 @@ function cargarDatos(id, listo) {
 function unificadosDe(id) {
   if (!unificadosPorLiga[id]) {
     for (const j of window.DATOS_LIGAS[id]) j.liga = id;
-    unificadosPorLiga[id] = unificar(window.DATOS_LIGAS[id]);
+    // Solo los que siguen en su club: los que se fueron no aparecen en líderes, búsquedas, rankings ni comparaciones
+    unificadosPorLiga[id] = unificar(window.DATOS_LIGAS[id]).filter(j => j.enPlantel);
   }
   return unificadosPorLiga[id];
 }
