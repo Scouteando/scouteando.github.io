@@ -2,7 +2,7 @@
 
 ![Scouteando](compartir.png)
 
-**Ver la app:** https://joacotomada.github.io/scouteando/
+**Ver la app:** https://scouteando.github.io/
 
 App web para explorar jugadores de ligas de fútbol: equipos, planteles, fichas individuales
 con comparación por puesto (percentiles) y tablas de líderes.
