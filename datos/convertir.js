@@ -157,6 +157,7 @@ for (const f of general) {
 // Altura y peso (opcional): apifootball_fisico.csv con id|nombre|altura|peso
 const fisico = {};
 for (const x of leerCsv("apifootball_fisico.csv", "|") || []) fisico[x.id] = x;
+for (const x of leerCsv("fisico_extra_" + liga + ".csv", "|") || []) if (x.altura) fisico[x.id] = x;
 
 // ---------- 3. Armado de cada jugador ----------
 const puestos = { GK: "ARQ", DF: "DEF", MF: "MED", FW: "DEL" };
