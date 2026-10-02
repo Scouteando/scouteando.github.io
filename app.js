@@ -1124,7 +1124,7 @@ function mostrarLigas() {
       <span class="liga__pais">${totalSeguidos()} en seguimiento, de todas las ligas</span>
     </button>` : "") + (proximas.length ? `
     <p class="ligas__proximas">Próximamente: ${proximas.map(l => `${l.nombre} (${l.pais})`).join(", ")}.</p>` : "") + htmlPortada();
-  titulo.textContent = "Scouting de jugadores";
+  titulo.textContent = "Scouteando";
   // Subtítulo: las ligas disponibles, armado solo desde ligas.js
   const paises = LIGAS.filter(l => l.disponible).map(l => l.pais);
   resumen.textContent = `Estadísticas de jugadores de ${paises.slice(0, -1).join(", ")}${paises.length > 1 ? " y " : ""}${paises.slice(-1)}.`;
@@ -1540,7 +1540,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   for (const b of botonesMenu) {
     b.classList.toggle("activo", b.dataset.vista === (vista === "plantel" ? "equipos" : vista));
   }
-  if (vista === "ligas") volver.textContent = "Scouteando";
+  if (vista === "ligas") volver.textContent = "";
   else if (vista === "plantel") volver.textContent = "← Volver a equipos";
   else volver.innerHTML = `← Todas las ligas · <img class="mini-escudo" src="${bandera(ligaActual.bandera)}" alt=""> ${ligaActual.nombre} ${ligaActual.temporada}`;
   volver.classList.toggle("link", vista !== "ligas");
