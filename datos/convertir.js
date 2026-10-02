@@ -6,10 +6,10 @@
 //   node datos/convertir.js argentina
 //
 // Archivos que espera en datos/fuentes/<liga>/ (ver README.md):
-//   fbref_general.csv     -> partidos, minutos, goles, asistencias, tarjetas
-//   fbref_defensa.csv     -> intercepciones, quites, faltas recibidas, centros
+//   fbref_general.csv     -> partidos, minutos, goles, asistencias, penales, tarjetas
+//   fbref_defensa.csv     -> intercepciones, quites, faltas recibidas y cometidas, centros, fuera de juego, autogoles
 //   fbref_tiros.csv       -> tiros y tiros al arco
-//   fbref_arqueros.csv    -> atajadas, vallas invictas, goles recibidos
+//   fbref_arqueros.csv    -> atajadas, vallas invictas, goles recibidos, tiros recibidos, penales, resultados
 //   equipos.csv           -> nombre del equipo en FBref, nombre a mostrar, id en API-Football
 //   apifootball_planteles.csv (opcional) -> plantel actual con id de foto
 //   apifootball_fisico.csv (opcional) -> altura y peso (id|nombre|altura|peso)
@@ -189,6 +189,12 @@ const jugadores = general.map(function (f) {
     centros: num(d.crosses),
     tiros: num(t.shots),
     tirosAlArco: num(t.shots_on_target),
+    penalesConvertidos: num(f.pens_made),
+    penalesPateados: num(f.pens_att),
+    faltasCometidas: num(d.fouls),
+    fueraDeJuego: num(d.offsides),
+    autogoles: num(d.own_goals),
+    dobleAmarilla: num(d.cards_yellow_red),
     // Si no tenemos planteles cargados, asumimos que todos siguen en el club
     // Si no tenemos el plantel de ESE equipo (ej. un ascendido que no está en API-Football),
     // asumimos que sigue en el club para no esconderlo
@@ -201,6 +207,12 @@ const jugadores = general.map(function (f) {
     j.atajadas = num(a.gk_saves);
     j.pctAtajadas = num(a.gk_save_pct);
     j.vallasInvictas = num(a.gk_clean_sheets);
+    j.tirosRecibidos = num(a.gk_shots_on_target_against);
+    j.penalesEnContra = num(a.gk_pens_att);
+    j.penalesAtajados = num(a.gk_pens_saved);
+    j.ganados = num(a.gk_wins);
+    j.empatados = num(a.gk_ties);
+    j.perdidos = num(a.gk_losses);
   }
   if (fotoDe[clave(f)]) j.foto = fotoDe[clave(f)];
   // Altura y peso: se cruzan por el id del jugador en API-Football (el mismo número de la foto)

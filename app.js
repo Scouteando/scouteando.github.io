@@ -23,7 +23,9 @@ const volver = document.getElementById("volver");
 // Si alguien jugó en dos clubes en la temporada, FBref lo trae en dos filas.
 // Para los líderes y las comparaciones sumamos sus números y lo contamos una sola vez.
 const sumables = ["partidos", "titular", "minutos", "goles", "asistencias", "amarillas", "rojas", "tiros", "tirosAlArco",
-  "intercepciones", "quites", "faltasRecibidas", "centros", "atajadas", "golesRecibidos", "vallasInvictas"];
+  "intercepciones", "quites", "faltasRecibidas", "centros", "atajadas", "golesRecibidos", "vallasInvictas",
+  "penalesConvertidos", "penalesPateados", "faltasCometidas", "fueraDeJuego", "autogoles", "dobleAmarilla",
+  "tirosRecibidos", "penalesEnContra", "penalesAtajados", "ganados", "empatados", "perdidos"];
 
 function unificar(lista) {
   const porJugador = {};
@@ -95,7 +97,14 @@ const estadisticas = {
   edad:           { nombre: "Edad (más joven)",    valor: j => j.edad, menor: true },
   tiros:          { nombre: "Tiros",               valor: j => j.tiros },
   tirosAlArco:    { nombre: "Tiros al arco",       valor: j => j.tirosAlArco },
-  tirosAlArcoPP:  { nombre: "Tiros al arco por partido", valor: j => porPartido(j.tirosAlArco, j), minimo: 450 }
+  tirosAlArcoPP:  { nombre: "Tiros al arco por partido", valor: j => porPartido(j.tirosAlArco, j), minimo: 450 },
+  pctAlArco:      { nombre: "% de tiros al arco",  valor: j => j.tiros >= 10 ? Math.round((j.tirosAlArco / j.tiros) * 100) : null },
+  efectividad:    { nombre: "Efectividad (% de tiros que son gol)", valor: j => j.tiros >= 15 ? Math.round((j.goles / j.tiros) * 100) : null },
+  golesSinPenal:  { nombre: "Goles sin contar penales", valor: j => j.goles - (j.penalesConvertidos || 0) },
+  faltasCometidas: { nombre: "Faltas cometidas",   valor: j => j.faltasCometidas ?? null },
+  fueraDeJuego:   { nombre: "Fuera de juego",      valor: j => j.fueraDeJuego ?? null },
+  penalesAtajados: { nombre: "Penales atajados",   valor: j => j.penalesAtajados ?? null },
+  pctVallas:      { nombre: "% de vallas invictas", valor: j => j.vallasInvictas == null || j.partidos < 5 ? null : Math.round((j.vallasInvictas / j.partidos) * 100), minimo: 450 }
 };
 for (const clave in estadisticas) {
   selectOrden.innerHTML += `<option value="${clave}">${estadisticas[clave].nombre}</option>`;
@@ -397,9 +406,9 @@ function claseNivel(p) {
 
 // Orden de las estadísticas en la ficha: primero lo más importante de cada puesto
 const ordenFicha = {
-  DEF: ["Recuperaciones", "Intercepciones", "Minutos jugados", "Centros", "Asistencias", "Goles", "Tiros al arco", "Faltas recibidas"],
-  MED: ["Recuperaciones", "Asistencias", "Centros", "Faltas recibidas", "Goles", "Tiros al arco", "Intercepciones", "Minutos jugados"],
-  DEL: ["Goles", "Tiros al arco", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Minutos jugados"]
+  DEF: ["Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados", "Centros", "Asistencias", "Goles", "Goles sin contar penales", "Tiros al arco", "Tiros", "Efectividad", "Faltas recibidas"],
+  MED: ["Recuperaciones", "Asistencias", "Centros", "Faltas recibidas", "Goles", "Goles sin contar penales", "Tiros al arco", "Tiros", "Efectividad", "Intercepciones", "Faltas cometidas", "Minutos jugados"],
+  DEL: ["Goles", "Goles sin contar penales", "Efectividad", "Tiros al arco", "Tiros", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados"]
 };
 
 function abrirFicha(elegido) {
@@ -425,6 +434,9 @@ function abrirFicha(elegido) {
       ["% de atajadas", j.pctAtajadas + "%", null, x => x.pctAtajadas ?? null],
       m("Vallas invictas", x => x.vallasInvictas),
       m("Goles recibidos", x => x.golesRecibidos, true),
+      m("Tiros al arco recibidos", x => x.tirosRecibidos),
+      ["% de vallas invictas", j.partidos ? Math.round((j.vallasInvictas / j.partidos) * 100) + "%" : "-", null, x => x.partidos ? x.vallasInvictas / x.partidos : null],
+      ["Penales atajados", `${j.penalesAtajados ?? 0} de ${j.penalesEnContra ?? 0}`, null, x => x.penalesAtajados ?? null],
       ["Minutos jugados", j.minutos, null, x => x.minutos]
     ];
   } else {
@@ -436,6 +448,10 @@ function abrirFicha(elegido) {
       m("Intercepciones", x => x.intercepciones),
       m("Faltas recibidas", x => x.faltasRecibidas),
       m("Centros", x => x.centros),
+      m("Tiros", x => x.tiros),
+      ["Efectividad", j.tiros >= 15 ? Math.round((j.goles / j.tiros) * 100) + "% de sus tiros son gol" : "pocos tiros para medirla", null, x => x.tiros >= 15 ? x.goles / x.tiros : null],
+      m("Goles sin contar penales", x => x.goles - (x.penalesConvertidos || 0)),
+      m("Faltas cometidas", x => x.faltasCometidas, true),
       ["Minutos jugados", j.minutos, null, x => x.minutos]
     ];
   }
@@ -447,11 +463,14 @@ function abrirFicha(elegido) {
   // Con menos de 450' mostramos igual sus números, pero sin compararlo
   const alcanza = j.minutos >= 450;
   const datosRadar = []; // para el gráfico de perfil
+  const extrasFuertes = []; // estadísticas que no van en el radar pero pueden ser un punto fuerte
   const perfil = metricas.map(function (m) {
     const r = alcanza ? rankingEnPuesto(j, m[3], m[4]) : null;
     // Barra y nivel salen del mismo ranking: 1º de 100 = 100, 50º de 100 = 51
     const p = r ? Math.round((1 - (r.lugar - 1) / r.total) * 100) : null;
-    if (p != null && m[0] !== "Minutos jugados") datosRadar.push({ nombre: m[0], p: p });
+    const enRadar = !["Minutos jugados", "Tiros", "Goles sin contar penales", "Faltas cometidas", "Tiros al arco recibidos", "Penales atajados", "% de vallas invictas"].includes(m[0]);
+    if (p != null && enRadar) datosRadar.push({ nombre: m[0], p: p });
+    else if (p != null && m[0] !== "Minutos jugados" && m[0] !== "Faltas cometidas") extrasFuertes.push({ nombre: m[0], p: p });
     const lado = p == null
       ? `<span class="perfil__top">–</span><span class="perfil__nivel">sin comparar</span>`
       : `<span class="perfil__top">${medalla(r.lugar)}${r.lugar}º <small>de ${r.total}</small></span>
@@ -468,7 +487,7 @@ function abrirFicha(elegido) {
   }).join("");
   const radar = datosRadar.length >= 3 ? dibujarRadar(datosRadar) : "";
   // Puntos fuertes: lo mejor de su perfil (top 25% de su puesto o mejor), para leerlo de un vistazo
-  const fuertes = datosRadar.filter(d => d.p >= 75).sort((x, y) => y.p - x.p).slice(0, 3)
+  const fuertes = datosRadar.concat(extrasFuertes).filter(d => d.p >= 75).sort((x, y) => y.p - x.p).slice(0, 3)
     .map(d => `<span class="fuerte ${d.p >= 90 ? "fuerte--elite" : ""}">Top ${Math.max(1, 100 - d.p)}% en ${d.nombre.toLowerCase()}</span>`).join("");
   const avisoMinutos = alcanza ? "" :
     `<p class="ficha__nota">Jugó ${j.minutos}' en la temporada: con menos de 450' no lo comparamos con los demás ${grupoTexto}.</p>`;
@@ -522,7 +541,7 @@ function abrirFicha(elegido) {
         <ul class="resultados comp__resultados"></ul>
       </div>
       <p class="ficha__nota">El ranking compara el promedio ${unidad} contra los ${grupoTexto} de la liga con 450' o más (🥇 = 1º, ⭐ = top 5). Las estadísticas están ordenadas por importancia para su puesto.
-      Titular en ${j.titular} de ${j.partidos} partidos · ${j.amarillas} ${j.amarillas === 1 ? "amarilla" : "amarillas"}, ${j.rojas} ${j.rojas === 1 ? "roja" : "rojas"}.</p>
+      Titular en ${j.titular} de ${j.partidos} partidos · ${j.amarillas} ${j.amarillas === 1 ? "amarilla" : "amarillas"}, ${j.rojas} ${j.rojas === 1 ? "roja" : "rojas"}${j.dobleAmarilla ? ` (${j.dobleAmarilla} por doble amarilla)` : ""}${j.fueraDeJuego ? ` · ${j.fueraDeJuego} fuera de juego` : ""}${j.autogoles ? ` · ${j.autogoles} ${j.autogoles === 1 ? "autogol" : "autogoles"}` : ""}${j.penalesPateados ? ` · penales: ${j.penalesConvertidos} de ${j.penalesPateados}` : ""}${j.puesto === "ARQ" && j.ganados != null ? ` · con él al arco: ${j.ganados} ganados, ${j.empatados} empatados, ${j.perdidos} perdidos` : ""}.</p>
     </div>`;
   ficha.hidden = false;
   fichaActual = j;
@@ -922,6 +941,13 @@ const tablasLideres = [
   ["Vallas invictas", "vallas", 0],
   ["% de atajadas", "pctAtajadas", 900],
   ["Tiros al arco", "tirosAlArco", 0],
+  ["Goles sin contar penales", "golesSinPenal", 0],
+  ["Efectividad (% de tiros que son gol)", "efectividad", 900],
+  ["% de tiros al arco", "pctAlArco", 900],
+  ["Faltas cometidas", "faltasCometidas", 0],
+  ["Fuera de juego", "fueraDeJuego", 0],
+  ["Penales atajados", "penalesAtajados", 0],
+  ["% de vallas invictas", "pctVallas", 900],
   ["Minutos jugados", "minutos", 0]
 ];
 
@@ -984,7 +1010,7 @@ function mostrarLideres() {
     const lugares = top.map(j => top.filter(o => est.menor ? est.valor(o) < est.valor(j) : est.valor(o) > est.valor(j)).length + 1);
     const filas = top.map(function (j, i) {
       const foto = j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : "";
-      const valor = clave === "pctAtajadas" ? est.valor(j) + "%" : est.valor(j);
+      const valor = ["pctAtajadas", "efectividad", "pctAlArco", "pctVallas"].includes(clave) ? est.valor(j) + "%" : est.valor(j);
       return `
         <li class="lider" data-clave="${j.nombre}|${j.edad}|">
           <span class="lider__pos">${lugares[i] === 1 ? "🥇" : lugares[i]}</span>
