@@ -1046,3 +1046,29 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .ficha__nombre { font-size: clamp(26px, 7.5vw, 34px); line-height: 1; }
 .carta__rating, .stat__valor, .cuadro__valor, .lider__valor, .destacado__valor, .perfil__valor,
 .comp__valor, .parecidos__valor { font-stretch: 112%; }
+
+/* ===== Ajustes para la letra ancha: que nada se salga de su cuadro ===== */
+/* En cartas y tarjetas la letra va un poco menos ancha que en los títulos grandes */
+.liga__nombre { font-stretch: 108%; font-size: clamp(20px, 2.2vw, 26px); overflow-wrap: break-word; hyphens: manual; }
+.carta__nombre, .carta__titulo .carta__nombre { font-stretch: 100%; font-size: 20px; line-height: 1.05; overflow-wrap: break-word; min-width: 0; }
+.equipo__nombre { font-stretch: 105%; overflow-wrap: break-word; }
+.jugador-dia__nombre { font-stretch: 110%; overflow-wrap: break-word; }
+.carta__titulo { min-width: 0; }
+
+/* Tabla de posiciones: escudo siempre en el mismo lugar (aunque falte) y nombre en una línea */
+.tabla-posiciones td.equipo-celda { line-height: 1.15; }
+.tabla-posiciones td.equipo-celda .carta__equipo { display: flex; align-items: center; gap: 8px; }
+.tabla-posiciones td.equipo-celda .mini-escudo { flex: 0 0 18px; width: 18px; height: 18px; margin: 0; object-fit: contain; }
+.tabla-posiciones td.equipo-celda .nombre-equipo { min-width: 0; }
+.tabla-posiciones td.pts { font-stretch: 100%; }
+.tabla-posiciones td.ultimos { white-space: nowrap; }
+
+/* Resumen del equipo: cuadros parejos, de a 2 en el celu */
+.resumen-equipo { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+@media (max-width: 560px) {
+  .resumen-equipo { grid-template-columns: 1fr 1fr; }
+  .resumen-equipo > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .resumen-equipo .destacado__valor { font-size: 30px; }
+  .resumen-equipo .lider { grid-template-columns: 36px 1fr; }
+  .resumen-equipo .lider__foto { width: 36px; height: 36px; }
+}

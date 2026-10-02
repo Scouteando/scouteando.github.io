@@ -1383,14 +1383,18 @@ function mostrarPosiciones() {
 
   const tablas = tablasLiga.filter(t => t.competencia === competenciaElegida).map(function (t) {
     const conUltimos = t.filas.some(f => f.ultimos.length);
-    const filas = t.filas.map(f => `
+    // Promedios: siempre de mayor a menor promedio (FBref deja a los recién ascendidos al final)
+    const filasOrdenadas = esPromedios
+      ? [...t.filas].sort((x, y) => y.promedio - x.promedio).map((f, i) => Object.assign({}, f, { pos: i + 1 }))
+      : t.filas;
+    const filas = filasOrdenadas.map(f => `
       <tr class="${zonaDe(t, f.pos) ? "zona zona--" + zonaDe(t, f.pos).tipo : ""}">
         <td class="pos">${f.pos}</td>
-        <td class="equipo-celda"><a href="#" class="carta__equipo" data-equipo="${f.equipo}"><img class="mini-escudo" src="${escudo(f.equipoId)}" alt="">${f.equipo}</a></td>
+        <td class="equipo-celda"><a href="#" class="carta__equipo" data-equipo="${f.equipo}"><img class="mini-escudo" src="${escudo(f.equipoId)}" alt="" onerror="this.style.visibility='hidden'"><span class="nombre-equipo">${f.equipo}</span></a></td>
         <td>${f.pj}</td><td>${f.g}</td><td>${f.e}</td><td>${f.p}</td>
         <td class="ocultar-celu">${f.gf}</td><td class="ocultar-celu">${f.gc}</td><td>${f.dg > 0 ? "+" + f.dg : f.dg}</td>
         <td class="pts">${esPromedios ? f.promedio.toFixed(3) : f.pts}</td>
-        ${conUltimos ? `<td class="ocultar-celu">${f.ultimos.map(r => `<span class="forma forma--${r}" title="${{ G: "Ganó", E: "Empató", P: "Perdió" }[r]}">${r}</span>`).join("")}</td>` : ""}
+        ${conUltimos ? `<td class="ocultar-celu ultimos">${f.ultimos.map(r => `<span class="forma forma--${r}" title="${{ G: "Ganó", E: "Empató", P: "Perdió" }[r]}">${r}</span>`).join("")}</td>` : ""}
       </tr>`).join("");
     return `
       <section class="tabla-posiciones">
