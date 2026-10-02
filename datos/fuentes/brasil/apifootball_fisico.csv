@@ -1,0 +1,651 @@
+id|nombre|altura|peso
+151|A. Vidal|180|75
+640|Fernandinho|177|70
+6031|T. Cuello|175|75
+6228|L. Godoy|173|66
+9661|Julimar|188|86
+9936|Willian|171|78
+9948|Bruno Peres|178|72
+9962|Vitor Bueno|185|78
+9976|Pablo|187|78
+9990|Kaique Rocha|197|89
+10067|Alex Santana|182|74
+10073|Luiz Fernando|178|66
+10085|Cacá|187|77
+10111|Bento|191|92
+10117|Madson|183|75
+10121|Thiago Heleno|185|96
+10130|Erick|176|67
+10133|Nikão|174|84
+10170|Hugo Moura|182|82
+10235|Pedro Henrique|188|82
+10247|Gabriel|171|72
+10281|Raul|177|73
+16265|L. Di Yorio|190|70
+16669|G. Mastriani|180|76
+51603|A. Canobbio|175|75
+67204|Christian|175|72
+69142|M. Gamarra|180|79
+133186|Vinícius Mingotti|184|86
+143640|Kawan|180|73
+159718|Matheus Babi|191|78
+160101|Matheus Felipe|184|90
+180961|Luan Patrick|190|81
+182015|Fernando|180|81
+195809|L. Arriagada|184|73
+196159|Jajá|177|70
+197533|Praxedes|185|70
+274297|Gabriel Pereira|194|98
+279785|R. Benitez|170|57
+288011|Thiago Andrade|180|68
+288704|L. Esquivel|180|78
+292166|Léo Linck|195|88
+311287|Vinícius Kauê|181|78
+311289|Renan Viana|188|86
+313067|Ataíde|177|83
+316918|Filipe|195|100
+321646|Mycael|187|78
+321647|Jader|172|67
+321648|Emersonn|186|72
+326102|Rômulo|193|79
+340279|Vitor Roque|174|78
+351485|Daniel|170|58
+352374|Petterson|181|75
+362716|Derik|166|60
+362718|Lucca|169|61
+96|Jemerson|184|77
+434|Mariano|185|77
+987|Paulinho|177|77
+1262|Otávio|176|73
+1484|R. Battaglia|188|79
+2038|Guilherme Arana|176|71
+2470|R. Saravia|176|75
+2477|M. Zaracho|171|67
+2499|J. Alonso|185|83
+5981|C. Pavón|167|65
+6725|F. Vera|179|72
+9401|Fábio Gomes|178|81
+9863|Réver|192|85
+9872|Igor Rabello|190|90
+9884|Daniel Penha|170|68
+9923|Hyoran|174|66
+9926|Gustavo Scarpa|176|74
+9934|Deyverson|187|80
+9939|Dudu|167|66
+9967|Igor Gomes|182|73
+9978|Everson|192|83
+10244|Pedrinho|172|62
+10379|Bruno Fuchs|190|85
+10387|Edenílson|176|71
+10388|Patrick|176|81
+10432|Júnior Santos|188|85
+12705|Hulk|179|95
+12825|Alan Kardec|185|75
+16360|A. Franco|176|67
+18761|Bernard|164|62
+30476|Lyanco|187|85
+30524|M. Lemos|187|85
+35534|E. Vargas|174|75
+195111|Gabriel Menino|177|78
+197017|Matheus Mendes|190|89
+198111|Felipe Felício|184|66
+201155|Daniel Borges|183|81
+294593|Rubens|178|66
+294594|Caio Henrique|173|68
+306726|B. Palacios|178|74
+311275|Gabriel Delfim|189|91
+311277|Rômulo|183|79
+311279|Alexandre|169|63
+352386|Vitor Graziani|183|75
+363323|Alexsander|178|67
+363701|Leonardo Santos|180|68
+406223|L. Rodríguez|173|61
+406814|Vitor Reis|176|73
+414281|Isaac|185|78
+415067|David Kauã|182|72
+415112|Diego Fernandes|196|94
+415113|Renan|181|75
+415114|Pedro Ataíde|180|
+415116|Alisson Santana|183|79
+30|S. Arias|178|72
+1057|Cicinho|168|65
+2173|C. de Pena|177|73
+9854|Ademir|172|
+9904|Matheus Teixeira|187|79
+9994|Jean Lucas|181|78
+10059|Kanu|186|74
+10129|Léo Cittadini|178|72
+10168|Éverton Ribeiro|171|68
+10222|Everaldo|181|80
+10298|Marcos Felipe|186|83
+10305|Gilberto|181|76
+10348|Yago Felipe|174|73
+10351|David Duarte|192|89
+10374|Danilo Fernandes|188|84
+10375|Iago|181|67
+10377|V. Cuesta|187|87
+10492|Thaciano|182|73
+25272|Cauly|172|68
+30398|Vitor Hugo|187|80
+51545|N. Acevedo|173|73
+51701|M. Araújo|178|74
+51718|C. Cándido|174|67
+61159|Rafael Ratão|183|71
+63968|Ó. Estupiñán|182|76
+65837|L. Mugni|181|76
+160546|Adriel|190|79
+180236|Caio Alexandre|175|68
+197050|Mateus Claus|194|95
+197383|Luciano Juba|176|
+237076|Diego Rosa|182|
+237191|J. Chávez|182|77
+288287|Ryan|172|
+297749|L. Rodríguez|179|79
+305817|Biel|169|60
+354073|André Dhominique Queiroz Santiago da Silva|178|74
+377045|Patrick Verhon|174|71
+403692|Kennedy|169|62
+406019|Tiago Gomes|194|
+407260|Alex|177|68
+407264|Vitinho|178|57
+407265|Sidney|168|
+407267|Hygor|171|76
+407272|Guilherme|173|70
+407274|Rafael|178|65
+54|Diego Costa|188|83
+326|Allan|174|77
+378|Alex Telles|181|71
+390|Tiquinho Soares|187|89
+568|Gabriel Pires|187|83
+652|Marçal|178|74
+655|Rafael|172|78
+1260|Pablo|188|86
+1845|Bartolomeu Jacinto Quissanga|184|77
+2497|R. Fernández|195|80
+2515|Ó. Romero|176|73
+5933|A. Barboza|193|70
+6067|T. Almada|171|63
+6201|L. Di Plácido|176|72
+7541|Victor Sá|178|70
+8661|Vitinho|175|72
+9218|Marlon Freitas|185|86
+9361|Henrique Vermudt|185|
+9366|Igor Jesus|180|73
+9566|Adryelson|183|78
+9958|Tchê Tchê|176|66
+10031|Gregore|181|78
+10077|Luis Henrique|181|85
+10120|Lucas Halter|188|94
+10367|Vinícius Lopes|180|75
+10444|Igo Gabriel|188|
+16372|L. Segovia|182|80
+22167|Danilo Barbosa|183|74
+41362|Lucas Fernandes|175|72
+41495|Philipe Sampaio|191|83
+44348|Eduardo|177|68
+47257|D. Suárez|173|74
+51214|J. Savarino|168|67
+70366|John|196|91
+80188|Raul|189|79
+80296|Lucas Perri|197|98
+103121|J. Montes|178|68
+180386|M. Segovia|167|59
+191872|Carlos Alberto|179|75
+195099|João Fernando|186|80
+195109|Patrick de Paula|178|78
+197320|David Sousa|192|79
+238357|Kayque|175|67
+238386|Lucas Mezenga|188|80
+238391|Jeffinho|176|66
+265785|Luiz Henrique|181|77
+268581|D. Talero|188|72
+269374|D. Hernández|175|67
+269441|Matheus Nascimento|182|76
+270811|M. El Arouch|166|56
+288710|V. Adamo|193|82
+297687|M. Ponte|178|74
+9276|Felipe Vieira|177|70
+9350|Rafael Lima|189|87
+9373|Matheus Cavichioli|193|103
+9438|Jenison|183|79
+9464|Osman|181|72
+9645|Eduardo|178|72
+9666|Victor Caetano|186|84
+10109|Léo Vieira|193|77
+10144|Bruno Nazário|175|75
+10220|Perotti|186|78
+10224|Régis|179|73
+10346|Marlone|180|75
+10356|Giovanni Augusto|175|70
+10363|Marcinho|176|72
+10378|Rodrigo Moledo|188|96
+10403|Neilton|166|57
+26991|Thomás Bedinelli|179|72
+27038|Tárik|183|72
+34397|Tiago Alves|181|72
+35142|Maurício|185|83
+41562|Walterson|180|72
+41902|Gabriel Gasparotto|196|89
+50530|Ronaldo Mendes|171|75
+50575|Rômulo|175|75
+70793|W. Clar|177|73
+77899|Mário Sérgio|178|70
+78045|Auremir|174|65
+80660|Dener|181|76
+106467|Doma|187|
+106495|Rafael Carvalheira|176|72
+125648|Foguinho|180|75
+159797|Marcelinho|165|67
+160212|Tetê|185|82
+195613|Thayllon|166|64
+197064|João Paulo|188|84
+207758|Bruno Leonardo|187|79
+237725|Kaíque Maciel|184|74
+287100|Paulinho|175|
+288012|Daniel Cruz|180|91
+305025|Igor Pavan|180|70
+305825|JP Galvão|184|75
+306254|Mancha|180|73
+349325|Habraão|187|87
+352217|Gabriel Werner|189|
+352219|Vitor Becker|183|
+352223|Bruno Elesbão|185|
+384397|Rafinha|173|70
+667|M. Depay|178|78
+687|Maycon|173|71
+1085|André Ramalho|182|78
+2382|Pedro Henrique|181|78
+2411|Fágner|168|67
+2426|A. Carrillo|180|72
+2513|M. Rojas|180|78
+2521|Á. Romero|175|72
+9329|Pedro Raul|193|86
+9577|Charles|187|81
+9620|Gustavo Silva|169|63
+9742|Matheus Bidu|172|72
+9991|Lucas Veríssimo|188|84
+9992|Gustavo Henrique|196|89
+10007|Yuri Alberto|183|78
+10161|Matheuzinho|176|73
+10229|Cássio|195|92
+10233|B. Méndez|180|81
+10373|Carlos Miguel|204|94
+12666|Renato Augusto|186|86
+12719|Paulinho|181|81
+12744|Gil|192|87
+13580|V. Cantillo|180|70
+15303|Léo Natel|175|73
+36784|D. Palacios|169|68
+36832|Rafael Ramos|174|70
+44317|Giuliano|172|68
+47116|Héctor Hernández|180|73
+50268|Igor Coronado|170|68
+53148|J. Martínez|178|72
+54093|Hugo|179|75
+63964|F. Torres|187|79
+70299|Talles Magno|185|70
+80534|Caetano|182|82
+123759|Hugo Souza|199|95
+160436|Raniele|184|78
+195499|Matheus Donelli|188|85
+237102|Matheus Araújo|176|69
+267770|Roni|174|
+267862|Ruan Oliveira|176|68
+283696|Vitor Meer|180|
+306853|Biro|172|70
+306854|Felipe Augusto|187|78
+312615|Giovane|183|84
+363133|Fernando José Vera García|185|78
+363693|Breno|179|68
+363696|Pedro Henrique|173|73
+365287|Wesley Gassova|181|82
+392104|Arthur Sousa|184|72
+403953|Ryan Gustavo|170|
+414353|Luiz Gustavo|178|71
+415082|Cadu|193|75
+577|A. Samaris|189|83
+1374|I. Slimani|188|83
+1585|Jesé|178|72
+2150|Josué|174|68
+6217|M. Moreno|168|65
+9278|Matheus Bianqui|187|79
+9556|Luan Polli|189|86
+9633|Jacy|192|81
+9847|Everton Morelli|179|72
+9907|Victor Luís|180|76
+9960|Willian Farias|176|74
+10052|Marcelo Benevenuto|180|78
+10231|Henrique|185|84
+10336|Geovane|179|75
+10416|Bruno Melo|186|81
+10571|Andrey|175|73
+11365|B. Kuscevic|186|76
+13310|S. Gómez|172|72
+15298|Dellatorre|186|76
+15810|Júnior Brumado|190|88
+21093|Boschilia|172|63
+31384|Gabriel Vasconcelos|193|86
+32970|Leandro Damião|188|90
+33094|Maurício Antônio|177|80
+35688|E. Castillo|180|84
+41100|Bruno Viana|182|83
+41107|Fransérgio|186|85
+41290|Rodrigo Pinho|185|78
+44675|Iury Castilho|185|74
+54230|Reynaldo|186|81
+55202|Edu|180|79
+63980|Matheus Sales|178|69
+77791|Hayner|178|71
+96343|Alef Manga|190|85
+106464|Fabrício Daniel|182|73
+125677|Zé Gabriel|185|75
+143368|Bruno Gomes|175|76
+157534|Arilson|180|82
+167010|Matheus Frizzo|182|71
+196310|Matheus Cadorini|192|83
+197450|Natanael|172|
+197524|Diogo de Oliveira|194|79
+201201|Garcez|181|71
+237666|David da Hora|179|
+295460|Marcão|192|
+304071|Wesley Pomba|180|
+305815|Yago Ferreira|174|73
+309499|Vini Paulista|180|73
+327011|Thiago Dombroski|190|
+2486|H. Palacios|177|75
+6052|Á. Barreal|172|66
+6268|L. Villalba|177|73
+9308|Lucas Oliveira|187|82
+9445|Bruno Rodrigues|177|72
+9896|Rafael Elias|177|83
+10006|Arthur Gomes|175|73
+10008|Kaio Jorge|176|64
+10041|Gilberto|178|72
+10100|L. Romero|172|70
+10102|Lucas Silva|181|82
+10114|Zé Ivaldo|186|95
+10241|Mateus Vital|177|72
+10249|Ramiro|168|67
+10309|Marlon|175|81
+10448|Luciano Castán|187|80
+10494|Matheus Henrique|175|71
+12434|M. Moreno|187|87
+13063|Rafa Silva|179|73
+13409|J. Dinenno|186|82
+16776|J. Cifuentes|178|70
+25387|Walace|188|75
+25398|William|176|67
+25618|Matheus Pereira|176|80
+30443|Rafael Cabral|186|88
+41299|Neris|189|87
+54756|Filipe Machado|174|61
+54866|João Marcelo|189|
+64172|L. Díaz|181|80
+70314|Wesley|178|67
+80173|Anderson|192|99
+80275|Paulo Vitor|174|68
+80535|Rafael Bilu|174|
+125652|Matheus Jussa|183|83
+145539|Wesley Gasolina|179|66
+180235|Gabriel Veron|176|75
+237179|F. Peralta|176|76
+266552|Stênio|182|74
+271956|Luís Felipe|188|70
+279821|Fernando Henrique|178|74
+309634|Gabriel Grando|181|74
+309792|Kaiki|173|73
+352376|Rodriguinho|171|65
+368851|Pedrão|186|88
+34|Filipe Luís|181|77
+860|Alex Sandro|180|80
+1290|G. Varela|173|73
+1771|Ayrton Lucas|180|72
+2283|David Luiz|188|84
+2414|Everton|174|75
+2560|E. Pulgar|187|78
+2612|G. de Arrascaeta|173|73
+5995|N. de la Cruz|167|65
+9458|Léo Ortiz|185|
+10089|Fabrício Bruno|191|87
+10112|Santos|192|84
+10124|Léo Pereira|188|84
+10156|Rodrigo Caio|183|74
+10174|Gabriel Barbosa|178|74
+10180|Bruno Henrique|183|74
+10319|Allan|176|75
+10321|Pedro|185|78
+10364|Michael|166|57
+11756|A. Rossi|193|92
+16369|G. Plata|178|65
+22231|Thiago Maia|179|64
+22238|Luiz Araújo|175|70
+30408|Gerson|184|72
+51572|M. Viña|175|70
+54716|Thiaguinho|180|78
+70297|Carlinhos|195|82
+195102|Noga|182|72
+195993|C. Alcaraz|176|68
+237194|Daniel Cabral|174|68
+266019|Diegão|182|74
+306210|Matheus Cunha|181|79
+311158|Werton|170|74
+322067|Igor Jesus|178|75
+349001|Wesley|173|73
+351487|Marcos Paulo||81
+352371|Victor Hugo|177|74
+352372|Matheus Gonçalves|177|74
+358139|Pedrinho|175|72
+362885|Darlan||75
+362886|Zé Welinton|170|63
+366780|Iago|189|94
+370926|Weliton|187|72
+372084|Jean Carlos|180|73
+403299|Daniel Sales|178|77
+403300|Lorran|182|72
+403892|Caio Barone|196|86
+405160|Wallace|178|70
+405161|Lucas Furtado|195|94
+407957|Daniel Rogério|172|68
+259|Thiago Silva|183|79
+743|Marcelo|174|75
+865|Douglas Costa|172|70
+9874|Guga|173|70
+9891|D. Terans|172|70
+9905|Diogo Barbosa|179|67
+9908|Antônio Carlos|191|79
+9924|Thiago Santos|181|80
+9929|Felipe Melo|185|84
+9985|Jorge|183|78
+10017|Ignacio|184|75
+10079|Vitor Eudes|196|85
+10080|Fábio|189|86
+10163|Renê|174|76
+10237|Manoel|180|89
+10267|Samuel Xavier|167|67
+10306|Nino|188|82
+10311|PH Ganso|184|79
+10320|Daniel|173|65
+10328|Y. González|184|84
+10396|Nonato|174|73
+10408|Felipe Alves|187|79
+13523|G. Cano|177|81
+13572|G. Fuentes|181|71
+13708|J. Arias|170|77
+16847|Keno|179|72
+30529|Marlon|182|80
+50081|David Braz|188|86
+50532|Lima|181|73
+51489|L. Fernández|166|62
+70422|Luan|184|75
+70849|K. Serna|181|73
+105501|Cris Silva|178|76
+133194|Calegari|170|70
+160226|Gustavo Apis Pascoal de Farias|176|65
+195093|Alexandre Jesus|183|82
+197023|Wallace|178|71
+237684|Edinho|171|
+265784|André|176|77
+273555|Giovanni Manson|176|67
+279803|Robinho|170|62
+280245|Martinelli|177|75
+293555|Pedro Rangel|192|88
+297522|John Kennedy|173|71
+301354|Samuel Granada|190|80
+303136|J. Lucumí|178|68
+305811|Marcos Pedro|173|67
+305812|Cipriano|195|90
+305818|João Neto|181|72
+306581|Felipe Andrade|182|69
+306582|Gustavo Ramalho|200|83
+306865|Davi|181|73
+311520|Marquinhos|175|85
+316519|F. Bernal|189|80
+356533|Jhonny|179|66
+157|L. Suárez|182|72
+374|João Pedro|179|71
+2454|Y. Soteldo|159|65
+2464|A. Marchesín|188|82
+2466|W. Kannemann|185|86
+2737|M. Braithwaite|180|77
+6546|F. Cristaldo|170|69
+9513|Caíque|198|95
+9883|Nathan|177|78
+9911|Lucas Esteves|170|69
+9945|Bruno Alves|184|81
+9946|Reinaldo|178|79
+10314|Dodi|169|67
+10485|Geromel|187|83
+10502|Luan|180|73
+13376|J. Campaz|165|69
+21089|Fábio|172|66
+30562|J. Galvão|184|73
+35928|J. Iturbe|172|64
+41369|Pepê|177|75
+44305|Bruno Uvini|187|85
+47356|Rodrigo Ely|188|83
+51574|F. Carballo|177|72
+51756|M. Arezo|178|76
+54235|Everton Galdino|177|75
+70368|João Lucas|181|72
+70566|M. Villasanti|178|68
+80484|Mayk|172|67
+106510|Ferreira|175|66
+152858|Jhonata Robert|179|73
+201908|A. Aravena|175|70
+237071|Pedro Lucas|178|71
+237847|André Henrique|189|72
+269419|Gustavinho|175|61
+277771|M. Monsalve|178|73
+288730|L. Besozzi|176|74
+304867|Gustavo Martins|191|70
+311445|Felipe Scheibig|196|80
+317636|Natã|180|80
+321432|Du Queiroz|171|74
+350425|Lucas Mila|176|72
+351890|Jardiel Maciel Libertino da Silva|186|84
+353034|Cuiabano|181|83
+404575|Ronald|186|78
+411433|Zé Guilherme|181|79
+419936|Nathan Fernandes|193|71
+420687|Lian|168|74
+424277|Viery|187|85
+192|Dalbert Henrique|181|70
+452|Fernando|183|76
+692|Alan Patrick|177|70
+974|C. Aránguiz|171|68
+982|L. Alario|184|78
+1793|Luiz Adriano|184|81
+2044|G. Mercado|181|82
+2083|Wanderson|176|74
+6011|R. Borré|174|70
+6080|F. Bustos|168|70
+9692|Ivan|192|86
+9909|Vitão|186|81
+9921|Bruno Henrique|179|75
+10167|Ronaldo|179|69
+10203|Gustavo Campanharo|178|66
+10370|Keiller|193|91
+10441|Fabrício|192|93
+13286|N. Hernández|185|77
+35533|E. Valencia|177|74
+41368|Tabata|175|72
+47432|Hugo Mallo|173|69
+50077|S. Rochet|190|82
+53678|A. Rogel|190|84
+91745|Alemão|182|88
+106449|Jean Dias|170|
+106485|Maurício|174|77
+129902|A. Bernabéi|169|65
+133184|Lucas Ramos|172|68
+133185|J. Cardoso|186|78
+161925|Igor Gomes|186|76
+197035|Nathan|185|81
+199324|Gabriel Barros|182|73
+238562|Matheus Dias|189|75
+278346|Emerson Júnior|195|90
+279579|Clayton|187|81
+288720|B. Aguirre|174|71
+306552|Anthoni|193|88
+311446|Thauan Lara|176|83
+311447|Estevão|176|75
+354012|Lucca|180|73
+354017|Matteo Amoroso|180|70
+359372|Robert Renan|185|77
+414395|Ricardo Mathias|195|88
+414450|João Dalla Corte|180|70
+415046|Kauan|192|70
+1503|Artur|178|78
+9198|Luiz Otávio|194|86
+9296|Diego Gonçalves|181|79
+9337|Alex Muralha|188|87
+9451|Lucas Ramon|178|72
+9533|Rodrigo Andrade|174|75
+9546|Leandro Vilela|178|77
+9613|Neto Moura|176|
+9656|Léo Gamalho|188|87
+9737|Thalisson Kelven|189|79
+9977|Vanderlei|195|86
+10315|Yuri|182|78
+10376|Zeca|170|68
+10516|Alex Silva|183|74
+33336|Wanderson|186|83
+33617|Gabriel|178|64
+41375|Paulinho Bóia|171|62
+41600|César|191|81
+54221|Reniê|183|80
+54403|Diego Quirino|179|79
+54750|Marcelo|176|
+64001|Flávio|180|78
+64363|Ronald|171|74
+77680|Fernandinho|174|70
+77845|Zé Mário|175|78
+80474|Chico|174|69
+80626|Bruno Matias|172|72
+115525|João Victor|188|80
+146378|Warley|172|63
+153458|Negueba|160|68
+157286|Rodrigo Ferreira|178|80
+160077|Everton Bala|180|70
+195358|Lucas Gazal|188|93
+197449|Guilherme Biro|188|79
+237104|Henri|188|77
+266383|Kauan|172|68
+306577|Vini Peixoto|173|
+362378|Diego Lanzarini de Souza|178|65
+403443|Jorginho|180|72
+1364|Jaílson|187|75
+2410|Weverton|189|91
+2412|Felipe Anderson|175|70
+2502|G. Gómez|185|86
+6347|A. Moreno|178|74
+9913|Luan|189|86
+9916|Marcos Rocha|176|73
+9917|Mayke|179|72
+9920|Raphael Veiga|178|77
+9932|Zé Rafael|175|71
+10040|Artur|168|68
+10083|Murilo|188|85
+10143|Rony|167|65
+10372|Marcelo Lomba|189|85
+10527|Caio Paulista|183|77
+21095|Lucas Evangelista|183|79
