@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,100,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="estilos.css?v=49">
+  <link rel="stylesheet" href="estilos.css?v=50">
 </head>
 <body>
 
@@ -34,7 +34,8 @@
   <nav class="menu" id="menuLiga" hidden>
     <button class="menu__opcion activo" data-vista="equipos">Equipos</button>
     <button class="menu__opcion" data-vista="lideres">Líderes</button>
-    <button class="menu__opcion" data-vista="sub21">Sub-21</button>
+    <button class="menu__opcion" data-vista="buscar">Buscador</button>
+    <button class="menu__opcion menu__opcion--extra" data-vista="sub21">Sub-21</button>
     <button class="menu__opcion menu__opcion--extra" data-vista="ideal">Equipo de la fecha</button>
     <button class="menu__opcion" data-vista="posiciones">Posiciones</button>
     <button class="menu__opcion menu__opcion--extra" data-vista="comparar">Comparar</button>
@@ -109,6 +110,9 @@
   <!-- VISTA SUB-21: los jóvenes de todas las ligas -->
   <main class="vista-sub21" id="vistaSub21" hidden></main>
 
+  <!-- VISTA BUSCADOR: filtros de scouting sobre todas las ligas -->
+  <main class="vista-sub21 vista-buscar" id="vistaBuscar" hidden></main>
+
   <!-- VISTA EQUIPO DE LA FECHA: 4-3-3 dibujado en una cancha -->
   <main class="vista-ideal" id="vistaIdeal" hidden></main>
 
@@ -157,8 +161,8 @@
   <!-- Aviso mientras se cargan los datos de una liga -->
   <div class="cargando" id="cargando" role="status" hidden></div>
 
-  <script src="datos/generados/portada.js?v=49"></script>
-  <script src="ligas.js?v=49"></script>
-  <script src="app.js?v=49"></script>
+  <script src="datos/generados/portada.js?v=50"></script>
+  <script src="ligas.js?v=50"></script>
+  <script src="app.js?v=50"></script>
 </body>
 </html>

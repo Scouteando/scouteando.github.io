@@ -856,6 +856,128 @@ vistaComparar.addEventListener("click", function (e) {
 });
 
 
+// ---------- Sección BUSCADOR: jugadores de todas las ligas con filtros de scouting ----------
+const vistaBuscar = document.getElementById("vistaBuscar");
+const pp90 = (v, j) => (j.partidos > 0 ? v / j.partidos : 0);
+// [clave, nombre, valor, puestos donde aplica, menor es mejor, formato]
+const statsBuscador = [
+  ["goles", "Goles por partido", j => pp90(j.goles, j), "DEF MED DEL"],
+  ["asistencias", "Asistencias por partido", j => pp90(j.asistencias, j), "DEF MED DEL"],
+  ["ga", "Goles + asistencias por partido", j => pp90(j.goles + j.asistencias, j), "DEF MED DEL"],
+  ["tirosAlArco", "Tiros al arco por partido", j => pp90(j.tirosAlArco, j), "MED DEL"],
+  ["efectividad", "Efectividad (% de tiros que son gol)", j => (j.tiros >= 15 ? (j.goles / j.tiros) * 100 : null), "MED DEL", false, v => Math.round(v) + "%"],
+  ["centros", "Centros por partido", j => pp90(j.centros, j), "DEF MED DEL"],
+  ["faltasRecibidas", "Faltas recibidas por partido", j => pp90(j.faltasRecibidas, j), "DEF MED DEL"],
+  ["recuperaciones", "Recuperaciones por partido", j => pp90(j.quites + j.intercepciones, j), "DEF MED DEL"],
+  ["intercepciones", "Intercepciones por partido", j => pp90(j.intercepciones, j), "DEF MED DEL"],
+  ["quites", "Quites por partido", j => pp90(j.quites, j), "DEF MED DEL"],
+  ["titularidad", "% de partidos de titular", j => (j.partidos ? (j.titular / j.partidos) * 100 : 0), "ARQ DEF MED DEL", false, v => Math.round(v) + "%"],
+  ["atajadas", "Atajadas por partido", j => pp90(j.atajadas || 0, j), "ARQ"],
+  ["pctAtajadas", "% de atajadas", j => j.pctAtajadas ?? null, "ARQ", false, v => Math.round(v) + "%"],
+  ["vallas", "% de vallas invictas", j => (j.partidos ? ((j.vallasInvictas || 0) / j.partidos) * 100 : 0), "ARQ", false, v => Math.round(v) + "%"],
+  ["golesRecibidos", "Goles recibidos por partido", j => pp90(j.golesRecibidos || 0, j), "ARQ", true]
+];
+const filtroBuscar = { liga: "todas", puesto: "todos", edad: "", minutos: "450", c1: "", n1: "80", c2: "", n2: "80" };
+
+// Percentil de un jugador en una estadística, contra los de su puesto en SU liga con 450' o más
+const cachePercentilBuscar = {};
+function percentilBuscar(j, s) {
+  if (j.minutos < 450) return null;
+  const v = s[2](j);
+  if (v == null) return null;
+  const clave = j.liga + "|" + j.puesto + "|" + s[0];
+  const valores = cachePercentilBuscar[clave] = cachePercentilBuscar[clave] ||
+    unificadosDe(j.liga).filter(x => x.puesto === j.puesto && x.minutos >= 450).map(s[2]).filter(x => x != null).sort((a, b) => a - b);
+  if (valores.length < 5) return null;
+  const debajo = s[4] ? valores.filter(x => x > v).length : valores.filter(x => x < v).length;
+  return Math.round((debajo / (valores.length - 1)) * 100);
+}
+
+function mostrarBuscar() {
+  titulo.textContent = "Buscador";
+  resumen.textContent = "Encontrá jugadores de todas las ligas con el perfil que buscás";
+  let todos = [];
+  const faltan = [];
+  for (const liga of ligasDisponibles()) {
+    if (window.DATOS_LIGAS && window.DATOS_LIGAS[liga.id]) todos = todos.concat(unificadosDe(liga.id));
+    else { faltan.push(liga.nombre); cargarDatos(liga.id, () => { if (vista === "buscar") mostrarBuscar(); }); }
+  }
+  const F = filtroBuscar;
+  const puestoOk = s => F.puesto === "todos" || s[3].includes(F.puesto);
+  const opcionesStats = statsBuscador.filter(puestoOk);
+  if (F.c1 && !opcionesStats.some(s => s[0] === F.c1)) F.c1 = "";
+  if (F.c2 && !opcionesStats.some(s => s[0] === F.c2)) F.c2 = "";
+  const criterios = [[F.c1, F.n1], [F.c2, F.n2]].filter(c => c[0]).map(([c, n]) => ({ s: statsBuscador.find(x => x[0] === c), min: Number(n) }));
+
+  const lista = todos
+    .filter(j => F.liga === "todas" || j.liga === F.liga)
+    .filter(j => F.puesto === "todos" || j.puesto === F.puesto)
+    .filter(j => !F.edad || (j.edad != null && j.edad <= Number(F.edad)))
+    .filter(j => j.minutos >= Number(F.minutos))
+    .map(j => ({ j, ps: criterios.map(c => c.s[3].includes(j.puesto) ? percentilBuscar(j, c.s) : null) }))
+    .filter(x => criterios.every((c, i) => x.ps[i] != null && x.ps[i] >= c.min))
+    .sort((x, y) => (y.ps.reduce((s, p) => s + p, 0) - x.ps.reduce((s, p) => s + p, 0)) || y.j.minutos - x.j.minutos);
+
+  const sel = (clave, opciones) => `<select class="campo" data-buscar="${clave}">${opciones.map(([v, t]) => `<option value="${v}" ${String(F[clave]) === String(v) ? "selected" : ""}>${t}</option>`).join("")}</select>`;
+  const niveles = [["50", "mitad de arriba"], ["70", "top 30%"], ["80", "top 20%"], ["90", "top 10%"]];
+  const criterio = (c, n, etiqueta) => `
+    <div class="buscar__criterio">
+      <span class="buscar__etiqueta">${etiqueta}</span>
+      ${sel(c, [["", "— ninguna —"], ...opcionesStats.map(s => [s[0], s[1]])])}
+      ${F[c] ? sel(n, niveles) : ""}
+    </div>`;
+
+  const filas = lista.slice(0, 50).map(({ j, ps }) => {
+    const liga = LIGAS.find(l => l.id === j.liga) || {};
+    const detalle = criterios.map((c, i) => {
+      const v = c.s[2](j);
+      const txt = c.s[5] ? c.s[5](v) : (Math.round(v * 10) / 10).toString().replace(".", ",");
+      return `<span class="buscar__dato">${c.s[1].replace(" por partido", "")}: <strong>${txt}</strong> <span class="stat__top ${ps[i] >= 90 ? "stat__top--elite" : ""}">Top ${Math.max(1, 100 - ps[i])}%</span></span>`;
+    }).join("");
+    return `
+      <li class="lider" data-buscar-jugador="${j.liga}|${j.nombre}|${j.edad}">
+        <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
+        <span class="lider__nombre">${j.nombre}
+          <small><img class="mini-escudo" src="${bandera(liga.bandera)}" alt="">${j.equipo} · ${{ ARQ: "Arquero", DEF: "Defensor", MED: "Mediocampista", DEL: "Delantero" }[j.puesto] || ""} · ${j.edad ?? "-"} años · ${j.minutos}'</small>
+          ${detalle ? `<span class="buscar__datos">${detalle}</span>` : ""}</span>
+      </li>`;
+  }).join("");
+
+  vistaBuscar.innerHTML = `
+    <div class="buscar__filtros">
+      <label>Liga ${sel("liga", [["todas", "Todas"], ...ligasDisponibles().map(l => [l.id, l.pais])])}</label>
+      <label>Puesto ${sel("puesto", [["todos", "Todos"], ["ARQ", "Arquero"], ["DEF", "Defensor"], ["MED", "Mediocampista"], ["DEL", "Delantero"]])}</label>
+      <label>Edad ${sel("edad", [["", "Cualquiera"], ["19", "Hasta 19"], ["21", "Hasta 21"], ["23", "Hasta 23"], ["25", "Hasta 25"], ["28", "Hasta 28"]])}</label>
+      <label>Minutos ${sel("minutos", [["450", "450' o más"], ["900", "900' o más"], ["1350", "1350' o más"]])}</label>
+      ${criterio("c1", "n1", "Que se destaque en")}
+      ${F.c1 ? criterio("c2", "n2", "y también en") : ""}
+    </div>
+    ${faltan.length ? `<p class="vacio">Cargando ${faltan.join(", ")}…</p>` : ""}
+    <section class="tabla-lideres buscar__lista">
+      <h2>${lista.length} ${lista.length === 1 ? "jugador" : "jugadores"}</h2>
+      ${filas ? `<ol>${filas}</ol>` : `<p class="vacio">Ningún jugador cumple todo eso. Probá bajando el nivel o sacando un filtro.</p>`}
+      ${lista.length > 50 ? `<p class="destacados__nota">Se muestran los 50 primeros.</p>` : ""}
+    </section>
+    <p class="destacados__nota">"Top 20%" = está entre el 20% mejor de su puesto en su liga en esa estadística. Solo jugadores que siguen en su club.</p>`;
+}
+
+vistaBuscar.addEventListener("change", function (e) {
+  const campo = e.target.closest("[data-buscar]");
+  if (!campo) return;
+  filtroBuscar[campo.dataset.buscar] = campo.value;
+  if (campo.dataset.buscar === "c1" && !campo.value) filtroBuscar.c2 = "";
+  mostrarBuscar();
+});
+vistaBuscar.addEventListener("click", function (e) {
+  const fila = e.target.closest("[data-buscar-jugador]");
+  if (!fila) return;
+  const [liga, nombre, edad] = fila.dataset.buscarJugador.split("|");
+  const jugador = unificadosDe(liga).find(x => x.nombre === nombre && String(x.edad) === edad);
+  if (!jugador) return;
+  if (liga === ligaActual.id) abrirFicha(jugador);
+  else abrirJugadorDeLiga(liga, nombre, edad, "buscar");
+});
+
 // ---------- Sección SUB-21: los jóvenes de todas las ligas cargadas ----------
 const vistaSub21 = document.getElementById("vistaSub21");
 const filtroSub21 = { liga: "todas", puesto: "todos", orden: "ga" };
@@ -1630,7 +1752,7 @@ let fichaAbiertaPorNosotros = false;
 
 function rutaVista() {
   if (vista === "ligas" || !ligaActual) return "#/";
-  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21" }[vista] ?? "";
+  const resto = { equipos: "", plantel: "equipo/" + slug(equipoElegido), posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21", buscar: "buscar" }[vista] ?? "";
   return `#/${ligaActual.id}/${resto}`.replace(/\/$/, "");
 }
 const rutaJugador = j => `#/${ligaActual.id}/jugador/${slug(j.nombre)}-${j.edad ?? ""}`;
@@ -1667,7 +1789,7 @@ function aplicarRuta() {
       const equipo = [...new Set(jugadores.map(j => j.equipo))].find(e => slug(e) === valor);
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
-    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21" }[tipo] || "equipos", null, true);
+    irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21", buscar: "buscar" }[tipo] || "equipos", null, true);
   });
 }
 window.addEventListener("popstate", aplicarRuta);
@@ -1694,6 +1816,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   vistaIdeal.hidden = vista !== "ideal";
   vistaComparar.hidden = vista !== "comparar";
   vistaSub21.hidden = vista !== "sub21";
+  vistaBuscar.hidden = vista !== "buscar";
   vistaPosiciones.hidden = vista !== "posiciones";
   actualizarContadorSeguidos();
   filtrosLideres.hidden = vista !== "lideres";
@@ -1713,6 +1836,7 @@ function irA(nuevaVista, equipo, desdeRuta) {
   else if (vista === "ideal") mostrarIdeal();
   else if (vista === "comparar") mostrarComparar();
   else if (vista === "sub21") mostrarSub21();
+  else if (vista === "buscar") mostrarBuscar();
   else if (vista === "posiciones") mostrarPosiciones();
   else mostrarJugadores();
   window.scrollTo({ top: 0 });

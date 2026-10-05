@@ -1137,3 +1137,22 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 }
 
 .carta__unico { display: none; }
+
+/* ===== Buscador ===== */
+.buscar__filtros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; background: var(--superficie); border: 1px solid var(--borde); border-radius: 14px; padding: 14px; }
+.buscar__filtros label { display: grid; gap: 4px; font-size: 12px; color: var(--texto-suave); min-width: 0; }
+.buscar__filtros .campo { width: 100%; min-width: 0; }
+.buscar__criterio { grid-column: 1 / -1; display: grid; grid-template-columns: 150px minmax(0, 2fr) minmax(0, 1fr); gap: 10px; align-items: center; }
+.buscar__etiqueta { font-size: 13px; font-weight: 700; color: var(--dorado); }
+.buscar__lista .lider { grid-template-columns: 36px minmax(0, 1fr); }
+.buscar__datos { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
+.buscar__dato { font-size: 12px; font-weight: 400; color: var(--texto-suave); }
+.buscar__dato strong { color: var(--texto); }
+@media (max-width: 640px) {
+  .buscar__filtros { grid-template-columns: 1fr 1fr; }
+  .buscar__criterio { grid-template-columns: 1fr; gap: 6px; }
+}
+@media (max-width: 640px) {
+  .menu { gap: 2px; justify-content: space-between; }
+  .menu__opcion { margin-right: 0; padding: 6px 2px; font-size: 13.5px; }
+}
