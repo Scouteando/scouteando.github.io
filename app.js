@@ -276,12 +276,12 @@ const candidatasFuerte = {
   DEL: [["Goles", j => j.goles], ["Asistencias", j => j.asistencias], ["Tiros al arco por partido", j => pp(j.tirosAlArco, j)],
         ["Faltas recibidas por partido", j => pp(j.faltasRecibidas, j)], ["Recuperaciones por partido", j => pp(j.quites + j.intercepciones, j)]]
 };
-// Devuelve [nombre, valor mostrado, percentil] de la estadística donde más se destaca (top 25% o mejor), o null
+// Devuelve [nombre, valor mostrado, percentil] de la estadística donde mejor está en su puesto, o null si jugó menos de 450'
 function puntoFuerte(j) {
   let mejor = null;
   for (const [nombre, f, menor, formato] of (candidatasFuerte[j.puesto] || [])) {
     const p = percentilCarta(j, nombre, f, menor);
-    if (p != null && p >= 75 && (!mejor || p > mejor[2])) mejor = [nombre, formato ? formato(f(j)) : f(j), p];
+    if (p != null && (!mejor || p > mejor[2])) mejor = [nombre, formato ? formato(f(j)) : f(j), p];
   }
   return mejor;
 }
@@ -314,9 +314,10 @@ function crearCarta(j) {
   if (destacada) unico = [destacada[1], destacada[0], ""];
   else {
     const f = puntoFuerte(j);
+    // El "Top %" solo aparece si está entre el 25% mejor; con menos de 450' mostramos los minutos
     unico = f
-      ? [f[1], f[0], `<span class="stat__top ${f[2] >= 90 ? "stat__top--elite" : ""}">Top ${Math.max(1, 100 - f[2])}%</span>`]
-      : [`${j.titular}<small>/${j.partidos}</small>`, "partidos de titular", ""];
+      ? [f[1], f[0], f[2] >= 75 ? `<span class="stat__top ${f[2] >= 90 ? "stat__top--elite" : ""}">Top ${Math.max(1, 100 - f[2])}%</span>` : ""]
+      : [`${j.minutos}'`, "minutos jugados", ""];
   }
   const htmlUnico = `<div class="carta__unico"><span class="stat__valor">${unico[0]}</span><span class="stat__nombre">${unico[1]}</span>${unico[2]}</div>`;
 
