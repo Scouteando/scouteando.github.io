@@ -1757,8 +1757,19 @@ function rutaVista() {
 }
 const rutaJugador = j => `#/${ligaActual.id}/jugador/${slug(j.nombre)}-${j.edad ?? ""}`;
 
+// Contador de visitas: cuenta cada pantalla (la dirección con su # incluida)
+let ultimaContada = null;
+function contarVisita() {
+  const ruta = location.pathname + (location.hash || "");
+  if (ruta === ultimaContada || !window.goatcounter || !window.goatcounter.count) return;
+  ultimaContada = ruta;
+  window.goatcounter.count({ path: ruta });
+}
+window.addEventListener("load", () => setTimeout(contarVisita, 500));
+
 // Agrega la dirección al historial (o la reemplaza, si "reemplazar")
 function ponerRuta(ruta, reemplazar) {
+  setTimeout(contarVisita, 0);
   if (location.hash === ruta || (!location.hash && ruta === "#/")) return;
   if (reemplazar) history.replaceState(null, "", ruta);
   else {
@@ -1792,7 +1803,7 @@ function aplicarRuta() {
     irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21", buscar: "buscar" }[tipo] || "equipos", null, true);
   });
 }
-window.addEventListener("popstate", aplicarRuta);
+window.addEventListener("popstate", () => { aplicarRuta(); contarVisita(); });
 
 function irA(nuevaVista, equipo, desdeRuta) {
   if (!ficha.hidden) { ficha.hidden = true; fichaAbiertaPorNosotros = false; }
@@ -1932,7 +1943,7 @@ document.getElementById("abrirAcerca").addEventListener("click", function () {
   ficha.innerHTML = `
     <div class="ficha__caja acerca">
       <button class="ficha__cerrar" aria-label="Cerrar">✕</button>
-      <h2>Acerca de</h2>
+      <h2>Acerca de y cómo se calcula</h2>
       <p>Scouteando es un proyecto personal de estadísticas de fútbol. Está hecho con HTML, CSS y JavaScript, sin frameworks.</p>
       <h3>Ligas</h3>
       <ul>${ligas}</ul>
@@ -1942,9 +1953,19 @@ document.getElementById("abrirAcerca").addEventListener("click", function () {
         <li><strong>Fotos, escudos y planteles actuales:</strong> API-Football (api-football.com).</li>
         <li><strong>Banderas:</strong> flagcdn.com.</li>
       </ul>
-      <h3>Cómo se calcula el ranking</h3>
-      <p>En la ficha, cada jugador se compara con los de su mismo puesto en su liga que jugaron al menos 450 minutos.
-         Los valores se muestran por partido o cada 90 minutos. "Top 10%" y "Top 25%" indican en qué parte del ranking está.</p>
+      <h3>Cómo se calcula</h3>
+      <ul class="acerca__calculos">
+        <li><strong>"Top 10%", "Top 20%"…</strong> Cada jugador se compara solo con los de su mismo puesto en su misma liga que jugaron 450 minutos o más.
+          "Top 10%" quiere decir que está entre el 10% mejor de ese grupo en esa estadística. Los defensores se comparan con defensores, los arqueros con arqueros, etc.</li>
+        <li><strong>Por partido o cada 90 minutos.</strong> Las estadísticas se dividen por partidos jugados (o por cada 90 minutos), para que un suplente y un titular se puedan comparar.</li>
+        <li><strong>"Se destaca en".</strong> Las estadísticas en las que el jugador está en el 25% mejor de su puesto.</li>
+        <li><strong>Equipo de la fecha.</strong> Se arma con lo que hizo cada jugador en la última fecha: suma por goles (más para defensores y arqueros), asistencias, valla invicta, atajadas, recuperaciones y tiros al arco, y resta por tarjetas.
+          Se elige el mejor 4-3-3 posible.</li>
+        <li><strong>Jugadores parecidos.</strong> Se compara en qué lugar del ranking de su liga está cada uno en cada estadística, qué tan titular es y, si hay datos, la altura y el peso.
+          Es un parecido de números, no de estilo de juego.</li>
+        <li><strong>Buscador y Sub-21.</strong> Solo muestran jugadores que siguen en su club y jugaron 450 minutos o más.</li>
+        <li><strong>Jugadores que se fueron.</strong> Si un jugador ya no está en su club, no aparece, salvo que ahora juegue en otra de las ligas cargadas.</li>
+      </ul>
       <h3>Instalarla en el celular</h3>
       <p><strong>Android (Chrome):</strong> menú ⋮ → "Instalar app" o "Agregar a la pantalla principal".<br>
          <strong>iPhone (Safari):</strong> botón Compartir ⬆️ → "Agregar a inicio".</p>

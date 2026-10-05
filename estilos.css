@@ -1156,3 +1156,5 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   .menu { gap: 2px; justify-content: space-between; }
   .menu__opcion { margin-right: 0; padding: 6px 2px; font-size: 13.5px; }
 }
+
+.acerca__calculos li { margin-bottom: 8px; }
