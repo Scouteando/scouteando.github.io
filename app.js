@@ -656,6 +656,12 @@ function llenarParecidos(j) {
   // Cargamos las demás ligas para buscar en todas
   const faltan = ligasDisponibles().filter(l => !(window.DATOS_LIGAS && window.DATOS_LIGAS[l.id]));
   faltan.forEach(l => cargarDatos(l.id, () => llenarParecidos(j)));
+  // No mostramos la lista hasta tener todas las ligas: si no, cambia mientras la estás por tocar
+  if (faltan.length) {
+    caja.innerHTML = `<details class="plegable" ${parecidosAbiertos ? "open" : ""}><summary>Jugadores con perfil parecido</summary>
+      <p class="vacio">Buscando en todas las ligas…</p></details>`;
+    return;
+  }
   const lista = jugadoresParecidos(j, 5);
   const nombreLiga = id => (LIGAS.find(l => l.id === id) || {}).pais || "";
   const abierto = parecidosAbiertos;
@@ -669,7 +675,7 @@ function llenarParecidos(j) {
           ${x.fuertes.length ? `<small class="parecidos__por-que">Los dos, top 25% en ${x.fuertes.join(" y ")}</small>` : ""}</span>
         <span class="parecidos__valor">${x.parecido}%</span>
       </li>`).join("")}</ul>
-    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90'), qué tan titular es en su equipo y, cuando hay datos, la altura y el peso. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>
+    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90'), qué tan titular es en su equipo y, cuando hay datos, la altura y el peso. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más. Es un parecido de números, no de estilo de juego.</p>
     </details>`;
 }
 
