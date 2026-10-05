@@ -1087,3 +1087,33 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .sub21__orden { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--texto-suave); }
 .sub21__orden .campo { width: auto; min-width: 0; flex: 1 1 auto; max-width: 280px; }
 .sub21__lista .lider__nombre small + small { margin-top: 1px; }
+
+/* ===== Ficha: estadísticas completas plegadas ===== */
+.todas-stats { margin-top: 14px; border: 1px solid var(--borde); border-radius: 12px; padding: 0 14px; }
+.todas-stats > summary { cursor: pointer; list-style: none; padding: 13px 0; font-weight: 700; font-size: 14px; color: var(--dorado); display: flex; justify-content: space-between; align-items: center; }
+.todas-stats > summary::-webkit-details-marker { display: none; }
+.todas-stats > summary::after { content: "▾"; font-size: 16px; transition: transform .15s; }
+.todas-stats[open] > summary::after { transform: rotate(180deg); }
+.todas-stats[open] { padding-bottom: 10px; }
+
+/* ===== Plantel en el celu: una fila por jugador, con un solo número ===== */
+@media (max-width: 640px) {
+  #grilla { grid-template-columns: 1fr; gap: 8px; }
+  #grilla .grupo { margin: 14px 0 2px; }
+  #grilla .carta {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 12px; border-top-width: 1px; border-left: 4px solid var(--color);
+  }
+  #grilla .carta:hover { transform: none; }
+  #grilla .carta__arriba { gap: 10px; min-width: 0; }
+  #grilla .carta__arriba .carta__avatar { width: 46px; height: 46px; font-size: 14px; }
+  #grilla .carta__puesto, #grilla .carta__extra, #grilla .aviso-fuera { display: none; }
+  #grilla .carta__nombre { font-size: 15px; margin: 0 0 3px; }
+  #grilla .carta__club { display: none; } /* ya estamos en la página del club */
+  #grilla .carta__info { font-size: 12px; margin: 0; }
+  #grilla .carta__stats { display: block; margin: 0; padding: 0; border: none; text-align: right; max-width: 96px; }
+  #grilla .carta__stats > div:not(:first-child) { display: none; }
+  #grilla .stat__valor { font-size: 24px; }
+  #grilla .stat__nombre { font-size: 10px; margin-top: 2px; letter-spacing: 0; line-height: 1.2; }
+  #grilla .stat__top { margin-top: 4px; }
+}

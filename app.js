@@ -296,8 +296,7 @@ function crearCarta(j) {
           <span class="carta__puesto">${{ ARQ: "Arquero", DEF: "Defensor", MED: "Mediocampista", DEL: "Delantero" }[j.puesto] || "Sin puesto"}</span>
           <h2 class="carta__nombre">${j.nombre}${ligaActual && loSigo(j) ? ' <span class="seguido" title="Lo seguís">⭐</span>' : ""}</h2>
           <p class="carta__info">
-            <a href="#" class="carta__equipo" data-equipo="${j.equipo}"><img class="mini-escudo" src="${escudo(j.equipoId)}" alt="">${j.equipo}</a>
-            · ${j.pais}${j.edad ? " · " + j.edad + " años" : ""}
+            <span class="carta__club"><a href="#" class="carta__equipo" data-equipo="${j.equipo}"><img class="mini-escudo" src="${escudo(j.equipoId)}" alt="">${j.equipo}</a> · </span>${j.pais}${j.edad ? " · " + j.edad + " años" : ""}
           </p>
         </div>
       </div>
@@ -353,9 +352,7 @@ function mostrarJugadores() {
     }
     html += crearCarta(j);
   }
-  const leyenda = `<p class="leyenda-top"><span class="stat__top stat__top--elite">Top 5%</span> <span class="stat__top">Top 20%</span>
-    = el jugador está entre el 5% o el 20% mejor de su puesto en la liga en esa estadística (entre los que jugaron 450' o más).</p>`;
-  grilla.innerHTML = html ? leyenda + html : `<p class="vacio">No hay jugadores con esos filtros.</p>`;
+  grilla.innerHTML = html || `<p class="vacio">No hay jugadores con esos filtros.</p>`;
   botonVerMas.style.display = lista.length > cantidadVisible ? "inline-block" : "none";
 }
 
@@ -410,6 +407,7 @@ const ordenFicha = {
   DEL: ["Goles", "Efectividad", "Tiros al arco", "Tiros", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados"]
 };
 
+let statsAbiertas = false; // "Ver todas las estadísticas" queda abierto si el usuario lo abrió
 function abrirFicha(elegido) {
   // Si ya había una ficha abierta (ej. tocaste un "parecido"), reemplazamos su link en vez de apilar otro:
   // así la X y el botón atrás siempre te devuelven a la pantalla de abajo.
@@ -528,8 +526,13 @@ function abrirFicha(elegido) {
         <button class="modo__opcion ${cada90 ? "activo" : ""}" data-modo="90">Cada 90 minutos</button>
       </div>
       ${radar}
-      <div class="perfil">${perfil}</div>
       ${avisoMinutos}
+      <details class="todas-stats" ${statsAbiertas ? "open" : ""}>
+        <summary>Ver todas las estadísticas</summary>
+        <div class="perfil">${perfil}</div>
+        <p class="ficha__nota">Titular en ${j.titular} de ${j.partidos} partidos · ${j.amarillas} ${j.amarillas === 1 ? "amarilla" : "amarillas"}, ${j.rojas} ${j.rojas === 1 ? "roja" : "rojas"}${j.dobleAmarilla ? ` (${j.dobleAmarilla} por doble amarilla)` : ""}${j.fueraDeJuego ? ` · ${j.fueraDeJuego} fuera de juego` : ""}${j.autogoles ? ` · ${j.autogoles} ${j.autogoles === 1 ? "autogol" : "autogoles"}` : ""}${j.penalesPateados ? ` · penales: ${j.penalesConvertidos} de ${j.penalesPateados}` : ""}${j.puesto === "ARQ" && j.ganados != null ? ` · con él al arco: ${j.ganados} ganados, ${j.empatados} empatados, ${j.perdidos} perdidos` : ""}.
+        El lugar compara el promedio ${unidad} contra los ${grupoTexto} de la liga con 450' o más.</p>
+      </details>
 
       <div class="parecidos"></div>
       ${htmlNotaFicha(j)}
@@ -538,10 +541,10 @@ function abrirFicha(elegido) {
         <input class="campo campo--buscar comp__buscar" type="search" placeholder="⚖️ Comparar con otro jugador…">
         <ul class="resultados comp__resultados"></ul>
       </div>
-      <p class="ficha__nota">El ranking compara el promedio ${unidad} contra los ${grupoTexto} de la liga con 450' o más (🥇 = 1º, ⭐ = top 5). Las estadísticas están ordenadas por importancia para su puesto.
-      Titular en ${j.titular} de ${j.partidos} partidos · ${j.amarillas} ${j.amarillas === 1 ? "amarilla" : "amarillas"}, ${j.rojas} ${j.rojas === 1 ? "roja" : "rojas"}${j.dobleAmarilla ? ` (${j.dobleAmarilla} por doble amarilla)` : ""}${j.fueraDeJuego ? ` · ${j.fueraDeJuego} fuera de juego` : ""}${j.autogoles ? ` · ${j.autogoles} ${j.autogoles === 1 ? "autogol" : "autogoles"}` : ""}${j.penalesPateados ? ` · penales: ${j.penalesConvertidos} de ${j.penalesPateados}` : ""}${j.puesto === "ARQ" && j.ganados != null ? ` · con él al arco: ${j.ganados} ganados, ${j.empatados} empatados, ${j.perdidos} perdidos` : ""}.</p>
     </div>`;
   ficha.hidden = false;
+  const plegable = ficha.querySelector(".todas-stats");
+  if (plegable) plegable.addEventListener("toggle", () => { statsAbiertas = plegable.open; });
   fichaActual = j;
   document.title = `${j.nombre} · Scouteando`;
   ponerRuta(rutaJugador(j), yaHabiaFicha);
