@@ -1088,12 +1088,12 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .sub21__lista .lider__nombre small + small { margin-top: 1px; }
 
 /* ===== Ficha: estadísticas completas plegadas ===== */
-.todas-stats { margin-top: 14px; border: 1px solid var(--borde); border-radius: 12px; padding: 0 14px; }
-.todas-stats > summary { cursor: pointer; list-style: none; padding: 13px 0; font-weight: 700; font-size: 14px; color: var(--dorado); display: flex; justify-content: space-between; align-items: center; }
-.todas-stats > summary::-webkit-details-marker { display: none; }
-.todas-stats > summary::after { content: "▾"; font-size: 16px; transition: transform .15s; }
-.todas-stats[open] > summary::after { transform: rotate(180deg); }
-.todas-stats[open] { padding-bottom: 10px; }
+.plegable { margin-top: 14px; border: 1px solid var(--borde); border-radius: 12px; padding: 0 14px; }
+.plegable > summary { cursor: pointer; list-style: none; padding: 13px 0; font-weight: 700; font-size: 14px; color: var(--dorado); display: flex; justify-content: space-between; align-items: center; }
+.plegable > summary::-webkit-details-marker { display: none; }
+.plegable > summary::after { content: "▾"; font-size: 16px; transition: transform .15s; }
+.plegable[open] > summary::after { transform: rotate(180deg); }
+.plegable[open] { padding-bottom: 10px; }
 
 /* ===== Plantel en el celu: una fila por jugador, con un solo número ===== */
 @media (max-width: 640px) {

@@ -441,7 +441,6 @@ const ordenFicha = {
   DEL: ["Goles", "Efectividad", "Tiros al arco", "Tiros", "Asistencias", "Faltas recibidas", "Centros", "Recuperaciones", "Intercepciones", "Faltas cometidas", "Minutos jugados"]
 };
 
-let statsAbiertas = false; // "Ver todas las estadísticas" queda abierto si el usuario lo abrió
 function abrirFicha(elegido) {
   // Si ya había una ficha abierta (ej. tocaste un "parecido"), reemplazamos su link en vez de apilar otro:
   // así la X y el botón atrás siempre te devuelven a la pantalla de abajo.
@@ -561,12 +560,9 @@ function abrirFicha(elegido) {
       </div>
       ${radar}
       ${avisoMinutos}
-      <details class="todas-stats" ${statsAbiertas ? "open" : ""}>
-        <summary>Ver todas las estadísticas</summary>
-        <div class="perfil">${perfil}</div>
+      <div class="perfil">${perfil}</div>
         <p class="ficha__nota">Titular en ${j.titular} de ${j.partidos} partidos · ${j.amarillas} ${j.amarillas === 1 ? "amarilla" : "amarillas"}, ${j.rojas} ${j.rojas === 1 ? "roja" : "rojas"}${j.dobleAmarilla ? ` (${j.dobleAmarilla} por doble amarilla)` : ""}${j.fueraDeJuego ? ` · ${j.fueraDeJuego} fuera de juego` : ""}${j.autogoles ? ` · ${j.autogoles} ${j.autogoles === 1 ? "autogol" : "autogoles"}` : ""}${j.penalesPateados ? ` · penales: ${j.penalesConvertidos} de ${j.penalesPateados}` : ""}${j.puesto === "ARQ" && j.ganados != null ? ` · con él al arco: ${j.ganados} ganados, ${j.empatados} empatados, ${j.perdidos} perdidos` : ""}.
         El lugar compara el promedio ${unidad} contra los ${grupoTexto} de la liga con 450' o más.</p>
-      </details>
 
       <div class="parecidos"></div>
       ${htmlNotaFicha(j)}
@@ -577,8 +573,6 @@ function abrirFicha(elegido) {
       </div>
     </div>`;
   ficha.hidden = false;
-  const plegable = ficha.querySelector(".todas-stats");
-  if (plegable) plegable.addEventListener("toggle", () => { statsAbiertas = plegable.open; });
   fichaActual = j;
   document.title = `${j.nombre} · Scouteando`;
   ponerRuta(rutaJugador(j), yaHabiaFicha);
@@ -652,6 +646,9 @@ function jugadoresParecidos(j, cantidad) {
   });
 }
 
+// "Jugadores con perfil parecido" queda abierto/cerrado como lo dejó el usuario (aunque se redibuje la ficha)
+let parecidosAbiertos = false;
+ficha.addEventListener("toggle", e => { if (e.target.closest(".parecidos")) parecidosAbiertos = e.target.open; }, true);
 function llenarParecidos(j) {
   const caja = ficha.querySelector(".parecidos");
   if (!caja || fichaActual !== j) return;
@@ -661,8 +658,10 @@ function llenarParecidos(j) {
   faltan.forEach(l => cargarDatos(l.id, () => llenarParecidos(j)));
   const lista = jugadoresParecidos(j, 5);
   const nombreLiga = id => (LIGAS.find(l => l.id === id) || {}).pais || "";
+  const abierto = parecidosAbiertos;
   caja.innerHTML = `
-    <h3 class="ficha__subtitulo">Jugadores con perfil parecido</h3>
+    <details class="plegable" ${abierto ? "open" : ""}>
+    <summary>Jugadores con perfil parecido</summary>
     <ul class="resultados parecidos__lista">${lista.map(x => `
       <li class="lider" data-parecido="${x.liga}|${x.nombre}|${x.edad}">
         <span class="lider__foto">${x.foto ? `<img src="${x.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(x.nombre)}</span></span>
@@ -670,7 +669,8 @@ function llenarParecidos(j) {
           ${x.fuertes.length ? `<small class="parecidos__por-que">Los dos, top 25% en ${x.fuertes.join(" y ")}</small>` : ""}</span>
         <span class="parecidos__valor">${x.parecido}%</span>
       </li>`).join("")}</ul>
-    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90'), qué tan titular es en su equipo y, cuando hay datos, la altura y el peso. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>`;
+    <p class="ficha__nota">Comparamos en qué lugar del ranking de su liga está cada uno en cada estadística (cada 90'), qué tan titular es en su equipo y, cuando hay datos, la altura y el peso. Entran ${nombresPuestos[j.puesto].toLowerCase()} de todas las ligas con ${MINUTOS_PARECIDOS}' o más${faltan.length ? " (cargando más ligas…)" : ""}. Es un parecido de números, no de estilo de juego.</p>
+    </details>`;
 }
 
 // ---------- Notas de scouting (se guardan en el navegador) ----------
