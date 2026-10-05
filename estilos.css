@@ -1181,3 +1181,5 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 /* Comparación: nombres largos con la letra ancha */
 .comp__jugador { min-width: 0; }
 .comp__jugador h3 { font-stretch: 100%; font-size: clamp(16px, 4.6vw, 24px); overflow-wrap: anywhere; }
+.buscar__rango { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+@media (max-width: 640px) { .buscar__edad { grid-column: 1 / -1; } }

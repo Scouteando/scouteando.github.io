@@ -877,7 +877,7 @@ const statsBuscador = [
   ["vallas", "% de vallas invictas", j => (j.partidos ? ((j.vallasInvictas || 0) / j.partidos) * 100 : 0), "ARQ", false, v => Math.round(v) + "%"],
   ["golesRecibidos", "Goles recibidos por partido", j => pp90(j.golesRecibidos || 0, j), "ARQ", true]
 ];
-const filtrosVacios = { liga: "todas", puesto: "todos", edad: "", minutos: "450", pais: "", altura: "",
+const filtrosVacios = { liga: "todas", puesto: "todos", edadMin: "", edad: "", minutos: "450", pais: "", altura: "",
   c1: "", n1: "80", c2: "", n2: "80", c3: "", n3: "80", orden: "criterios" };
 let filtroBuscar = { ...filtrosVacios };
 let cantidadBuscar = 50;
@@ -955,6 +955,7 @@ function mostrarBuscar() {
     .filter(j => F.liga === "todas" || j.liga === F.liga)
     .filter(j => F.puesto === "todos" || j.puesto === F.puesto)
     .filter(j => !F.edad || (j.edad != null && j.edad <= Number(F.edad)))
+    .filter(j => !F.edadMin || (j.edad != null && j.edad >= Number(F.edadMin)))
     .filter(j => j.minutos >= Number(F.minutos))
     .filter(j => !F.pais || (F.pais === "locales" ? j.pais === localDe[j.liga] : F.pais === "extranjeros" ? j.pais !== localDe[j.liga] : j.pais === F.pais))
     .filter(j => !F.altura || (j.altura && j.altura >= Number(F.altura)))
@@ -1015,7 +1016,8 @@ function mostrarBuscar() {
     <div class="buscar__filtros">
       <label>Liga ${sel("liga", [["todas", "Todas"], ...ligasDisponibles().map(l => [l.id, l.pais])])}</label>
       <label>Puesto ${sel("puesto", [["todos", "Todos"], ["ARQ", "Arquero"], ["DEF", "Defensor"], ["MED", "Mediocampista"], ["DEL", "Delantero"]])}</label>
-      <label>Edad ${sel("edad", [["", "Cualquiera"], ["19", "Hasta 19"], ["21", "Hasta 21"], ["23", "Hasta 23"], ["25", "Hasta 25"], ["28", "Hasta 28"]])}</label>
+      <label class="buscar__edad">Edad <span class="buscar__rango">${sel("edadMin", [["", "Desde"], ...[18, 20, 22, 24, 26, 28, 30, 32, 34].map(n => [n, "Desde " + n]).filter(([n]) => !F.edad || n <= Number(F.edad))])}
+        ${sel("edad", [["", "Hasta"], ...[19, 21, 23, 25, 28, 30, 32, 35].map(n => [n, "Hasta " + n]).filter(([n]) => !F.edadMin || n >= Number(F.edadMin))])}</span></label>
       <label>Minutos ${sel("minutos", [["450", "450' o más"], ["900", "900' o más"], ["1350", "1350' o más"]])}</label>
       <label>Nacionalidad ${sel("pais", [["", "Todas"], ["locales", "Del país de la liga"], ["extranjeros", "Extranjeros"], ...paises.map(p => [p, p])])}</label>
       <label>Altura ${sel("altura", [["", "Cualquiera"], ["175", "1,75 m o más"], ["180", "1,80 m o más"], ["185", "1,85 m o más"], ["190", "1,90 m o más"]])}</label>
