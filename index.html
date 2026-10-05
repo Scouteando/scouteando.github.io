@@ -26,7 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,100,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="estilos.css?v=45">
+  <link rel="stylesheet" href="estilos.css?v=46">
 </head>
 <body>
 
@@ -35,10 +35,11 @@
     <button class="menu__opcion activo" data-vista="equipos">Equipos</button>
     <button class="menu__opcion" data-vista="lideres">Líderes</button>
     <button class="menu__opcion" data-vista="sub21">Sub-21</button>
-    <button class="menu__opcion" data-vista="ideal">Equipo de la fecha</button>
+    <button class="menu__opcion menu__opcion--extra" data-vista="ideal">Equipo de la fecha</button>
     <button class="menu__opcion" data-vista="posiciones">Posiciones</button>
-    <button class="menu__opcion" data-vista="comparar">Comparar</button>
-    <button class="menu__opcion" data-vista="seguidos">⭐ Mis jugadores</button>
+    <button class="menu__opcion menu__opcion--extra" data-vista="comparar">Comparar</button>
+    <button class="menu__opcion menu__opcion--extra" data-vista="seguidos">⭐ Mis jugadores</button>
+    <button class="menu__opcion menu__mas" id="menuMas" aria-expanded="false">Más ▾</button>
   </nav>
 
   <header class="cabecera">
@@ -156,8 +157,8 @@
   <!-- Aviso mientras se cargan los datos de una liga -->
   <div class="cargando" id="cargando" role="status" hidden></div>
 
-  <script src="datos/generados/portada.js?v=45"></script>
-  <script src="ligas.js?v=45"></script>
-  <script src="app.js?v=45"></script>
+  <script src="datos/generados/portada.js?v=46"></script>
+  <script src="ligas.js?v=46"></script>
+  <script src="app.js?v=46"></script>
 </body>
 </html>

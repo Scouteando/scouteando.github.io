@@ -14,7 +14,7 @@ const resumen = document.getElementById("resumen");
 const grilla = document.getElementById("grilla");
 const buscador = document.getElementById("buscador");
 const selectOrden = document.getElementById("orden");
-const botonesMenu = document.querySelectorAll(".menu__opcion");
+const botonesMenu = document.querySelectorAll(".menu__opcion[data-vista]");
 const botonesPuesto = document.querySelectorAll("#vistaJugadores .filtro[data-puesto]");
 const botonVerMas = document.getElementById("verMas");
 const volver = document.getElementById("volver");
@@ -1188,19 +1188,17 @@ resultadosGlobal.addEventListener("click", function (e) {
 // ---------- 7e. Resumen del equipo (arriba del plantel) ----------
 function mostrarResumenEquipo() {
   const plantel = jugadores.filter(j => j.equipo === equipoElegido && j.enPlantel);
-  const mejor = f => [...plantel].sort((a, b) => f(b) - f(a))[0];
+  const mejor = f => [...plantel].sort((a, b) => f(b) - f(a) || b.minutos - a.minutos)[0];
+  // Tres cuadros: posición en el torneo actual, goleador y asistidor (el resto está en la tabla y en el plantel)
   const destacados = [
-    ["Goleador", mejor(j => j.goles), j => j.goles + " goles"],
-    ["Asistidor", mejor(j => j.asistencias), j => j.asistencias + " asist."],
-    ["Más recupera", mejor(j => j.quites + j.intercepciones), j => (j.quites + j.intercepciones) + " recup."],
-    ["Más minutos", mejor(j => j.minutos), j => j.minutos + " min"]
+    ["Goleador", mejor(j => j.goles), j => j.goles + (j.goles === 1 ? " gol" : " goles")],
+    ["Asistidor", mejor(j => j.asistencias), j => j.asistencias + " asist."]
   ];
-  const goles = plantel.reduce((s, j) => s + j.goles, 0);
-  const enTablas = posicionesDeEquipo(equipoElegido).map(({ t, fila }) => `
-    <div class="destacado destacado--total"><span class="destacado__valor">${fila.pos}º</span>
-      <span class="destacado__rol">${t.competencia}${t.grupo ? " · " + t.grupo : ""} · ${fila.pts} pts</span></div>`).join("");
-  resumenEquipo.innerHTML = `${enTablas}
-    <div class="destacado destacado--total"><span class="destacado__valor">${goles}</span><span class="destacado__rol">Goles de sus jugadores</span></div>
+  const tabla = posicionesDeEquipo(equipoElegido)[0];
+  const posicion = !tabla ? "" : `
+    <div class="destacado destacado--total destacado--posicion"><span class="destacado__valor">${tabla.fila.pos}º</span>
+      <span class="destacado__rol">${tabla.t.competencia}${tabla.t.grupo ? " · " + tabla.t.grupo : ""}<br>${tabla.fila.pts} pts en ${tabla.fila.pj} partidos</span></div>`;
+  resumenEquipo.innerHTML = `${posicion}
     ${destacados.map(([rol, j, texto]) => `
       <div class="destacado lider" data-clave="${j.nombre}|${j.edad}|${j.equipo}">
         <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
@@ -1694,8 +1692,16 @@ function aplicarCambio() {
 
 // ---------- 9. Eventos ----------
 for (const b of botonesMenu) {
-  b.addEventListener("click", () => irA(b.dataset.vista));
+  b.addEventListener("click", () => { cerrarMenuMas(); irA(b.dataset.vista); });
 }
+// En el celu, "Más" muestra las secciones que no entran (Equipo de la fecha, Comparar, Mis jugadores)
+const menuMas = document.getElementById("menuMas");
+function cerrarMenuMas() { menuLiga.classList.remove("menu--abierto"); menuMas.setAttribute("aria-expanded", "false"); menuMas.textContent = "Más ▾"; }
+menuMas.addEventListener("click", function () {
+  const abierto = menuLiga.classList.toggle("menu--abierto");
+  menuMas.setAttribute("aria-expanded", String(abierto));
+  menuMas.textContent = abierto ? "Menos ▴" : "Más ▾";
+});
 
 vistaEquipos.addEventListener("click", function (e) {
   const modo = e.target.closest("[data-modo-equipos]");

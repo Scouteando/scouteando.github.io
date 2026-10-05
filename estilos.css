@@ -1067,7 +1067,6 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .resumen-equipo { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 @media (max-width: 560px) {
   .resumen-equipo { grid-template-columns: 1fr 1fr; }
-  .resumen-equipo > :last-child:nth-child(odd) { grid-column: 1 / -1; }
   .resumen-equipo .destacado__valor { font-size: 30px; }
   .resumen-equipo .lider { grid-template-columns: 36px 1fr; }
   .resumen-equipo .lider__foto { width: 36px; height: 36px; }
@@ -1116,4 +1115,22 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   #grilla .stat__valor { font-size: 24px; }
   #grilla .stat__nombre { font-size: 10px; margin-top: 2px; letter-spacing: 0; line-height: 1.2; }
   #grilla .stat__top { margin-top: 4px; }
+}
+
+/* ===== Menú: "Más" solo en el celu ===== */
+.menu__mas { display: none; }
+@media (max-width: 640px) {
+  .menu__mas { display: inline-block; color: var(--dorado); }
+  .menu { flex-wrap: wrap; overflow-x: visible; row-gap: 4px; }
+  .menu__opcion--extra { display: none; }
+  .menu__opcion--extra.activo, .menu--abierto .menu__opcion--extra { display: inline-block; }
+  .menu__mas { order: 99; }
+}
+
+/* ===== Resumen del equipo: 3 cuadros ===== */
+.resumen-equipo { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.destacado--posicion .destacado__rol { line-height: 1.4; margin-top: 4px; }
+@media (max-width: 560px) {
+  .resumen-equipo { grid-template-columns: 1fr 1fr; }
+  .resumen-equipo .destacado--posicion { grid-column: 1 / -1; display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 14px; }
 }
