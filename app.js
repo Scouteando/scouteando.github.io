@@ -877,7 +877,35 @@ const statsBuscador = [
   ["vallas", "% de vallas invictas", j => (j.partidos ? ((j.vallasInvictas || 0) / j.partidos) * 100 : 0), "ARQ", false, v => Math.round(v) + "%"],
   ["golesRecibidos", "Goles recibidos por partido", j => pp90(j.golesRecibidos || 0, j), "ARQ", true]
 ];
-const filtroBuscar = { liga: "todas", puesto: "todos", edad: "", minutos: "450", c1: "", n1: "80", c2: "", n2: "80" };
+const filtrosVacios = { liga: "todas", puesto: "todos", edad: "", minutos: "450", pais: "", altura: "",
+  c1: "", n1: "80", c2: "", n2: "80", c3: "", n3: "80", orden: "criterios" };
+let filtroBuscar = { ...filtrosVacios };
+let cantidadBuscar = 50;
+const elegidosBuscar = []; // hasta 2 jugadores tildados para comparar
+
+// Búsquedas rápidas: arman el filtro con un toque
+const busquedasRapidas = [
+  ["Joven goleador", { puesto: "DEL", edad: "23", c1: "goles", n1: "80" }],
+  ["Lateral con llegada", { puesto: "DEF", c1: "centros", n1: "80", c2: "asistencias", n2: "70" }],
+  ["Defensor goleador", { puesto: "DEF", c1: "goles", n1: "90" }],
+  ["Volante recuperador", { puesto: "MED", c1: "recuperaciones", n1: "80", c2: "titularidad", n2: "70" }],
+  ["Volante con gol", { puesto: "MED", c1: "ga", n1: "80", c2: "tirosAlArco", n2: "70" }],
+  ["Arquero confiable", { puesto: "ARQ", minutos: "900", c1: "pctAtajadas", n1: "80" }],
+  ["Sub-21 titular", { edad: "21", minutos: "900", c1: "titularidad", n1: "70" }]
+];
+
+// El filtro viaja en el link: #/<liga>/buscar/puesto=DEF&edad=23...
+function filtroComoTexto() {
+  return Object.keys(filtrosVacios).filter(k => filtroBuscar[k] !== filtrosVacios[k])
+    .map(k => k + "=" + encodeURIComponent(filtroBuscar[k])).join("&");
+}
+function filtroDesdeTexto(texto) {
+  filtroBuscar = { ...filtrosVacios };
+  for (const par of (texto || "").split("&")) {
+    const [k, v] = par.split("=");
+    if (k in filtrosVacios && v != null) filtroBuscar[k] = decodeURIComponent(v);
+  }
+}
 
 // Percentil de un jugador en una estadística, contra los de su puesto en SU liga con 450' o más
 const cachePercentilBuscar = {};
@@ -905,18 +933,40 @@ function mostrarBuscar() {
   const F = filtroBuscar;
   const puestoOk = s => F.puesto === "todos" || s[3].includes(F.puesto);
   const opcionesStats = statsBuscador.filter(puestoOk);
-  if (F.c1 && !opcionesStats.some(s => s[0] === F.c1)) F.c1 = "";
-  if (F.c2 && !opcionesStats.some(s => s[0] === F.c2)) F.c2 = "";
-  const criterios = [[F.c1, F.n1], [F.c2, F.n2]].filter(c => c[0]).map(([c, n]) => ({ s: statsBuscador.find(x => x[0] === c), min: Number(n) }));
+  for (const c of ["c1", "c2", "c3"]) if (F[c] && !opcionesStats.some(s => s[0] === F[c])) F[c] = "";
+  if (!F.c1) { F.c2 = ""; F.c3 = ""; }
+  if (!F.c2) F.c3 = "";
+  const criterios = [["c1", "n1"], ["c2", "n2"], ["c3", "n3"]].filter(([c]) => F[c])
+    .map(([c, n]) => ({ clave: c, s: statsBuscador.find(x => x[0] === F[c]), min: Number(F[n]) }));
+  if (/^c\d$/.test(F.orden) && !F[F.orden]) F.orden = "criterios";
+
+  // Nacionalidad: "locales" = del país más común en esa liga
+  const localDe = {};
+  for (const l of ligasDisponibles()) {
+    const cuenta = {};
+    for (const j of todos.filter(x => x.liga === l.id)) cuenta[j.pais] = (cuenta[j.pais] || 0) + 1;
+    localDe[l.id] = Object.keys(cuenta).sort((x, y) => cuenta[y] - cuenta[x])[0];
+  }
+  const cuentaPaises = {};
+  for (const j of todos) if (j.pais) cuentaPaises[j.pais] = (cuentaPaises[j.pais] || 0) + 1;
+  const paises = Object.keys(cuentaPaises).sort((x, y) => cuentaPaises[y] - cuentaPaises[x]).slice(0, 15).sort();
 
   const lista = todos
     .filter(j => F.liga === "todas" || j.liga === F.liga)
     .filter(j => F.puesto === "todos" || j.puesto === F.puesto)
     .filter(j => !F.edad || (j.edad != null && j.edad <= Number(F.edad)))
     .filter(j => j.minutos >= Number(F.minutos))
+    .filter(j => !F.pais || (F.pais === "locales" ? j.pais === localDe[j.liga] : F.pais === "extranjeros" ? j.pais !== localDe[j.liga] : j.pais === F.pais))
+    .filter(j => !F.altura || (j.altura && j.altura >= Number(F.altura)))
     .map(j => ({ j, ps: criterios.map(c => c.s[3].includes(j.puesto) ? percentilBuscar(j, c.s) : null) }))
-    .filter(x => criterios.every((c, i) => x.ps[i] != null && x.ps[i] >= c.min))
-    .sort((x, y) => (y.ps.reduce((s, p) => s + p, 0) - x.ps.reduce((s, p) => s + p, 0)) || y.j.minutos - x.j.minutos);
+    .filter(x => criterios.every((c, i) => x.ps[i] != null && x.ps[i] >= c.min));
+  const suma = x => x.ps.reduce((s, p) => s + p, 0);
+  const iCrit = criterios.findIndex(c => c.clave === F.orden);
+  lista.sort((x, y) =>
+    F.orden === "edad" ? (x.j.edad ?? 99) - (y.j.edad ?? 99) || y.j.minutos - x.j.minutos :
+    F.orden === "minutos" ? y.j.minutos - x.j.minutos :
+    iCrit >= 0 ? (criterios[iCrit].s[4] ? criterios[iCrit].s[2](x.j) - criterios[iCrit].s[2](y.j) : criterios[iCrit].s[2](y.j) - criterios[iCrit].s[2](x.j)) :
+    suma(y) - suma(x) || y.j.minutos - x.j.minutos);
 
   const sel = (clave, opciones) => `<select class="campo" data-buscar="${clave}">${opciones.map(([v, t]) => `<option value="${v}" ${String(F[clave]) === String(v) ? "selected" : ""}>${t}</option>`).join("")}</select>`;
   const niveles = [["50", "mitad de arriba"], ["70", "top 30%"], ["80", "top 20%"], ["90", "top 10%"]];
@@ -926,53 +976,117 @@ function mostrarBuscar() {
       ${sel(c, [["", "— ninguna —"], ...opcionesStats.map(s => [s[0], s[1]])])}
       ${F[c] ? sel(n, niveles) : ""}
     </div>`;
+  const conAltura = todos.filter(j => j.altura).length;
+  const marcado = j => elegidosBuscar.some(x => x.liga === j.liga && x.nombre === j.nombre && x.edad === j.edad);
 
-  const filas = lista.slice(0, 50).map(({ j, ps }) => {
+  const filas = lista.slice(0, cantidadBuscar).map(({ j, ps }) => {
     const liga = LIGAS.find(l => l.id === j.liga) || {};
     const detalle = criterios.map((c, i) => {
       const v = c.s[2](j);
       const txt = c.s[5] ? c.s[5](v) : (Math.round(v * 10) / 10).toString().replace(".", ",");
       return `<span class="buscar__dato">${c.s[1].replace(" por partido", "")}: <strong>${txt}</strong> <span class="stat__top ${ps[i] >= 90 ? "stat__top--elite" : ""}">Top ${Math.max(1, 100 - ps[i])}%</span></span>`;
     }).join("");
+    const clave = `${j.liga}|${j.nombre}|${j.edad}`;
     return `
-      <li class="lider" data-buscar-jugador="${j.liga}|${j.nombre}|${j.edad}">
+      <li class="lider buscar__fila ${marcado(j) ? "buscar__fila--marcada" : ""}" data-buscar-jugador="${clave}">
         <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
         <span class="lider__nombre">${j.nombre}
-          <small><img class="mini-escudo" src="${bandera(liga.bandera)}" alt="">${j.equipo} · ${{ ARQ: "Arquero", DEF: "Defensor", MED: "Mediocampista", DEL: "Delantero" }[j.puesto] || ""} · ${j.edad ?? "-"} años · ${j.minutos}'</small>
+          <small><img class="mini-escudo" src="${bandera(liga.bandera)}" alt="">${j.equipo} · ${{ ARQ: "Arquero", DEF: "Defensor", MED: "Mediocampista", DEL: "Delantero" }[j.puesto] || ""} · ${j.pais} · ${j.edad ?? "-"} años${j.altura ? ` · ${(j.altura / 100).toFixed(2).replace(".", ",")} m` : ""} · ${j.minutos}'</small>
           ${detalle ? `<span class="buscar__datos">${detalle}</span>` : ""}</span>
+        <span class="buscar__acciones">
+          <button class="buscar__accion ${loSigo(j) ? "activo" : ""}" data-buscar-seguir="${clave}" title="Agregar a Mis jugadores">${loSigo(j) ? "★" : "☆"}</button>
+          <button class="buscar__accion ${marcado(j) ? "activo" : ""}" data-buscar-comparar="${clave}" title="Elegir para comparar">⚖</button>
+        </span>
       </li>`;
   }).join("");
 
+  const barraComparar = !elegidosBuscar.length ? "" : `
+    <div class="buscar__comparar">
+      <span>${elegidosBuscar.length === 1 ? `Elegiste a <strong>${elegidosBuscar[0].nombre}</strong>. Tocá ⚖ en otro jugador para compararlos.` : `<strong>${elegidosBuscar[0].nombre}</strong> vs <strong>${elegidosBuscar[1].nombre}</strong>`}</span>
+      ${elegidosBuscar.length === 2 ? `<button class="filtro activo" data-buscar-ir-comparar>Comparar</button>` : ""}
+      <button class="filtro" data-buscar-limpiar-comparar>✕</button>
+    </div>`;
+
   vistaBuscar.innerHTML = `
+    <div class="buscar__rapidas">
+      <span class="buscar__etiqueta">Búsquedas rápidas</span>
+      <div class="filtros">${busquedasRapidas.map(([nombre], i) => `<button class="filtro" data-rapida="${i}">${nombre}</button>`).join("")}</div>
+    </div>
     <div class="buscar__filtros">
       <label>Liga ${sel("liga", [["todas", "Todas"], ...ligasDisponibles().map(l => [l.id, l.pais])])}</label>
       <label>Puesto ${sel("puesto", [["todos", "Todos"], ["ARQ", "Arquero"], ["DEF", "Defensor"], ["MED", "Mediocampista"], ["DEL", "Delantero"]])}</label>
       <label>Edad ${sel("edad", [["", "Cualquiera"], ["19", "Hasta 19"], ["21", "Hasta 21"], ["23", "Hasta 23"], ["25", "Hasta 25"], ["28", "Hasta 28"]])}</label>
       <label>Minutos ${sel("minutos", [["450", "450' o más"], ["900", "900' o más"], ["1350", "1350' o más"]])}</label>
+      <label>Nacionalidad ${sel("pais", [["", "Todas"], ["locales", "Del país de la liga"], ["extranjeros", "Extranjeros"], ...paises.map(p => [p, p])])}</label>
+      <label>Altura ${sel("altura", [["", "Cualquiera"], ["175", "1,75 m o más"], ["180", "1,80 m o más"], ["185", "1,85 m o más"], ["190", "1,90 m o más"]])}</label>
       ${criterio("c1", "n1", "Que se destaque en")}
       ${F.c1 ? criterio("c2", "n2", "y también en") : ""}
+      ${F.c2 ? criterio("c3", "n3", "y también en") : ""}
+      <div class="buscar__pie-filtros">
+        <button class="filtro" data-buscar-limpiar>Borrar filtros</button>
+        <button class="filtro" data-buscar-compartir>🔗 Compartir esta búsqueda</button>
+        <span class="buscar__aviso" aria-live="polite"></span>
+      </div>
     </div>
+    ${F.altura ? `<p class="destacados__nota">Con el filtro de altura solo entran los jugadores que ya tienen la altura cargada (${conAltura} de ${todos.length} por ahora).</p>` : ""}
     ${faltan.length ? `<p class="vacio">Cargando ${faltan.join(", ")}…</p>` : ""}
+    ${barraComparar}
     <section class="tabla-lideres buscar__lista">
-      <h2>${lista.length} ${lista.length === 1 ? "jugador" : "jugadores"}</h2>
+      <div class="buscar__encabezado">
+        <h2>${lista.length} ${lista.length === 1 ? "jugador" : "jugadores"}</h2>
+        <label class="sub21__orden">Ordenar por ${sel("orden", [["criterios", criterios.length ? "Mejor en los criterios" : "Más minutos"], ...criterios.map(c => [c.clave, c.s[1]]), ["edad", "Más jóvenes"], ["minutos", "Más minutos"]])}</label>
+      </div>
       ${filas ? `<ol>${filas}</ol>` : `<p class="vacio">Ningún jugador cumple todo eso. Probá bajando el nivel o sacando un filtro.</p>`}
-      ${lista.length > 50 ? `<p class="destacados__nota">Se muestran los 50 primeros.</p>` : ""}
+      ${lista.length > cantidadBuscar ? `<button class="boton-ver-mas filtro" data-buscar-mas>Ver más (quedan ${lista.length - cantidadBuscar})</button>` : ""}
     </section>
-    <p class="destacados__nota">"Top 20%" = está entre el 20% mejor de su puesto en su liga en esa estadística. Solo jugadores que siguen en su club.</p>`;
+    <p class="destacados__nota">"Top 20%" = está entre el 20% mejor de su puesto en su liga en esa estadística. Solo jugadores que siguen en su club. ☆ lo agrega a Mis jugadores; ⚖ lo elige para comparar.</p>`;
+}
+
+function jugadorDeClave(clave) {
+  const [liga, nombre, edad] = clave.split("|");
+  return unificadosDe(liga).find(x => x.nombre === nombre && String(x.edad) === edad);
 }
 
 vistaBuscar.addEventListener("change", function (e) {
   const campo = e.target.closest("[data-buscar]");
   if (!campo) return;
   filtroBuscar[campo.dataset.buscar] = campo.value;
-  if (campo.dataset.buscar === "c1" && !campo.value) filtroBuscar.c2 = "";
+  if (campo.dataset.buscar !== "orden") cantidadBuscar = 50;
   mostrarBuscar();
 });
 vistaBuscar.addEventListener("click", function (e) {
+  const rapida = e.target.closest("[data-rapida]");
+  if (rapida) { filtroBuscar = { ...filtrosVacios, ...busquedasRapidas[rapida.dataset.rapida][1] }; cantidadBuscar = 50; return mostrarBuscar(); }
+  if (e.target.closest("[data-buscar-limpiar]")) { filtroBuscar = { ...filtrosVacios }; cantidadBuscar = 50; return mostrarBuscar(); }
+  if (e.target.closest("[data-buscar-mas]")) { cantidadBuscar += 50; return mostrarBuscar(); }
+  if (e.target.closest("[data-buscar-compartir]")) {
+    const link = location.origin + location.pathname + `#/${ligaActual.id}/buscar` + (filtroComoTexto() ? "/" + filtroComoTexto() : "");
+    const aviso = vistaBuscar.querySelector(".buscar__aviso");
+    const mostrar = ok => { aviso.innerHTML = ok ? "¡Link copiado!" : `Copiá este link: <input class="campo" value="${link}" readonly onclick="this.select()">`; };
+    if (navigator.clipboard) navigator.clipboard.writeText(link).then(() => mostrar(true), () => mostrar(false));
+    else mostrar(false);
+    return;
+  }
+  const seguir = e.target.closest("[data-buscar-seguir]");
+  if (seguir) { const j = jugadorDeClave(seguir.dataset.buscarSeguir); if (j) alternarSeguir(j); return mostrarBuscar(); }
+  const comparar = e.target.closest("[data-buscar-comparar]");
+  if (comparar) {
+    const j = jugadorDeClave(comparar.dataset.buscarComparar);
+    if (!j) return;
+    const i = elegidosBuscar.findIndex(x => x.liga === j.liga && x.nombre === j.nombre && x.edad === j.edad);
+    if (i >= 0) elegidosBuscar.splice(i, 1);
+    else { if (elegidosBuscar.length === 2) elegidosBuscar.shift(); elegidosBuscar.push(j); }
+    return mostrarBuscar();
+  }
+  if (e.target.closest("[data-buscar-limpiar-comparar]")) { elegidosBuscar.length = 0; return mostrarBuscar(); }
+  if (e.target.closest("[data-buscar-ir-comparar]")) {
+    elegidosComparar[0] = elegidosBuscar[0]; elegidosComparar[1] = elegidosBuscar[1];
+    return irA("comparar");
+  }
   const fila = e.target.closest("[data-buscar-jugador]");
   if (!fila) return;
   const [liga, nombre, edad] = fila.dataset.buscarJugador.split("|");
-  const jugador = unificadosDe(liga).find(x => x.nombre === nombre && String(x.edad) === edad);
+  const jugador = jugadorDeClave(fila.dataset.buscarJugador);
   if (!jugador) return;
   if (liga === ligaActual.id) abrirFicha(jugador);
   else abrirJugadorDeLiga(liga, nombre, edad, "buscar");
@@ -1800,6 +1914,7 @@ function aplicarRuta() {
       const equipo = [...new Set(jugadores.map(j => j.equipo))].find(e => slug(e) === valor);
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
+    if (tipo === "buscar" && valor) filtroDesdeTexto(valor);
     irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21", buscar: "buscar" }[tipo] || "equipos", null, true);
   });
 }

@@ -1144,7 +1144,7 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .buscar__filtros .campo { width: 100%; min-width: 0; }
 .buscar__criterio { grid-column: 1 / -1; display: grid; grid-template-columns: 150px minmax(0, 2fr) minmax(0, 1fr); gap: 10px; align-items: center; }
 .buscar__etiqueta { font-size: 13px; font-weight: 700; color: var(--dorado); }
-.buscar__lista .lider { grid-template-columns: 36px minmax(0, 1fr); }
+.buscar__lista .lider { grid-template-columns: 36px minmax(0, 1fr) auto; }
 .buscar__datos { display: flex; flex-wrap: wrap; gap: 4px 12px; margin-top: 4px; }
 .buscar__dato { font-size: 12px; font-weight: 400; color: var(--texto-suave); }
 .buscar__dato strong { color: var(--texto); }
@@ -1158,3 +1158,26 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 }
 
 .acerca__calculos li { margin-bottom: 8px; }
+
+.buscar__rapidas { display: grid; gap: 8px; }
+.buscar__rapidas .filtros { display: flex; gap: 8px; flex-wrap: wrap; }
+.buscar__pie-filtros { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.buscar__aviso { font-size: 13px; color: var(--dorado); min-width: 0; }
+.buscar__aviso .campo { width: min(100%, 420px); margin-top: 4px; }
+.buscar__encabezado { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.buscar__encabezado h2 { margin: 0; }
+.buscar__acciones { display: flex; gap: 4px; }
+.buscar__accion { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--borde); background: none; color: var(--texto-suave); font-size: 16px; cursor: pointer; }
+.buscar__accion.activo { color: var(--dorado); border-color: var(--dorado); }
+.buscar__fila--marcada { background: #1a2438; }
+.buscar__comparar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: var(--superficie); border: 1px solid var(--dorado); border-radius: 12px; padding: 10px 14px; font-size: 14px; }
+.buscar__comparar span { flex: 1 1 200px; min-width: 0; }
+@media (max-width: 640px) {
+  .buscar__rapidas .filtros { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 2px; }
+  .buscar__rapidas .filtro { flex: 0 0 auto; }
+  .buscar__acciones { flex-direction: column; }
+}
+/* Comparación: nombres largos con la letra ancha */
+.comp__jugador { min-width: 0; }
+.comp__jugador h3 { font-stretch: 100%; font-size: clamp(16px, 4.6vw, 24px); overflow-wrap: anywhere; }
