@@ -1197,3 +1197,11 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .zona--liguilla, .zona--playoffs { --zona: #f2c230; }
 .zona--playin, .zona--wildcard { --zona: #60a5fa; }
 .equipo__escudo--letras { display: grid; place-items: center; border-radius: 50%; background: #1b2740; color: var(--texto-suave); font-family: var(--fuente-titulo); font-weight: 800; font-size: 18px; }
+
+/* ===== Líderes en el celu: top 3 y "Ver top 10" ===== */
+.tabla-lideres__mas { display: none; }
+@media (max-width: 640px) {
+  .tabla-lideres:not(.tabla-lideres--abierta) li:nth-child(n+4) { display: none; }
+  .tabla-lideres__mas { display: block; width: 100%; margin-top: 6px; padding: 8px; background: none; border: 1px solid var(--borde); border-radius: 10px;
+    color: var(--dorado); font: 600 13px var(--fuente-texto); cursor: pointer; }
+}

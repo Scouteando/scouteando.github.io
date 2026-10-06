@@ -1443,6 +1443,7 @@ function mostrarLideres() {
       <section class="tabla-lideres">
         <h2>${tituloTabla}</h2>
         <ol>${filas}</ol>
+        ${top.length > 3 ? `<button class="tabla-lideres__mas" data-ver-top>Ver top ${top.length}</button>` : ""}
         ${nota}
       </section>`;
   }).join("") || `<p class="vacio vacio--grande">No hay jugadores con esos filtros.</p>`;
@@ -1458,6 +1459,12 @@ function mostrarLideres() {
 }
 
 vistaLideres.addEventListener("click", function (e) {
+  const mas = e.target.closest("[data-ver-top]");
+  if (mas) {
+    const abierta = mas.closest(".tabla-lideres").classList.toggle("tabla-lideres--abierta");
+    mas.textContent = abierta ? "Ver menos" : "Ver top " + mas.closest(".tabla-lideres").querySelectorAll("li").length;
+    return;
+  }
   const fila = e.target.closest(".lider");
   if (!fila) return;
   const [nombre, edad] = fila.dataset.clave.split("|");
