@@ -7,7 +7,7 @@
 // (ver README.md, sección "Cómo agregar una liga")
 
 const LIGAS = [
-  { id: "argentina", nombre: "Liga Profesional", pais: "Argentina", bandera: "ar", temporada: "2026", actualizado: "06/10/2026", hasta: "Clausura, hasta la fecha 11", disponible: true },
+  { id: "argentina", nombre: "Liga Profesional", pais: "Argentina", bandera: "ar", temporada: "2026", actualizado: "06/10/2026", hasta: "Clausura, hasta la fecha 10", disponible: true },
   { id: "brasil",    nombre: "Brasileirão Série A", pais: "Brasil",   bandera: "br", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Hasta la fecha 28" },
   { id: "uruguay",   nombre: "Liga AUF",            pais: "Uruguay",  bandera: "uy", temporada: "2026", disponible: false },
   { id: "colombia",  nombre: "Liga BetPlay",        pais: "Colombia", bandera: "co", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Finalización, hasta la fecha 13" },
