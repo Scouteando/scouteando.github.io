@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex">
+<title>Imagen · Equipo de la fecha</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet" crossorigin="anonymous">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#888;font-family:Archivo,sans-serif}
+#lienzo{position:relative;width:1080px;height:1350px;padding:70px 60px;background:#f4f1ea;color:#161616}
+.barra{position:absolute;top:0;left:0;right:0;height:16px;background:#c8102e}
+.w{font-stretch:125%;font-weight:800;text-transform:uppercase;letter-spacing:-.01em}
+.rojo{color:#c8102e}.suave{color:#6b6457}
+.cancha{margin-top:34px;border-radius:24px;padding:24px 18px;background:repeating-linear-gradient(180deg,#1d5a37 0 80px,#226741 80px 160px);display:grid;gap:22px}
+.fila{display:flex;justify-content:center;gap:10px}
+.j{width:218px;flex:0 1 218px;min-width:0;background:#fff;border-radius:16px;padding:12px 8px;text-align:center;border-top:6px solid var(--c)}
+.av{width:78px;height:78px;border-radius:50%;margin:0 auto 6px;background:#f1ece2;border:3px solid var(--c);overflow:hidden;display:grid;place-items:center;font-weight:800;font-size:22px}
+.av img{width:100%;height:100%;object-fit:cover;object-position:top}
+.n{font-weight:800;font-size:21px;line-height:1.1}.e{font-size:16px;color:#6b6457;margin-top:3px}.m{font-size:17px;font-weight:700;color:#c8102e;margin-top:4px}
+.pie{position:absolute;left:60px;right:60px;bottom:42px;display:flex;justify-content:space-between;align-items:center;font-size:26px;font-weight:700}
+.pie img{width:46px;vertical-align:middle;margin-right:10px}
+#botones{padding:16px;font:16px sans-serif}
+</style></head>
+<body>
+<div id="botones">Generando… <button id="bajar" hidden>Descargar PNG</button></div>
+<div id="lienzo"></div>
+<script src="../ligas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.js"></script>
+<script>
+// Genera la imagen del Equipo de la fecha para redes: redes/equipo-de-la-fecha.html?liga=argentina&titulo=Clausura · Fecha 11
+const q = new URLSearchParams(location.search);
+const ligaId = q.get("liga") || "argentina";
+const liga = LIGAS.find(l => l.id === ligaId);
+const s = document.createElement("script");
+s.src = `../datos/generados/${ligaId}.js?v=${Date.now()}`;
+s.onload = armar;
+document.body.appendChild(s);
+const formacion = [["DEL", 3], ["MED", 3], ["DEF", 4], ["ARQ", 1]];
+const col = { DEL: "#ef4444", MED: "#10b981", DEF: "#3b82f6", ARQ: "#f59e0b" };
+const ini = n => n.split(" ").filter(Boolean).map(x => x[0]).slice(0, 2).join("").toUpperCase();
+function puntos(d) {
+  let p = d.minutos >= 60 ? 2 : 1;
+  p += d.goles * ({ ARQ: 6, DEF: 6, MED: 5, DEL: 4 }[d.puesto] || 4) + d.asistencias * 3;
+  if (d.puesto === "ARQ" || d.puesto === "DEF") p += (d.vallasInvictas || 0) * 4;
+  p += (d.atajadas || 0) * 0.5 + (d.quites + d.intercepciones) * 0.3 + d.tirosAlArco * 0.5;
+  p -= d.amarillas + d.rojas * 3;
+  return p;
+}
+function armar() {
+  const fecha = window.DATOS_FECHA[ligaId];
+  const ficha = (j, c) => {
+    const motivo = [j.goles ? `${j.goles} ${j.goles === 1 ? "gol" : "goles"}` : "", j.asistencias ? `${j.asistencias} asist.` : "",
+      j.puesto === "ARQ" ? `${j.atajadas || 0} atajadas` : "", (j.quites + j.intercepciones) >= 4 ? `${j.quites + j.intercepciones} recup.` : ""].filter(Boolean).slice(0, 2).join(" · ") || "Figura";
+    const foto = j.foto ? `<img crossorigin="anonymous" src="${j.foto}" onerror="this.remove()">` : "";
+    return `<div class="j" style="--c:${c}"><div class="av">${foto || ini(j.nombre)}</div><div class="n">${j.nombre}</div><div class="e">${j.equipo}</div><div class="m">${motivo}</div></div>`;
+  };
+  const filas = formacion.map(([p, n]) => {
+    const once = fecha.jugadores.filter(d => d.puesto === p).sort((a, b) => puntos(b) - puntos(a)).slice(0, n);
+    return `<div class="fila">${once.map(j => ficha(j, col[p])).join("")}</div>`;
+  }).join("");
+  document.getElementById("lienzo").innerHTML = `<div class="barra"></div>
+    <div class="rojo w" style="font-size:30px">${liga.nombre} · ${q.get("titulo") || "Última fecha"}</div>
+    <div class="w" style="font-size:84px;line-height:1;margin-top:10px">Equipo<br>de la fecha</div>
+    <div class="cancha">${filas}</div>
+    <div class="pie"><span><img src="../logo.svg">scouteando.github.io</span><span class="suave">Datos: FBref</span></div>`;
+  // Esperamos las fotos y las fuentes, y armamos el PNG
+  const imgs = [...document.querySelectorAll("#lienzo img")];
+  Promise.all([document.fonts.ready, ...imgs.map(i => i.complete ? 1 : new Promise(ok => { i.onload = i.onerror = ok; }))]).then(async () => {
+    const url = await htmlToImage.toPng(document.getElementById("lienzo"), { pixelRatio: 1, cacheBust: true });
+    window.imagenLista = url;
+    const b = document.getElementById("bajar");
+    b.hidden = false;
+    document.getElementById("botones").firstChild.textContent = "Listo. ";
+    b.onclick = () => { const a = document.createElement("a"); a.href = url; a.download = `equipo-de-la-fecha-${ligaId}.png`; a.click(); };
+  });
+}
+</script>
+</body></html>
