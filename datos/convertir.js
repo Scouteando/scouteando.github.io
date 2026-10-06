@@ -275,6 +275,20 @@ if (fs.existsSync(salida)) {
     sumaron.push(d);
   }
   fecha = sumaron.length ? { desde, hasta: hoy, jugadores: sumaron } : fechaPrevia;
+
+  // Historial: guardamos cada fecha nueva (para mostrar después la "forma reciente" de cada jugador)
+  if (sumaron.length) {
+    const archivoHist = path.join(__dirname, "historial", liga + ".json");
+    fs.mkdirSync(path.dirname(archivoHist), { recursive: true });
+    const hist = fs.existsSync(archivoHist) ? JSON.parse(fs.readFileSync(archivoHist, "utf-8")) : { campos, fechas: [] };
+    if (!hist.fechas.some(f => f.hasta === hoy)) {
+      const jugadoresFecha = {};
+      for (const d of sumaron) jugadoresFecha[d.nombre + "|" + d.edad] = campos.map(c => d[c]);
+      hist.fechas.push({ desde, hasta: hoy, jugadores: jugadoresFecha });
+      fs.writeFileSync(archivoHist, JSON.stringify(hist));
+      console.log(`Historial: ${hist.fechas.length} fecha(s) guardadas en ${path.relative(process.cwd(), archivoHist)}`);
+    }
+  }
 }
 
 // ---------- 5. Escritura del archivo para la app ----------
