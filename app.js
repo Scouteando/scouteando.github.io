@@ -1651,6 +1651,8 @@ function actualizarAvisoCarga() {
   avisoCarga.hidden = ids.length === 0;
   if (ids.length) avisoCarga.textContent = "Cargando " + ids.map(id => LIGAS.find(l => l.id === id).nombre).join(", ") + "…";
 }
+// Versión de la página (el ?v= de app.js): cambia con cada publicación, así los datos nunca quedan viejos en caché
+const VERSION_APP = ((document.querySelector('script[src*="app.js"]') || {}).src || "").replace(/.*v=/, "") || "0";
 function cargarDatos(id, listo) {
   if (window.DATOS_LIGAS && window.DATOS_LIGAS[id]) return listo();
   if (cargando[id]) return cargando[id].push(listo); // ya se está cargando: esperamos esa misma carga
@@ -1658,7 +1660,7 @@ function cargarDatos(id, listo) {
   actualizarAvisoCarga();
   const liga = LIGAS.find(l => l.id === id);
   const script = document.createElement("script");
-  script.src = `datos/generados/${id}.js?v=${liga.actualizado}`;
+  script.src = `datos/generados/${id}.js?v=${liga.actualizado}-${VERSION_APP}`;
   script.onload = function () {
     const esperando = cargando[id];
     delete cargando[id];
