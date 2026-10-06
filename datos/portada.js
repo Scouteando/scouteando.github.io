@@ -66,7 +66,34 @@ for (const liga of ligas) {
   const fecha = datos[liga.id].fecha;
   const figura = fecha && fecha.jugadores.length
     ? fecha.jugadores.map(d => ({ ...d, puntos: puntosFecha(d) })).sort((a, b) => b.puntos - a.puntos)[0] : null;
+  // En racha: los que más puntos promedian en las últimas 3 fechas guardadas (jugando al menos 2).
+  // Necesita 2 fechas o más en el historial; si no, no se muestra.
+  let racha = [];
+  const archivoHist = path.join(__dirname, "historial", liga.id + ".json");
+  if (fs.existsSync(archivoHist)) {
+    const hist = JSON.parse(fs.readFileSync(archivoHist, "utf-8"));
+    const ultimas = hist.fechas.slice(-3);
+    if (ultimas.length >= 2) {
+      const porClave = {};
+      for (const j of todos) porClave[j.nombre + "|" + j.edad] = j;
+      const suma = {};
+      for (const f of ultimas) {
+        for (const [clave, valores] of Object.entries(f.jugadores)) {
+          const j = porClave[clave];
+          if (!j) continue;
+          const d = { puesto: j.puesto };
+          hist.campos.forEach((c, i) => { d[c] = valores[i]; });
+          const s = suma[clave] = suma[clave] || { j, puntos: 0, fechas: 0, goles: 0, asistencias: 0 };
+          s.puntos += puntosFecha(d); s.fechas++; s.goles += d.goles; s.asistencias += d.asistencias;
+        }
+      }
+      racha = Object.values(suma).filter(s => s.fechas >= 2)
+        .map(s => ({ ...resumen(s.j), promedio: Math.round((s.puntos / s.fechas) * 10) / 10, fechasJugadas: s.fechas, golesRacha: s.goles, asistRacha: s.asistencias, deFechas: ultimas.length }))
+        .sort((x, y) => y.promedio - x.promedio).slice(0, 3);
+    }
+  }
   portada[liga.id] = {
+    racha,
     goleador: resumen(orden(j => j.goles)[0]),
     asistidor: resumen(orden(j => j.asistencias)[0]),
     sub21: resumen(orden(j => j.goles + j.asistencias, j => j.edad != null && j.edad <= 21 && j.minutos >= 450)[0]),

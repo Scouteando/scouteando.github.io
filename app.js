@@ -1567,6 +1567,26 @@ function mostrarLigas() {
 }
 
 // Destacados de la portada (salen de datos/generados/portada.js, un archivo chico)
+
+// "En racha": los que mejor vienen en las últimas fechas (de todas las ligas). Aparece cuando hay 2+ fechas guardadas.
+function htmlRacha() {
+  const P = window.PORTADA || {};
+  const lista = LIGAS.filter(l => l.disponible && P[l.id] && (P[l.id].racha || []).length)
+    .flatMap(l => P[l.id].racha.map(j => ({ ...j, liga: l })))
+    .sort((a, b) => b.promedio - a.promedio).slice(0, 5);
+  if (!lista.length) return "";
+  return `
+      <section class="tabla-lideres destacados__bloque destacados__racha"><h2>🔥 En racha</h2>
+        <ol>${lista.map(j => `
+          <li class="lider" data-destacado="${j.liga.id}|${j.nombre}|${j.edad}">
+            <span class="lider__foto">${j.foto ? `<img src="${j.foto}" alt="" loading="lazy" onerror="this.remove()">` : ""}<span>${iniciales(j.nombre)}</span></span>
+            <span class="lider__nombre">${j.nombre}<small><img class="mini-escudo" src="${bandera(j.liga.bandera)}" alt="">${j.equipo} · ${j.golesRacha} G · ${j.asistRacha} A en ${j.fechasJugadas} fechas</small></span>
+            <span class="lider__valor">${String(j.promedio).replace(".", ",")}<small class="lider__unidad">pts x fecha</small></span>
+          </li>`).join("")}</ol>
+        <p class="destacados__nota">Promedio de puntos (como en el Equipo de la fecha) en las últimas ${lista[0].deFechas} fechas.</p>
+      </section>`;
+}
+
 function htmlPortada() {
   const P = window.PORTADA || {};
   const ligas = LIGAS.filter(l => l.disponible && P[l.id]);
@@ -1602,6 +1622,7 @@ function htmlPortada() {
   return `
     <div class="destacados">
       ${htmlDia}
+      ${htmlRacha()}
       ${bloque("Goleadores", d => con(d.goleador, d.goleador && d.goleador.goles), "goles")}
       ${bloque("Asistidores", d => con(d.asistidor, d.asistidor && d.asistidor.asistencias), "asist.")}
       ${bloque("Sub-21 destacados", d => con(d.sub21, d.sub21 && d.sub21.goles + d.sub21.asistencias), "G + A",
