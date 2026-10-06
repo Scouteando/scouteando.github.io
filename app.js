@@ -1702,7 +1702,11 @@ vistaLigas.addEventListener("click", function (e) {
     const [ligaId, nombre, edad] = destacado.dataset.destacado.split("|");
     return abrirJugadorDeLiga(ligaId, nombre, edad, "equipos");
   }
-  if (e.target.closest("[data-ir-sub21]")) return activarLiga(ligasDisponibles()[0].id, () => irA("sub21"));
+  if (e.target.closest("[data-ir-sub21]")) {
+    // "Ver todos los Sub-21" abre el Buscador ya filtrado (hasta 21 años)
+    filtroBuscar = { ...filtrosVacios, edad: "21", orden: "criterios" };
+    return activarLiga(ligasDisponibles()[0].id, () => irA("buscar"));
+  }
   const boton = e.target.closest(".liga");
   if (!boton || boton.disabled) return;
   if (boton.dataset.seguidos !== undefined) {
@@ -1994,6 +1998,7 @@ function aplicarRuta() {
       return irA(equipo ? "plantel" : "equipos", equipo, true);
     }
     if (tipo === "buscar" && valor) filtroDesdeTexto(valor);
+    if (tipo === "sub21") { filtroBuscar = { ...filtrosVacios, edad: "21" }; return irA("buscar", null, true); }
     irA({ posiciones: "posiciones", lideres: "lideres", seguidos: "seguidos", ideal: "ideal", comparar: "comparar", sub21: "sub21", buscar: "buscar" }[tipo] || "equipos", null, true);
   });
 }
