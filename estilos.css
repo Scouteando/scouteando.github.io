@@ -1111,7 +1111,8 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
   #grilla .carta__club { display: none; } /* ya estamos en la página del club */
   #grilla .carta__info { font-size: 12px; margin: 0; }
   #grilla .carta__stats { display: none; }
-  #grilla .carta__unico { display: block; text-align: right; max-width: 104px; }
+  #grilla .carta__unico { display: none; } /* en el celu, sin números: se ven al tocar al jugador */
+  #grilla .carta::after { content: "›"; font-size: 26px; line-height: 1; color: var(--texto-suave); padding-left: 6px; }
   #grilla .carta__unico .stat__valor small { font-size: 14px; color: var(--texto-suave); }
   #grilla .stat__valor { font-size: 24px; }
   #grilla .stat__nombre { font-size: 10px; margin-top: 2px; letter-spacing: 0; line-height: 1.2; }
