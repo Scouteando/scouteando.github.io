@@ -1410,8 +1410,12 @@ function mostrarLideres() {
     (!paisLideres || j.pais === paisLideres) &&
     (puestoLideres === "TODOS" || j.puesto === puestoLideres));
 
+  // En torneos cortos (ej. Liga MX a la fecha 10) el mínimo de minutos se achica en proporción:
+  // 900' es "media temporada" en una liga de 2000'+, no en una donde el máximo posible es 900'.
+  const maxMinutos = Math.max(...jugadoresUnificados.map(j => j.minutos));
+  const escala = Math.min(1, maxMinutos / 2000);
   vistaLideres.innerHTML = tablasLideres.map(function ([tituloTabla, clave, minimoTabla]) {
-    const minimo = Math.max(minimoTabla, minutosLideres);
+    const minimo = Math.max(Math.round((minimoTabla * escala) / 10) * 10, minutosLideres);
     const est = estadisticas[clave];
     const top = base
       .filter(j => est.valor(j) != null && j.minutos >= minimo && (est.valor(j) > 0 || est.menor))
