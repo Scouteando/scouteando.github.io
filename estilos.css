@@ -1183,3 +1183,13 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .comp__jugador h3 { font-stretch: 100%; font-size: clamp(16px, 4.6vw, 24px); overflow-wrap: anywhere; }
 .buscar__rango { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 @media (max-width: 640px) { .buscar__edad { grid-column: 1 / -1; } }
+
+/* ===== Comparar: radar doble ===== */
+:root { --comp-a: #f2c230; --comp-b: #38bdf8; }
+.radar__forma--a { fill: var(--comp-a); stroke: var(--comp-a); }
+.radar__forma--b { fill: var(--comp-b); stroke: var(--comp-b); }
+.comp__radar { margin: 10px 0 6px; }
+.comp__radar .radar { max-width: 380px; margin: 0 auto; display: block; }
+.comp__leyenda { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; font-size: 13px; font-weight: 600; }
+.comp__punto { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-left: 8px; }
+.comp__punto--a { background: var(--comp-a); } .comp__punto--b { background: var(--comp-b); }

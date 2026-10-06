@@ -730,6 +730,27 @@ function dibujarRadar(datos) {
     ${anillos}${ejes}${forma}${puntos}${etiquetas}</svg>`;
 }
 
+
+// Radar con dos jugadores superpuestos (para Comparar): cada uno en su color
+function dibujarRadarDoble(ejes, pa, pb) {
+  const tam = 300, c = tam / 2, radio = 100;
+  const punto = (i, valor) => {
+    const angulo = (-90 + (360 * i) / ejes.length) * (Math.PI / 180);
+    return [c + Math.cos(angulo) * radio * (valor / 100), c + Math.sin(angulo) * radio * (valor / 100)];
+  };
+  const anillos = [25, 50, 75, 100].map(v =>
+    `<polygon class="radar__anillo" points="${ejes.map((_, i) => punto(i, v).join(",")).join(" ")}"/>`).join("");
+  const lineas = ejes.map((_, i) => { const [x, y] = punto(i, 100); return `<line class="radar__eje" x1="${c}" y1="${c}" x2="${x}" y2="${y}"/>`; }).join("");
+  const forma = (ps, clase) => `<polygon class="radar__forma ${clase}" points="${ps.map((p, i) => punto(i, Math.max(p ?? 0, 3)).join(",")).join(" ")}"/>`;
+  const etiquetas = ejes.map((e, i) => {
+    const [x, y] = punto(i, 128);
+    const ancla = Math.abs(x - c) < 10 ? "middle" : x > c ? "start" : "end";
+    return `<text class="radar__texto" x="${x}" y="${y}" text-anchor="${ancla}" dominant-baseline="middle">${e}</text>`;
+  }).join("");
+  return `<svg class="radar radar--doble" viewBox="-85 0 ${tam + 170} ${tam}" role="img" aria-label="Perfil de los dos jugadores superpuesto">
+    ${anillos}${lineas}${forma(pa, "radar__forma--a")}${forma(pb, "radar__forma--b")}${etiquetas}</svg>`;
+}
+
 let modoFicha = "partido"; // "partido" | "90"
 
 // ---------- Comparador de dos jugadores ----------
@@ -774,6 +795,29 @@ function abrirComparacion(a, b) {
   ficha.hidden = false;
 }
 
+
+// Radar superpuesto: lugar de cada uno en el ranking de SU liga y SU puesto (percentil), en las mismas estadísticas
+function radarComparacion(a, b) {
+  const arqueros = a.puesto === "ARQ" && b.puesto === "ARQ";
+  if (!arqueros && (a.puesto === "ARQ" || b.puesto === "ARQ")) return "";
+  const claves = arqueros ? ["atajadas", "pctAtajadas", "vallas", "golesRecibidos", "titularidad"]
+    : ["goles", "asistencias", "tirosAlArco", "centros", "faltasRecibidas", "recuperaciones", "intercepciones"];
+  const nombresCortos = { goles: "Goles", asistencias: "Asistencias", tirosAlArco: "Tiros al arco", centros: "Centros", faltasRecibidas: "Faltas recibidas",
+    recuperaciones: "Recuperaciones", intercepciones: "Intercepciones", atajadas: "Atajadas", pctAtajadas: "% atajadas", vallas: "Vallas invictas",
+    golesRecibidos: "Pocos goles recibidos", titularidad: "Titularidad" };
+  const conLiga = j => (j.liga ? j : { ...j, liga: ligaActual.id });
+  const stats = claves.map(k => statsBuscador.find(s => s[0] === k));
+  const pa = stats.map(s => percentilBuscar(conLiga(a), s));
+  const pb = stats.map(s => percentilBuscar(conLiga(b), s));
+  if (pa.every(p => p == null) || pb.every(p => p == null)) return "";
+  return `
+      <div class="comp__radar">
+        <div class="comp__leyenda"><span class="comp__punto comp__punto--a"></span>${a.nombre}<span class="comp__punto comp__punto--b"></span>${b.nombre}</div>
+        ${dibujarRadarDoble(claves.map(k => nombresCortos[k]), pa, pb)}
+        <p class="ficha__nota">Cuanto más afuera, mejor está en el ranking de su puesto en su liga (con 450' o más).</p>
+      </div>`;
+}
+
 function htmlComparacion(a, b) {
   const nombreLiga = x => (LIGAS.find(l => l.id === x.liga) || {}).nombre || "";
   const cabeza = x => `
@@ -801,6 +845,7 @@ function htmlComparacion(a, b) {
       <h3 class="ficha__subtitulo">Comparación · temporada ${ligaActual ? ligaActual.temporada : "2026"}</h3>
       <div class="comp__cabeza">${cabeza(a)}<span class="comp__vs">VS</span>${cabeza(b)}</div>
       <div class="comp__marcador"><span>${ganaA}</span> estadísticas mejores <span>${ganaB}</span></div>
+      ${radarComparacion(a, b)}
       <div class="comp__tabla">${filas}</div>
       <p class="ficha__nota">En verde, el mejor en cada estadística. Los promedios son por partido jugado.
       ${a.puesto !== b.puesto ? "Ojo: juegan en puestos distintos, la comparación es orientativa." : ""}
