@@ -19,7 +19,9 @@ async function bajarFaltantes(clave, liga) {
   const cm = v => (String(v || "").match(/\d+/) || [""])[0];
   async function pedir(url) {
     const r = await fetch("https://v3.football.api-sports.io/" + url, { headers: { "x-apisports-key": clave } });
-    const quedan = Number(r.headers.get("x-ratelimit-requests-remaining"));
+    // Si el navegador no deja leer el encabezado, no sabemos cuántas quedan: seguimos hasta que la API dé error
+    const h = r.headers.get("x-ratelimit-requests-remaining");
+    const quedan = h == null ? Infinity : Number(h);
     return { datos: await r.json(), quedan };
   }
 
