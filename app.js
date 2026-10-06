@@ -1854,7 +1854,7 @@ function mostrarIdeal() {
   vistaIdeal.innerHTML = f
     ? `<div class="cancha">${lineas}</div>
        <p class="ficha__nota">Los que más puntos sumaron en la última fecha: goles, asistencias, vallas invictas, atajadas, recuperaciones y minutos; las tarjetas restan. Tocá un jugador para ver su ficha.</p>`
-    : `<p class="vacio vacio--grande">El equipo de la fecha se arma después de cada actualización de datos (los lunes), comparando lo que sumó cada jugador en la última fecha. ¡Volvé el lunes!</p>`;
+    : `<p class="vacio vacio--grande">Todavía no hay una fecha completa cargada para esta liga. El equipo de la fecha aparece cuando se termina de jugar una fecha y se actualizan los datos.</p>`;
   titulo.textContent = "Equipo de la fecha";
   resumen.textContent = f ? `Datos del ${f.desde} al ${f.hasta} · ${ligaActual.nombre}` : ligaActual.nombre;
 }

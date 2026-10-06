@@ -251,21 +251,31 @@ const tablas = (leerCsv("tablas.csv") || []).map(function (t) {
 });
 
 // ---------- 4b. Lo que pasó en la última fecha (para el "Equipo de la fecha") ----------
-// Comparamos con el archivo generado la vez anterior: lo que cada jugador sumó desde entonces.
-// Si no cambió nada (ej. se volvió a generar sin datos nuevos), conservamos la fecha anterior.
+// Comparamos con la "base" (cómo estaban los jugadores al cerrar la última fecha completa):
+// lo que cada jugador sumó desde entonces es la fecha nueva.
+// Si sumaron pocos jugadores (partidos sueltos, fecha a medio jugar), NO se publica como fecha:
+// se conserva la anterior y la base no se mueve, así esos partidos entran en la próxima.
 let fecha = null;
 const hoy = new Date().toLocaleDateString("es-AR");
+const campos = ["partidos", "minutos", "goles", "asistencias", "amarillas", "rojas", "quites", "intercepciones",
+  "tirosAlArco", "faltasRecibidas", "centros", "atajadas", "vallasInvictas", "golesRecibidos"];
+const carpetaHist = path.join(__dirname, "historial");
+const archivoBase = path.join(carpetaHist, "base_" + liga + ".json");
+const instantanea = () => ({ fecha: hoy, jugadores: jugadores.map(j => ({ nombre: j.nombre, equipo: j.equipo, edad: j.edad, ...Object.fromEntries(campos.map(c => [c, j[c] || 0])) })) });
+let base = null, fechaPrevia = null;
 if (fs.existsSync(salida)) {
   const anterior = fs.readFileSync(salida, "utf-8");
   const caja = { window: {} };
   try { require("vm").runInNewContext(anterior, caja); } catch (e) { /* archivo viejo ilegible: se ignora */ }
-  const previos = (caja.window.DATOS_LIGAS || {})[liga] || [];
-  const fechaPrevia = (caja.window.DATOS_FECHA || {})[liga] || null;
-  const desde = (anterior.match(/generado el (\S+)/) || [])[1] || "?";
+  fechaPrevia = (caja.window.DATOS_FECHA || {})[liga] || null;
+  base = { fecha: (anterior.match(/generado el (\S+)/) || [])[1] || "?", jugadores: (caja.window.DATOS_LIGAS || {})[liga] || [] };
+}
+if (fs.existsSync(archivoBase)) base = JSON.parse(fs.readFileSync(archivoBase, "utf-8"));
+fs.mkdirSync(carpetaHist, { recursive: true });
+
+if (base) {
   const porClave = {};
-  for (const j of previos) porClave[j.nombre + "|" + j.equipo + "|" + j.edad] = j;
-  const campos = ["partidos", "minutos", "goles", "asistencias", "amarillas", "rojas", "quites", "intercepciones",
-    "tirosAlArco", "faltasRecibidas", "centros", "atajadas", "vallasInvictas", "golesRecibidos"];
+  for (const j of base.jugadores) porClave[j.nombre + "|" + j.equipo + "|" + j.edad] = j;
   const sumaron = [];
   for (const j of jugadores) {
     const antes = porClave[j.nombre + "|" + j.equipo + "|" + j.edad];
@@ -274,21 +284,27 @@ if (fs.existsSync(salida)) {
     for (const c of campos) d[c] = (j[c] || 0) - (antes[c] || 0);
     sumaron.push(d);
   }
-  fecha = sumaron.length ? { desde, hasta: hoy, jugadores: sumaron } : fechaPrevia;
-
-  // Historial: guardamos cada fecha nueva (para mostrar después la "forma reciente" de cada jugador)
-  if (sumaron.length) {
-    const archivoHist = path.join(__dirname, "historial", liga + ".json");
-    fs.mkdirSync(path.dirname(archivoHist), { recursive: true });
+  const cantEquipos = new Set(jugadores.map(j => j.equipo)).size;
+  const completa = sumaron.length >= cantEquipos * 7; // ~ 7 jugadores por equipo como mínimo
+  if (completa) {
+    fecha = { desde: base.fecha, hasta: hoy, jugadores: sumaron };
+    fs.writeFileSync(archivoBase, JSON.stringify(instantanea()));
+    // Historial: cada fecha completa (para la "forma reciente" de cada jugador)
+    const archivoHist = path.join(carpetaHist, liga + ".json");
     const hist = fs.existsSync(archivoHist) ? JSON.parse(fs.readFileSync(archivoHist, "utf-8")) : { campos, fechas: [] };
-    if (!hist.fechas.some(f => f.hasta === hoy)) {
-      const jugadoresFecha = {};
-      for (const d of sumaron) jugadoresFecha[d.nombre + "|" + d.edad] = campos.map(c => d[c]);
-      hist.fechas.push({ desde, hasta: hoy, jugadores: jugadoresFecha });
-      fs.writeFileSync(archivoHist, JSON.stringify(hist));
-      console.log(`Historial: ${hist.fechas.length} fecha(s) guardadas en ${path.relative(process.cwd(), archivoHist)}`);
-    }
+    const jugadoresFecha = {};
+    for (const d of sumaron) jugadoresFecha[d.nombre + "|" + d.edad] = campos.map(c => d[c]);
+    hist.fechas = hist.fechas.filter(f => f.hasta !== hoy);
+    hist.fechas.push({ desde: base.fecha, hasta: hoy, jugadores: jugadoresFecha });
+    fs.writeFileSync(archivoHist, JSON.stringify(hist));
+    console.log(`Fecha nueva: ${sumaron.length} jugadores sumaron minutos (historial: ${hist.fechas.length} fecha/s)`);
+  } else {
+    fecha = fechaPrevia;
+    if (!fs.existsSync(archivoBase)) fs.writeFileSync(archivoBase, JSON.stringify({ fecha: base.fecha, jugadores: base.jugadores.map(j => ({ nombre: j.nombre, equipo: j.equipo, edad: j.edad, ...Object.fromEntries(campos.map(c => [c, j[c] || 0])) })) }));
+    console.log(`Fecha incompleta: solo ${sumaron.length} jugadores sumaron minutos (mínimo ${cantEquipos * 7}). Se espera a que se complete.`);
   }
+} else {
+  fs.writeFileSync(archivoBase, JSON.stringify(instantanea()));
 }
 
 // ---------- 5. Escritura del archivo para la app ----------

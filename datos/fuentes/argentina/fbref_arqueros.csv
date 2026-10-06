@@ -1,66 +1,68 @@
 ﻿ranker;player;nationality;position;team;age;birth_year;gk_games;gk_games_starts;gk_minutes;minutes_90s;gk_goals_against;gk_goals_against_per90;gk_shots_on_target_against;gk_saves;gk_save_pct;gk_wins;gk_ties;gk_losses;gk_clean_sheets;gk_clean_sheets_pct;gk_pens_att;gk_pens_allowed;gk_pens_saved;gk_pens_missed;gk_pens_save_pct;matches
-1;Lucas Acosta;ARG;GK;Aldosivi;31-202;1995;7;7;630;7.0;12;1.71;32;20;62.5;2;1;4;2;28.6;2;2;0;0;0.0;Matches
-2;Alan Aguerre;ARG;GK;C. Córdoba–SdE;36-038;1990;24;24;2027;22.5;29;1.29;113;84;74.3;5;6;13;7;29.2;2;1;1;0;50.0;Matches
-3;Iván Arboleda;COL;GK;Sarmiento–J;30-162;1996;2;2;180;2.0;6;3.00;13;7;53.8;0;0;2;0;0.0;1;1;0;0;0.0;Matches
-4;Ignacio Arce;ARG;GK;Dep. Riestra;34-175;1992;26;26;2340;26.0;22;0.85;105;83;79.0;3;12;11;10;38.5;3;3;0;0;0.0;Matches
-5;Gabriel Arias;CHI;GK;Newell's;39-017;1987;7;7;612;6.8;13;1.91;33;20;60.6;0;2;5;0;0.0;1;1;0;0;0.0;Matches
-6;Franco Armani;ARG;GK;River Plate;39-349;1986;1;1;45;0.5;1;2.00;3;2;66.7;0;0;1;0;0.0;0;0;0;0;;Matches
-7;Thyago Ayala;ARG;GK;Sarmiento–J;25-023;2001;8;8;720;8.0;10;1.25;39;29;74.4;5;1;2;3;37.5;3;1;1;1;50.0;Matches
-8;Renzo Bacchia;URU;GK;Estudiantes–RC;27-250;1999;5;5;450;5.0;9;1.80;22;13;59.1;0;1;4;1;20.0;2;1;0;1;0.0;Matches
-9;Williams Barlasina;ARG;GK;Newell's;28-093;1998;5;4;378;4.2;9;2.14;26;17;65.4;1;1;2;1;25.0;1;1;0;0;0.0;Matches
-10;Santiago Beltrán;ARG;GK;River Plate;21-361;2004;26;25;2295;25.5;23;0.90;75;52;69.3;13;3;9;8;32.0;2;2;0;0;0.0;Matches
-11;Nicolás Bolcato;ARG;GK;Ind. Rivadavia;22-147;2004;24;23;2147;23.9;24;1.01;90;66;73.3;14;5;4;7;30.4;2;2;0;0;0.0;Matches
-12;Matías Borgogno;ARG;GK;Defensa;28-040;1998;10;10;900;10.0;11;1.10;45;34;75.6;5;3;2;2;20.0;1;1;0;0;0.0;Matches
-13;Matías Borgogno;ARG;GK;Platense;28-040;1998;16;16;1440;16.0;15;0.94;65;50;76.9;3;7;6;6;37.5;1;1;0;0;0.0;Matches
-14;Leandro Brey;ARG;GK;Boca Juniors;24-009;2002;6;5;459;5.1;2;0.39;11;9;81.8;5;0;0;4;80.0;0;0;0;0;;Matches
-15;Jorge Broun;ARG;GK;Rosario Central;40-127;1986;4;4;360;4.0;5;1.25;18;13;72.2;1;2;1;1;25.0;1;1;0;0;0.0;Matches
-16;Lucas Bruera;ARG;GK;Estudiantes–RC;28-346;1997;9;9;810;9.0;11;1.22;36;25;69.4;1;3;5;3;33.3;3;3;0;0;0.0;Matches
-17;Javier Burrai;ECU;GK;Sarmiento–J;35-356;1990;16;16;1440;16.0;20;1.25;88;68;77.3;6;1;9;5;31.3;1;1;0;0;0.0;Matches
-18;Máximo Cabrera;ARG;GK;Gimnasia–LP;20-034;2006;1;1;90;1.0;1;1.00;2;1;50.0;0;0;1;0;0.0;0;0;0;0;;Matches
-19;Facundo Cambeses;ARG;GK;Racing Club;29-174;1997;26;26;2340;26.0;31;1.19;95;63;67.4;7;8;11;7;26.9;4;0;4;0;100.0;Matches
-20;Thiago Cardozo;URU;GK;Belgrano;30-061;1996;25;25;2250;25.0;19;0.76;91;72;79.1;10;9;6;12;48.0;5;3;2;0;40.0;Matches
-21;Ignacio Chicco;ARG;GK;Aldosivi;30-092;1996;4;4;360;4.0;5;1.25;18;13;72.2;0;2;2;0;0.0;0;0;0;0;;Matches
-22;Brayan Cortés;CHI;GK;Arg Juniors;31-203;1995;26;26;2340;26.0;22;0.85;76;54;71.1;13;8;5;11;42.3;1;1;0;0;0.0;Matches
-23;Juan Cozzani;ARG;GK;Platense;27-356;1998;9;9;810;9.0;14;1.56;48;34;70.8;1;3;5;1;11.1;1;1;0;0;0.0;Matches
-24;Álvaro David Montero;COL;GK;Vélez Sarsfield;31-185;1995;16;16;1440;16.0;12;0.75;77;65;84.4;7;7;2;7;43.8;0;0;0;0;;Matches
-25;Álvaro David Montero;COL;GK;Boca Juniors;31-185;1995;9;9;810;9.0;10;1.11;36;26;72.2;3;5;1;3;33.3;1;1;0;0;0.0;Matches
-26;José Devecchi;ARG;GK;CA San Lorenzo;31-083;1995;9;8;748;8.3;7;0.84;32;25;78.1;2;3;3;3;37.5;0;0;0;0;;Matches
-27;Juan Espínola;PAR;GK;Barracas Central;31-332;1994;6;5;461;5.1;6;1.17;20;14;70.0;2;2;1;1;20.0;0;0;0;0;;Matches
-28;Cristopher Fiermarin;URU;GK;Defensa;28-272;1998;16;16;1440;16.0;21;1.31;61;40;65.6;4;7;5;5;31.3;3;2;1;0;33.3;Matches
-29;Hernán Galíndez;ECU;GK;Huracán;39-184;1987;25;25;2250;25.0;21;0.84;83;62;74.7;9;10;6;10;40.0;6;3;2;1;40.0;Matches
-30;Orlando Gill;PAR;GK;CA San Lorenzo;26-111;2000;18;18;1591;17.7;15;0.85;86;70;82.6;6;6;6;10;55.6;1;1;0;0;0.0;Matches
-31;Emmanuel Gómez;ARG;GK;Ind. Rivadavia;25-016;2001;2;2;180;2.0;3;1.50;7;4;57.1;0;1;1;0;0.0;0;0;0;0;;Matches
-32;Guido Herrera;ARG;GK;Talleres–C;34-213;1992;16;16;1440;16.0;13;0.81;59;46;78.0;7;5;4;6;37.5;1;1;0;0;0.0;Matches
-33;Fabricio Iacovich;ARG;GK;Estudiantes–LP;24-244;2002;9;8;765;8.5;6;0.71;28;22;78.6;4;1;3;3;37.5;2;1;1;0;50.0;Matches
-34;Marcos Ignacio Ledesma;ARG;GK;Instituto;30-015;1996;10;10;900;10.0;7;0.70;26;19;73.1;7;1;2;5;50.0;0;0;0;0;;Matches
-35;Luis Ingolotti;ARG;GK;Atlé Tucumán;26-259;2000;26;26;2340;26.0;26;1.00;81;55;67.9;6;9;11;11;42.3;4;3;1;0;25.0;Matches
-36;Nelson Insfrán;ARG;GK;Gimnasia–LP;31-129;1995;24;24;2097;23.3;29;1.24;95;66;69.5;13;4;7;7;29.2;1;1;0;0;0.0;Matches
-37;Julián Kadijevic;ARG;GK;Gimnasia–LP;22-246;2004;2;1;153;1.7;4;2.35;9;5;55.6;0;0;1;0;0.0;0;0;0;0;;Matches
-38;Agustín Lastra;ARG;GK;Estudiantes–RC;25-271;2001;12;12;1080;12.0;17;1.42;47;30;63.8;1;1;10;2;16.7;3;3;0;0;0.0;Matches
-39;Jeremías Ledesma;ARG;GK;Rosario Central;33-229;1993;20;20;1800;20.0;19;0.95;74;55;74.3;10;5;5;6;30.0;1;1;0;0;0.0;Matches
-40;Nahuel Losada;ARG;GK;Lanús;33-166;1993;24;24;2160;24.0;23;0.96;100;77;77.0;11;5;8;10;41.7;3;3;0;0;0.0;Matches
-41;Ramiro Macagno;ARG;GK;Ind. Rivadavia;29-196;1997;1;1;13;0.1;1;6.92;1;0;0.0;1;0;0;0;0.0;0;0;0;0;;Matches
-42;Matías Mansilla;ARG;GK;Unión;30-227;1996;26;26;2340;26.0;36;1.38;114;78;68.4;9;7;10;5;19.2;3;3;0;0;0.0;Matches
-43;Agustín Marchesín;ARG;GK;Boca Juniors;38-198;1988;12;12;1071;11.9;8;0.67;34;26;76.5;4;6;2;6;50.0;0;0;0;0;;Matches
-44;Tomás Marchiori;ARG;GK;Vélez Sarsfield;31-102;1995;10;10;900;10.0;9;0.90;46;36;80.4;5;5;0;3;30.0;1;0;1;0;100.0;Matches
-45;Diego Matías Rodríguez;ARG;GK;Banfield;37-097;1989;4;4;360;4.0;9;2.25;26;17;65.4;0;2;2;0;0.0;3;2;1;0;33.3;Matches
-46;Sebastián Meza;ARG;GK;Huracán;26-200;2000;1;1;90;1.0;0;0.00;1;1;100.0;0;1;0;1;100.0;0;0;0;0;;Matches
-47;Marcelo Miño;ARG;GK;Barracas Central;29-040;1997;21;21;1879;20.9;16;0.77;97;81;83.5;6;7;8;8;38.1;0;0;0;0;;Matches
-48;Lautaro Morales;ARG;GK;Tigre;26-288;1999;1;1;90;1.0;0;0.00;3;3;100.0;0;1;0;1;100.0;0;0;0;0;;Matches
-49;Fernando Muslera;URU;GK;Estudiantes–LP;40-106;1986;18;18;1575;17.5;12;0.69;54;41;77.8;8;4;6;9;50.0;2;1;1;0;50.0;Matches
-50;Franco Petroli;ARG;GK;Lanús;28-111;1998;2;2;180;2.0;1;0.50;8;7;87.5;0;2;0;1;50.0;0;0;0;0;;Matches
-51;Lautaro Petruchi;ARG;GK;Gimnasia–M;28-029;1998;2;2;180;2.0;2;1.00;8;6;75.0;0;2;0;0;0.0;0;0;0;0;;Matches
-52;Josue Reinatti;ARG;GK;Newell's;23-120;2003;15;15;1350;15.0;13;0.87;62;49;79.0;6;7;2;5;33.3;1;1;0;0;0.0;Matches
-53;Rodrigo Rey;ARG;GK;Independiente;35-206;1991;26;26;2340;26.0;28;1.08;89;60;68.5;11;8;7;8;30.8;5;3;1;1;25.0;Matches
-54;César Rigamonti;ARG;GK;Gimnasia–M;39-176;1987;24;24;2160;24.0;29;1.21;110;81;73.6;10;4;10;8;33.3;3;1;2;0;66.7;Matches
-55;Manuel Roffo;ARG;GK;Instituto;26-179;2000;16;16;1440;16.0;17;1.06;54;37;68.5;6;3;7;4;25.0;0;0;0;0;;Matches
-56;Facundo Sanguinetti;ARG;GK;Banfield;25-213;2001;20;20;1800;20.0;24;1.20;106;82;77.4;6;4;10;5;25.0;2;2;0;0;0.0;Matches
-57;Gino Santilli;ARG;GK;Banfield;24-339;2001;2;2;180;2.0;2;1.00;8;6;75.0;1;0;1;1;50.0;0;0;0;0;;Matches
-58;Tomás Sultani;ARG;GK;Tigre;28-100;1998;1;1;90;1.0;2;2.00;5;3;60.0;0;0;1;0;0.0;0;0;0;0;;Matches
-59;Nicolás Sumavil;ARG;GK;Platense;26-314;1999;1;1;90;1.0;1;1.00;6;5;83.3;1;0;0;0;0.0;1;1;0;0;0.0;Matches
-60;Ezequiel Unsain;ARG;GK;Talleres–C;31-205;1995;10;10;900;10.0;17;1.70;61;44;72.1;2;2;6;2;20.0;4;3;1;0;25.0;Matches
-61;Javier Vallejos;ARG;GK;C. Córdoba–SdE;23-270;2003;4;2;313;3.5;5;1.44;15;10;66.7;1;0;1;1;50.0;0;0;0;0;;Matches
-62;Manuel Vicentini;ARG;GK;Belgrano;36-164;1990;1;1;90;1.0;1;1.00;3;2;66.7;1;0;0;0;0.0;0;0;0;0;;Matches
-63;Axel Werner;ARG;GK;Aldosivi;30-214;1996;15;15;1350;15.0;18;1.20;59;41;69.5;0;7;8;4;26.7;3;2;1;0;33.3;Matches
-64;Axel Werner;ARG;GK;Rosario Central;30-214;1996;2;2;180;2.0;0;0.00;8;8;100.0;2;0;0;2;100.0;0;0;0;0;;Matches
-65;Felipe Zenobio;ARG;GK;Tigre;26-131;2000;24;24;2160;24.0;22;0.92;83;61;73.5;7;10;7;7;29.2;5;4;1;0;20.0;Matches
+1;Lucas Acosta;ARG;GK;Aldosivi;31-208;1995;8;8;720;8.0;13;1.62;38;25;65.8;2;1;5;2;25.0;2;2;0;0;0.0;Matches
+2;Alan Aguerre;ARG;GK;C. Córdoba–SdE;36-044;1990;25;25;2117;23.5;30;1.28;117;87;74.4;5;7;13;7;28.0;2;1;1;0;50.0;Matches
+3;Iván Arboleda;COL;GK;Sarmiento–J;30-168;1996;2;2;180;2.0;6;3.00;13;7;53.8;0;0;2;0;0.0;1;1;0;0;0.0;Matches
+4;Ignacio Arce;ARG;GK;Dep. Riestra;34-181;1992;27;27;2430;27.0;23;0.85;108;85;78.7;3;13;11;10;37.0;3;3;0;0;0.0;Matches
+5;Gabriel Arias;CHI;GK;Newell's;39-023;1987;7;7;612;6.8;13;1.91;33;20;60.6;0;2;5;0;0.0;1;1;0;0;0.0;Matches
+6;Franco Armani;ARG;GK;River Plate;39-355;1986;1;1;45;0.5;1;2.00;3;2;66.7;0;0;1;0;0.0;0;0;0;0;;Matches
+7;Thyago Ayala;ARG;GK;Sarmiento–J;25-029;2001;8;8;720;8.0;10;1.25;39;29;74.4;5;1;2;3;37.5;3;1;1;1;50.0;Matches
+8;Renzo Bacchia;URU;GK;Estudiantes–RC;27-256;1999;5;5;450;5.0;9;1.80;22;13;59.1;0;1;4;1;20.0;2;1;0;1;0.0;Matches
+9;Williams Barlasina;ARG;GK;Newell's;28-099;1998;5;4;378;4.2;9;2.14;26;17;65.4;1;1;2;1;25.0;1;1;0;0;0.0;Matches
+10;Santiago Beltrán;ARG;GK;River Plate;22-002;2004;26;25;2295;25.5;23;0.90;75;52;69.3;13;3;9;8;32.0;2;2;0;0;0.0;Matches
+11;Nicolás Bolcato;ARG;GK;Ind. Rivadavia;22-153;2004;25;24;2237;24.9;25;1.01;94;69;73.4;14;6;4;7;29.2;2;2;0;0;0.0;Matches
+12;Matías Borgogno;ARG;GK;Defensa;28-046;1998;11;11;990;11.0;11;1.00;50;39;78.0;6;3;2;3;27.3;1;1;0;0;0.0;Matches
+13;Matías Borgogno;ARG;GK;Platense;28-046;1998;16;16;1440;16.0;15;0.94;65;50;76.9;3;7;6;6;37.5;1;1;0;0;0.0;Matches
+14;Leandro Brey;ARG;GK;Boca Juniors;24-015;2002;7;6;549;6.1;2;0.33;12;10;83.3;6;0;0;5;83.3;0;0;0;0;;Matches
+15;Jorge Broun;ARG;GK;Rosario Central;40-133;1986;4;4;360;4.0;5;1.25;18;13;72.2;1;2;1;1;25.0;1;1;0;0;0.0;Matches
+16;Lucas Bruera;ARG;GK;Estudiantes–RC;28-352;1997;9;9;810;9.0;11;1.22;36;25;69.4;1;3;5;3;33.3;3;3;0;0;0.0;Matches
+17;Javier Burrai;ECU;GK;Sarmiento–J;35-362;1990;16;16;1440;16.0;20;1.25;88;68;77.3;6;1;9;5;31.3;1;1;0;0;0.0;Matches
+18;Máximo Cabrera;ARG;GK;Gimnasia–LP;20-040;2006;1;1;90;1.0;1;1.00;2;1;50.0;0;0;1;0;0.0;0;0;0;0;;Matches
+19;Facundo Cambeses;ARG;GK;Racing Club;29-180;1997;27;27;2430;27.0;32;1.19;97;64;67.0;8;8;11;7;25.9;4;0;4;0;100.0;Matches
+20;Thiago Cardozo;URU;GK;Belgrano;30-067;1996;25;25;2250;25.0;19;0.76;91;72;79.1;10;9;6;12;48.0;5;3;2;0;40.0;Matches
+21;Ignacio Chicco;ARG;GK;Aldosivi;30-098;1996;4;4;360;4.0;5;1.25;18;13;72.2;0;2;2;0;0.0;0;0;0;0;;Matches
+22;Brayan Cortés;CHI;GK;Arg Juniors;31-209;1995;26;26;2340;26.0;22;0.85;76;54;71.1;13;8;5;11;42.3;1;1;0;0;0.0;Matches
+23;Juan Cozzani;ARG;GK;Platense;27-362;1998;10;10;900;10.0;16;1.60;54;38;70.4;1;4;5;1;10.0;1;1;0;0;0.0;Matches
+24;Álvaro David Montero;COL;GK;Vélez Sarsfield;31-191;1995;16;16;1440;16.0;12;0.75;77;65;84.4;7;7;2;7;43.8;0;0;0;0;;Matches
+25;Álvaro David Montero;COL;GK;Boca Juniors;31-191;1995;9;9;810;9.0;10;1.11;36;26;72.2;3;5;1;3;33.3;1;1;0;0;0.0;Matches
+26;José Devecchi;ARG;GK;CA San Lorenzo;31-089;1995;10;9;838;9.3;10;1.07;36;26;72.2;2;3;4;3;33.3;0;0;0;0;;Matches
+27;Juan Espínola;PAR;GK;Barracas Central;31-338;1994;6;5;461;5.1;6;1.17;20;14;70.0;2;2;1;1;20.0;0;0;0;0;;Matches
+28;Cristopher Fiermarin;URU;GK;Defensa;28-278;1998;16;16;1440;16.0;21;1.31;61;40;65.6;4;7;5;5;31.3;3;2;1;0;33.3;Matches
+29;Hernán Galíndez;ECU;GK;Huracán;39-190;1987;25;25;2250;25.0;21;0.84;83;62;74.7;9;10;6;10;40.0;6;3;2;1;40.0;Matches
+30;Orlando Gill;PAR;GK;CA San Lorenzo;26-117;2000;18;18;1591;17.7;15;0.85;86;70;82.6;6;6;6;10;55.6;1;1;0;0;0.0;Matches
+31;Emmanuel Gómez;ARG;GK;Ind. Rivadavia;25-022;2001;2;2;180;2.0;3;1.50;7;4;57.1;0;1;1;0;0.0;0;0;0;0;;Matches
+32;Guido Herrera;ARG;GK;Talleres–C;34-219;1992;16;16;1440;16.0;13;0.81;59;46;78.0;7;5;4;6;37.5;1;1;0;0;0.0;Matches
+33;Lautaro Herrera;;GK;Estudiantes–RC;;;1;1;90;1.0;2;2.00;4;2;50.0;0;0;1;0;0.0;0;0;0;0;;Matches
+34;Fabricio Iacovich;ARG;GK;Estudiantes–LP;24-250;2002;9;8;765;8.5;6;0.71;28;22;78.6;4;1;3;3;37.5;2;1;1;0;50.0;Matches
+35;Marcos Ignacio Ledesma;ARG;GK;Instituto;30-021;1996;11;11;990;11.0;8;0.73;28;20;71.4;8;1;2;5;45.5;0;0;0;0;;Matches
+36;Luis Ingolotti;ARG;GK;Atlé Tucumán;26-265;2000;27;27;2430;27.0;29;1.07;86;57;66.3;6;9;12;11;40.7;4;3;1;0;25.0;Matches
+37;Nelson Insfrán;ARG;GK;Gimnasia–LP;31-135;1995;25;25;2187;24.3;30;1.23;101;71;70.3;13;5;7;7;28.0;1;1;0;0;0.0;Matches
+38;Julián Kadijevic;ARG;GK;Gimnasia–LP;22-252;2004;2;1;153;1.7;4;2.35;9;5;55.6;0;0;1;0;0.0;0;0;0;0;;Matches
+39;Agustín Lastra;ARG;GK;Estudiantes–RC;25-277;2001;12;12;1080;12.0;17;1.42;47;30;63.8;1;1;10;2;16.7;3;3;0;0;0.0;Matches
+40;Jeremías Ledesma;ARG;GK;Rosario Central;33-235;1993;21;21;1890;21.0;20;0.95;79;59;74.7;10;6;5;6;28.6;1;1;0;0;0.0;Matches
+41;Nahuel Losada;ARG;GK;Lanús;33-172;1993;25;25;2250;25.0;23;0.92;103;80;77.7;11;6;8;11;44.0;3;3;0;0;0.0;Matches
+42;Ramiro Macagno;ARG;GK;Ind. Rivadavia;29-202;1997;1;1;13;0.1;1;6.92;1;0;0.0;1;0;0;0;0.0;0;0;0;0;;Matches
+43;Matías Mansilla;ARG;GK;Unión;30-233;1996;27;27;2430;27.0;39;1.44;121;82;67.8;9;7;11;5;18.5;3;3;0;0;0.0;Matches
+44;Agustín Marchesín;ARG;GK;Boca Juniors;38-204;1988;12;12;1071;11.9;8;0.67;34;26;76.5;4;6;2;6;50.0;0;0;0;0;;Matches
+45;Tomás Marchiori;ARG;GK;Vélez Sarsfield;31-108;1995;11;11;990;11.0;11;1.00;50;38;78.0;5;6;0;3;27.3;2;0;1;1;100.0;Matches
+46;Diego Matías Rodríguez;ARG;GK;Banfield;37-103;1989;5;5;450;5.0;10;2.00;28;18;64.3;0;3;2;0;0.0;3;2;1;0;33.3;Matches
+47;Sebastián Meza;ARG;GK;Huracán;26-206;2000;2;2;180;2.0;0;0.00;5;5;100.0;1;1;0;2;100.0;0;0;0;0;;Matches
+48;Marcelo Miño;ARG;GK;Barracas Central;29-046;1997;22;22;1969;21.9;18;0.82;105;87;82.9;7;7;8;8;36.4;0;0;0;0;;Matches
+49;Lautaro Morales;ARG;GK;Tigre;26-294;1999;1;1;90;1.0;0;0.00;3;3;100.0;0;1;0;1;100.0;0;0;0;0;;Matches
+50;Fernando Muslera;URU;GK;Estudiantes–LP;40-112;1986;19;19;1665;18.5;12;0.65;55;42;78.2;9;4;6;10;52.6;2;1;1;0;50.0;Matches
+51;Franco Petroli;ARG;GK;Lanús;28-117;1998;2;2;180;2.0;1;0.50;8;7;87.5;0;2;0;1;50.0;0;0;0;0;;Matches
+52;Lautaro Petruchi;ARG;GK;Gimnasia–M;28-035;1998;2;2;180;2.0;2;1.00;8;6;75.0;0;2;0;0;0.0;0;0;0;0;;Matches
+53;Josue Reinatti;ARG;GK;Newell's;23-126;2003;16;16;1440;16.0;13;0.81;65;52;80.0;6;8;2;6;37.5;1;1;0;0;0.0;Matches
+54;Rodrigo Rey;ARG;GK;Independiente;35-212;1991;27;27;2430;27.0;32;1.19;95;62;66.3;11;8;8;8;29.6;5;3;1;1;25.0;Matches
+55;César Rigamonti;ARG;GK;Gimnasia–M;39-182;1987;25;25;2250;25.0;32;1.28;115;83;72.2;10;4;11;8;32.0;4;2;2;0;50.0;Matches
+56;Manuel Roffo;ARG;GK;Instituto;26-185;2000;16;16;1440;16.0;17;1.06;54;37;68.5;6;3;7;4;25.0;0;0;0;0;;Matches
+57;Facundo Sanguinetti;ARG;GK;Banfield;25-219;2001;20;20;1800;20.0;24;1.20;106;82;77.4;6;4;10;5;25.0;2;2;0;0;0.0;Matches
+58;Gino Santilli;ARG;GK;Banfield;24-345;2001;2;2;180;2.0;2;1.00;8;6;75.0;1;0;1;1;50.0;0;0;0;0;;Matches
+59;Gonzalo Siri Payer;ARG;GK;Arg Juniors;23-040;2003;1;1;90;1.0;1;1.00;3;2;66.7;1;0;0;0;0.0;1;0;1;0;100.0;Matches
+60;Tomás Sultani;ARG;GK;Tigre;28-106;1998;1;1;90;1.0;2;2.00;5;3;60.0;0;0;1;0;0.0;0;0;0;0;;Matches
+61;Nicolás Sumavil;ARG;GK;Platense;26-320;1999;1;1;90;1.0;1;1.00;6;5;83.3;1;0;0;0;0.0;1;1;0;0;0.0;Matches
+62;Ezequiel Unsain;ARG;GK;Talleres–C;31-211;1995;11;11;990;11.0;18;1.64;63;45;71.4;2;2;7;2;18.2;4;3;1;0;25.0;Matches
+63;Javier Vallejos;ARG;GK;C. Córdoba–SdE;23-276;2003;4;2;313;3.5;5;1.44;15;10;66.7;1;0;1;1;50.0;0;0;0;0;;Matches
+64;Manuel Vicentini;ARG;GK;Belgrano;36-170;1990;2;2;180;2.0;1;0.50;9;8;88.9;2;0;0;1;50.0;0;0;0;0;;Matches
+65;Axel Werner;ARG;GK;Aldosivi;30-220;1996;15;15;1350;15.0;18;1.20;59;41;69.5;0;7;8;4;26.7;3;2;1;0;33.3;Matches
+66;Axel Werner;ARG;GK;Rosario Central;30-220;1996;2;2;180;2.0;0;0.00;8;8;100.0;2;0;0;2;100.0;0;0;0;0;;Matches
+67;Felipe Zenobio;ARG;GK;Tigre;26-137;2000;25;25;2250;25.0;24;0.96;88;64;72.7;7;10;8;7;28.0;5;4;1;0;20.0;Matches
