@@ -12,5 +12,6 @@ const LIGAS = [
   { id: "uruguay",   nombre: "Liga AUF",            pais: "Uruguay",  bandera: "uy", temporada: "2026", disponible: false },
   { id: "colombia",  nombre: "Liga BetPlay",        pais: "Colombia", bandera: "co", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Finalización, hasta la fecha 13" },
   { id: "chile",     nombre: "Liga de Primera",     pais: "Chile",    bandera: "cl", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Hasta la fecha 23" },
-  { id: "mexico",    nombre: "Liga MX",             pais: "México",   bandera: "mx", temporada: "2026", disponible: false }
+  { id: "mexico",    nombre: "Liga MX",             pais: "México",   bandera: "mx", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Apertura, hasta la fecha 10" },
+  { id: "mls",       nombre: "MLS",                 pais: "Estados Unidos", bandera: "us", temporada: "2026", disponible: true, actualizado: "06/10/2026", hasta: "Temporada regular, hasta la fecha 28" }
 ];

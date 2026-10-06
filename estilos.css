@@ -1193,3 +1193,6 @@ body { font-size: 15px; -webkit-font-smoothing: antialiased; }
 .comp__leyenda { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 10px; font-size: 13px; font-weight: 600; }
 .comp__punto { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-left: 8px; }
 .comp__punto--a { background: var(--comp-a); } .comp__punto--b { background: var(--comp-b); }
+.zona--liguilla, .zona--playoffs { --zona: #f2c230; }
+.zona--playin, .zona--wildcard { --zona: #60a5fa; }
+.equipo__escudo--letras { display: grid; place-items: center; border-radius: 50%; background: #1b2740; color: var(--texto-suave); font-family: var(--fuente-titulo); font-weight: 800; font-size: 18px; }

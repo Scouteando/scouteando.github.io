@@ -1,0 +1,16 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;attendance_per_g;top_team_scorers;top_keeper;notes
+1;Nashville SC;27;18;6;3;55;21;+34;60;2.22;D L D W W;25723;Sam Surridge - 16;Brian Schwake;
+2;NE Revolution;27;14;4;9;45;36;+9;46;1.70;L W W W L;21443;Carles Gil - 12;Matt Turner;
+3;Inter Miami;27;12;10;5;64;50;+14;46;1.70;D D D D L;26028;Lionel Messi - 21;Dayne St. Clair;
+4;Charlotte;27;12;7;8;47;38;+9;43;1.59;D W D W L;27904;Pep Biel - 12;Kristijan Kahlina;
+5;Chicago Fire;26;12;6;8;46;38;+8;42;1.62;D D L L W;25759;Hugo Cuypers - 13;Chris Brady;
+6;Philadelphia;27;11;6;10;54;44;+10;39;1.44;W W W W W;18353;Milan Iloski - 16;Andre Blake;
+7;Orlando City;27;10;4;13;48;64;-16;34;1.26;W W W L L;19831;Martín Ojeda - 13;Maxime Crépeau;
+8;RB New York;27;9;6;12;34;51;-17;33;1.22;D L W W L;18890;Julian Hall - 10;Ethan Horvath;
+9;NYCFC;27;8;9;10;41;36;+5;33;1.22;D L W L D;22503;Nicolás Fernández - 15;Matt Freese;
+10;FC Cincinnati;26;8;9;9;55;64;-9;33;1.27;L L D D L;25363;Kévin Denkey - 14;Roman Celentano;
+11;D.C. United;26;6;12;8;34;42;-8;30;1.15;D W D L D;20120;Tai Baribo - 14;Sean Johnson;
+12;Columbus Crew;27;8;5;14;39;43;-4;29;1.07;W L L W W;19366;Diego Rossi - 6;Patrick Schulte;
+13;Toronto FC;27;6;11;10;39;51;-12;29;1.07;D W L L L;19923;Dániel Sallói, Josh Sargent - 7;Luka Gavran;
+14;Atlanta Utd;27;7;6;14;32;45;-13;27;1.00;D L D W D;37461;Aleksei Miranchuk - 6;Lucas Hoyos;
+15;CF Montréal;27;6;6;15;34;54;-20;24;0.89;L L L L W;15072;Prince Owusu - 15;Thomas Gillier;

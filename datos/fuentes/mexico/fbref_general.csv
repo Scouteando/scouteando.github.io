@@ -1,0 +1,452 @@
+﻿ranker;player;nationality;position;team;age;birth_year;games;games_starts;minutes;minutes_90s;goals;assists;goals_assists;goals_pens;pens_made;pens_att;cards_yellow;cards_red;goals_per90;assists_per90;goals_assists_per90;goals_pens_per90;goals_assists_pens_per90;matches
+1;Lucas Abascia;ARG;DF;Querétaro;30-300;1995;9;9;809;9.0;0;0;0;0;0;0;5;0;0.00;0.00;0.00;0.00;0.00;Matches
+2;José Abella;MEX;DF;Santos Laguna;32-238;1994;1;1;59;0.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+3;Diego Abreu;URU;FW;Tijuana;23-040;2003;8;4;301;3.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+4;Carlos Acevedo;MEX;GK;Santos Laguna;30-170;1996;10;10;900;10.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+5;Alonso Aceves;MEX;DF;Monterrey;25-192;2001;7;5;383;4.3;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+6;Sebastián Aceves;MEX;DF;Toluca;20-290;2005;2;1;91;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+7;Gilberto Adame;MEX;MF;Atlante;21-339;2004;1;0;1;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+8;Eduardo Águila;MEX;DF;Atlético San Luis;24-142;2002;10;10;900;10.0;1;0;1;1;0;0;1;0;0.10;0.00;0.10;0.10;0.10;Matches
+9;Daniel Aguirre;USA;DF;Guadalajara;27-096;1999;7;7;561;6.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+10;Eduardo Aguirre;MEX;FW;Santos Laguna;28-064;1998;10;4;388;4.3;1;0;1;1;0;0;0;0;0.23;0.00;0.23;0.23;0.23;Matches
+11;Érick Aguirre;MEX;DF;Monterrey;29-225;1997;2;1;81;0.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+12;Gaddi Aguirre;MEX;DF;Atlas;30-189;1996;5;3;337;3.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+13;Rodrigo Aguirre;URU;FW;UANL;32-005;1994;8;8;674;7.5;3;1;4;3;0;0;0;1;0.40;0.13;0.53;0.40;0.53;Matches
+14;Jorge Agustín Rodríguez;ARG;MF,DF;Monterrey;31-021;1995;7;4;384;4.3;1;0;1;1;0;0;0;0;0.23;0.00;0.23;0.23;0.23;Matches
+15;Alex Alcala;;MF;Querétaro;;;6;2;186;2.1;0;1;1;0;0;0;0;0;0.00;0.48;0.48;0.00;0.48;Matches
+16;Adrián Alcaraz;PAR;FW;Pachuca;27-008;1999;9;0;173;1.9;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+17;Daniel Alexis Parra;MEX;DF;Querétaro;27-078;1999;9;9;809;9.0;0;1;1;0;0;0;4;0;0.00;0.11;0.11;0.00;0.11;Matches
+18;Cristóbal Alfaro;MEX;DF;Atlante;19-136;2007;5;3;236;2.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+19;Guillermo Allison;MEX;GK;Querétaro;36-011;1990;9;9;810;9.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+20;Facundo Almada;ARG;DF;Puebla;28-088;1998;10;10;900;10.0;1;0;1;1;0;0;0;0;0.10;0.00;0.10;0.10;0.10;Matches
+21;Carlos Alonso Vargas;MEX;MF,DF;Necaxa;27-234;1999;7;7;383;4.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+22;Alfonso Alvarado;MEX;FW,MF;León;26-205;2000;8;3;328;3.6;3;1;4;2;1;1;1;0;0.82;0.27;1.10;0.55;0.82;Matches
+23;Roberto Alvarado;MEX;MF,FW;Guadalajara;28-029;1998;9;9;810;9.0;4;1;5;4;0;0;1;0;0.44;0.11;0.56;0.44;0.56;Matches
+24;Carlos Álvarez;ESP;MF;América;23-061;2003;2;1;79;0.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+25;Efrain Alvarez;MEX;MF;Guadalajara;24-109;2002;9;2;315;3.5;0;2;2;0;0;0;1;0;0.00;0.57;0.57;0.00;0.57;Matches
+26;Gael Álvarez;MEX;MF;Pachuca;20-211;2006;4;0;81;0.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+27;Kevin Álvarez;MEX;DF;América;27-264;1999;6;4;386;4.3;0;3;3;0;0;0;2;0;0.00;0.70;0.70;0.00;0.70;Matches
+28;Fidel Ambríz;MEX;MF;Monterrey;23-199;2003;7;3;308;3.4;0;1;1;0;0;0;0;0;0.00;0.29;0.29;0.00;0.29;Matches
+29;Esteban Andrada;ARG;GK;Monterrey;35-253;1991;3;3;270;3.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+30;Christopher Andrade;MEX;GK;Necaxa;25-096;2001;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+31;Álvaro Angulo;COL;DF;UNAM;29-125;1997;4;4;305;3.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+32;Jesús Angulo;MEX;MF;Toluca;29-228;1997;9;7;519;5.8;1;1;2;1;0;0;0;0;0.17;0.17;0.35;0.17;0.35;Matches
+33;José Antonio Rodríguez;MEX;GK;Tijuana;34-094;1992;9;9;810;9.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+34;Uriel Antuna;MEX;MF,DF;UNAM;29-046;1997;9;9;719;8.0;0;1;1;0;0;0;1;0;0.00;0.13;0.13;0.00;0.13;Matches
+35;Javier Aquino;MEX;DF;FC Juárez;36-237;1990;9;7;532;5.9;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+36;César Araujo;URU;MF;UANL;25-187;2001;7;4;441;4.9;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+37;Fernando Arce Jr.;USA;MF;Toluca;29-313;1996;5;2;177;2.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+38;Ramiro Árciga;MEX;MF,DF;Tijuana;22-037;2004;9;8;614;6.8;1;0;1;1;0;0;2;0;0.15;0.00;0.15;0.15;0.15;Matches
+39;Daniel Arcila;COL;MF,FW;León;24-143;2002;9;8;654;7.3;4;0;4;2;2;2;2;0;0.55;0.00;0.55;0.28;0.28;Matches
+40;Diego Arriaga;MEX;MF;América;22-159;2004;4;2;168;1.9;1;0;1;1;0;0;0;0;0.54;0.00;0.54;0.54;0.54;Matches
+41;Andrés Arroyo;COL;MF;Pachuca;24-259;2002;2;0;52;0.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+42;Gerardo Arteaga;MEX;DF;Monterrey;28-029;1998;7;6;525;5.8;0;0;0;0;0;0;0;1;0.00;0.00;0.00;0.00;0.00;Matches
+43;Víctor Arteaga;MEX;MF;UNAM;22-222;2004;10;9;768;8.5;1;0;1;1;0;0;0;0;0.12;0.00;0.12;0.12;0.12;Matches
+44;Ali Ávila;MEX;FW;Querétaro;23-013;2003;9;9;809;9.0;4;0;4;4;0;1;3;0;0.44;0.00;0.44;0.44;0.44;Matches
+45;Ettson Ayon;MEX;FW;FC Juárez;25-194;2001;1;0;29;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+46;Angel Azuaje;VEN;DF;UNAM;22-011;2004;3;2;245;2.7;1;0;1;1;0;0;1;0;0.37;0.00;0.37;0.37;0.37;Matches
+47;Carlos Baltazar;MEX;MF;Puebla;29-224;1997;9;7;566;6.3;1;1;2;1;0;0;1;0;0.16;0.16;0.32;0.16;0.32;Matches
+48;Robson Bambu;BRA;DF;Atlético San Luis;28-328;1997;6;6;496;5.5;0;0;0;0;0;0;4;1;0.00;0.00;0.00;0.00;0.00;Matches
+49;Diego Barbosa;MEX;DF,MF;Toluca;30-011;1996;7;7;489;5.4;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+50;Sergio Barreto;ARG;DF;Pachuca;27-169;1999;10;10;900;10.0;0;1;1;0;0;0;4;0;0.00;0.10;0.10;0.00;0.10;Matches
+51;Alán Bautista;MEX;MF;Pachuca;24-117;2002;9;6;422;4.7;1;0;1;1;0;0;0;0;0.21;0.00;0.21;0.21;0.21;Matches
+52;Paul Bellón;MEX;DF;León;29-124;1997;5;2;217;2.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+53;Fernando Beltrán;MEX;MF;León;28-151;1998;10;6;444;4.9;0;1;1;0;0;0;1;0;0.00;0.20;0.20;0.00;0.20;Matches
+54;Iker Benito;ESP;MF;Querétaro;24-057;2002;5;1;182;2.0;1;1;2;1;0;0;1;0;0.49;0.49;0.99;0.49;0.99;Matches
+55;Pablo Bennevendo Peña;MEX;DF;UNAM;26-276;2000;6;4;322;3.6;0;0;0;0;0;0;0;1;0.00;0.00;0.00;0.00;0.00;Matches
+56;Jorge Berlanga;MEX;DF;Pachuca;23-080;2003;2;1;143;1.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+57;Christian Bermúdez;MEX;FW,MF;Atlante;39-163;1987;2;0;31;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+58;Unai Bilbao;ESP;DF;Tijuana;32-244;1994;3;2;144;1.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+59;Cristian Borja;COL;DF,MF;América;33-230;1993;7;5;515;5.7;1;0;1;1;0;0;2;0;0.17;0.00;0.17;0.17;0.17;Matches
+60;Miguel Borja;COL;FW;América;33-253;1993;3;1;112;1.2;4;0;4;4;0;0;0;0;3.21;0.00;3.21;3.21;3.21;Matches
+61;Frank Boya;CMR;MF;Tijuana;30-097;1996;4;1;137;1.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+62;Antonio Briseño;MEX;DF;Toluca;32-243;1994;2;0;11;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+63;Juan Brunetta;ARG;MF,FW;UANL;29-147;1997;10;10;893;9.9;4;4;8;2;2;3;0;0;0.40;0.40;0.81;0.20;0.60;Matches
+64;Ezequiel Bullaude;ARG;MF,FW;Santos Laguna;25-345;2000;10;10;843;9.4;3;1;4;3;0;0;0;0;0.32;0.11;0.43;0.32;0.43;Matches
+65;Sebastián Cáceres;URU;DF;América;27-049;1999;2;2;180;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+66;Johan Caicedo;COL;MF;Atlético San Luis;22-207;2004;6;3;283;3.1;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+67;Cristian Calderón;MEX;DF;UNAM;29-135;1997;5;2;118;1.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+68;Juan Calero;COL;FW;Cruz Azul;27-335;1998;1;0;1;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+69;Luis Calzadilla;MEX;MF,DF;Atlante;26-265;2000;9;9;719;8.0;2;1;3;2;0;0;3;1;0.25;0.13;0.38;0.25;0.38;Matches
+70;Hugo Camberos;MEX;MF;Guadalajara;20-258;2006;7;6;408;4.5;0;1;1;0;0;0;1;0;0.00;0.22;0.22;0.00;0.22;Matches
+71;Diber Cambindo;COL;FW;León;30-231;1996;9;7;562;6.2;3;1;4;3;0;0;0;1;0.48;0.16;0.64;0.48;0.64;Matches
+72;Lucas Camilo;BRA;MF;Puebla;20-134;2006;3;0;29;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+73;Diego Campillo;MEX;DF;Guadalajara;24-352;2001;9;8;731;8.1;1;1;2;1;0;0;1;0;0.12;0.12;0.25;0.12;0.25;Matches
+74;Omar Campos;MEX;DF;Cruz Azul;24-078;2002;10;9;754;8.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+75;Manuel Capasso;ARG;DF;Atlas;30-170;1996;9;9;721;8.0;1;0;1;1;0;0;4;1;0.12;0.00;0.12;0.12;0.12;Matches
+76;Alejandro Cárdenas;MEX;FW;América;20-070;2006;5;1;131;1.5;1;0;1;1;0;0;0;0;0.69;0.00;0.69;0.69;0.69;Matches
+77;Luis Cárdenas;MEX;GK;Monterrey;33-021;1993;6;6;540;6.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+78;Carlo;ESP;MF;Querétaro;25-236;2001;9;9;751;8.3;1;0;1;1;0;0;1;0;0.12;0.00;0.12;0.12;0.12;Matches
+79;Jan Carmona;MEX;MF;FC Juárez;22-168;2004;1;0;29;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+80;Julián Carranza;ARG;FW,MF;Necaxa;26-137;2000;9;9;764;8.5;6;2;8;4;2;3;0;1;0.71;0.24;0.94;0.47;0.71;Matches
+81;Kléber Carranza;MEX;DF;UNAM;22-253;2004;1;0;31;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+82;Adalberto Carrasquilla;PAN;MF;UNAM;27-312;1998;7;3;316;3.5;0;1;1;0;0;0;1;1;0.00;0.28;0.28;0.00;0.28;Matches
+83;Nico Carrera;USA;DF;Atlante;24-153;2002;9;7;652;7.2;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+84;Carlos Carrillo;MEX;FW;Toluca;20-012;2006;1;0;15;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+85;Jordan Carrillo;MEX;MF;Guadalajara;24-310;2001;7;3;280;3.1;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+86;Guilherme Carvalho;BRA;MF;FC Juárez;27-017;1999;8;4;425;4.7;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+87;Facundo Cáseres;ARG;MF;Santos Laguna;25-131;2001;3;3;254;2.8;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+88;Emiliano Castañeda;MEX;FW;Cruz Azul;18-084;2008;1;0;5;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+89;Kevin Castañeda;MEX;MF;Guadalajara;26-343;1999;7;2;191;2.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+90;José Castillo Pérez;MEX;DF;Guadalajara;24-308;2001;2;2;163;1.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+91;Ariel Castro;MEX;MF;Cruz Azul;21-272;2005;1;0;12;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+92;Nicolás Castro;ARG;MF;Toluca;25-339;2000;8;5;541;6.0;0;2;2;0;0;0;2;0;0.00;0.33;0.33;0.00;0.33;Matches
+93;Juan Cázares;MEX;MF;Querétaro;21-082;2005;1;1;58;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+94;Edwin Cerrillo;USA;MF;América;26-003;2000;4;2;152;1.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+95;Alan Cervantes;MEX;MF;América;28-262;1998;6;6;498;5.5;0;0;0;0;0;0;3;1;0.00;0.00;0.00;0.00;0.00;Matches
+96;Jairón Charcopa;ECU;FW;Atlante;22-252;2004;3;0;37;0.4;0;1;1;0;0;0;0;0;0.00;2.43;2.43;0.00;2.43;Matches
+97;Ricardo Chávez Soto;MEX;DF;Monterrey;31-321;1994;8;7;597;6.6;0;1;1;0;0;0;2;0;0.00;0.15;0.15;0.00;0.15;Matches
+98;Walter Clar;PAR;DF,MF;Atlante;32-009;1994;7;4;364;4.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+99;Bryan Colula;MEX;DF;León;30-183;1996;6;2;237;2.6;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+100;Sebastián Córdova;MEX;MF;UNAM;29-116;1997;3;2;177;2.0;1;0;1;1;0;0;0;0;0.51;0.00;0.51;0.51;0.51;Matches
+101;Jesús Corona;MEX;MF;Monterrey;33-273;1993;8;7;485;5.4;1;2;3;1;0;0;1;0;0.19;0.37;0.56;0.19;0.56;Matches
+102;Mateo Coronel;ARG;MF;Querétaro;27-347;1998;8;7;633;7.0;3;1;4;3;0;0;0;0;0.43;0.14;0.57;0.43;0.57;Matches
+103;Rogelio Cortéz Pineda;MEX;FW;Necaxa;22-091;2004;3;0;41;0.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+104;Jordi Cortizo;MEX;MF;León;30-098;1996;10;8;638;7.1;2;0;2;2;0;0;0;0;0.28;0.00;0.28;0.28;0.28;Matches
+105;Rodolfo Cota;MEX;GK;América;39-095;1987;7;7;630;7.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+106;Aldo Cruz;MEX;DF;Atlético San Luis;29-012;1997;8;4;488;5.4;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+107;Mauricio Cuevas;USA;DF,MF;Santos Laguna;23-238;2003;10;10;893;9.9;0;2;2;0;0;0;2;0;0.00;0.20;0.20;0.00;0.20;Matches
+108;Hugo Cuypers;BEL;FW;Monterrey;29-241;1997;8;6;567;6.3;3;1;4;3;0;0;0;0;0.48;0.16;0.63;0.48;0.63;Matches
+109;Jesús David Murillo;COL;DF;FC Juárez;32-230;1994;10;10;836;9.3;0;0;0;0;0;0;4;0;0.00;0.00;0.00;0.00;0.00;Matches
+110;Aldo De Nigris;MEX;FW;Monterrey;18-177;2008;1;0;28;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+111;Everardo Del Villar;MEX;DF;Toluca;21-197;2005;8;7;585;6.5;1;1;2;1;0;0;0;1;0.15;0.15;0.31;0.15;0.31;Matches
+112;Lucas Di Yorio;ARG;FW;Santos Laguna;29-318;1996;3;2;151;1.7;1;0;1;1;0;0;0;0;0.60;0.00;0.60;0.60;0.60;Matches
+113;Ismael Díaz;PAN;MF,FW;León;29-147;1997;7;5;370;4.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+114;Josué Díaz;MEX;DF;Cruz Azul;22-020;2004;1;0;5;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+115;Ronaldo Dimas;MEX;GK;Toluca;24-192;2002;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+116;Willer Ditta;COL;DF;Cruz Azul;28-256;1998;9;8;753;8.4;1;0;1;1;0;0;3;0;0.12;0.00;0.12;0.12;0.12;Matches
+117;Alexei Dominguez;MEX;MF;Pachuca;21-276;2005;3;0;63;0.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+118;Juan Domínguez;MEX;MF;León;27-341;1998;5;2;238;2.6;1;0;1;1;0;0;1;0;0.38;0.00;0.38;0.38;0.38;Matches
+119;Rodrigo Dourado;BRA;MF;FC Juárez;32-111;1994;6;5;384;4.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+120;Anderson Duarte;URU;MF,DF;Atlético San Luis;22-197;2004;9;6;464;5.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+121;Bayron Duarte;COL;DF;Querétaro;23-225;2003;9;9;660;7.3;0;1;1;0;0;0;5;0;0.00;0.14;0.14;0.00;0.14;Matches
+122;Rubén Duarte;ESP;DF;UNAM;30-353;1995;8;8;720;8.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+123;Erik Duenas;USA;MF;Querétaro;21-353;2004;4;0;58;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+124;Duk;CPV;MF,FW;Atlas;26-232;2000;8;7;521;5.8;2;2;4;2;0;0;0;1;0.35;0.35;0.69;0.35;0.69;Matches
+125;Emmanuel Echeverría;MEX;DF;Santos Laguna;23-002;2003;9;5;470;5.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+126;Rodrigo Echeverría;CHI;MF;León;31-172;1995;8;7;592;6.6;0;0;0;0;0;0;2;1;0.00;0.00;0.00;0.00;0.00;Matches
+127;Armando Escobar;MEX;DF;Atlante;33-040;1993;8;3;295;3.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+128;Matias Espíndola;ARG;MF;Necaxa;22-314;2003;8;6;446;5.0;1;0;1;1;0;0;0;0;0.20;0.00;0.20;0.20;0.20;Matches
+129;Dagoberto Espinoza;MEX;DF;América;22-172;2004;9;9;682;7.6;0;2;2;0;0;0;0;0;0.00;0.26;0.26;0.00;0.26;Matches
+130;Lucas Esteves;BRA;MF,DF;Atlético San Luis;26-104;2000;5;4;359;4.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+131;Luís Esteves;POR;MF;Atlas;28-180;1998;10;7;643;7.1;4;1;5;3;1;1;2;0;0.56;0.14;0.70;0.42;0.56;Matches
+132;Oscar Estupiñan;COL;FW;FC Juárez;29-281;1996;10;10;762;8.5;6;0;6;3;3;3;1;0;0.71;0.00;0.71;0.35;0.35;Matches
+133;Lorenzo Faravelli;ARG;MF;Necaxa;33-191;1993;9;9;680;7.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+134;Gabriel Fernández;URU;FW;Cruz Azul;32-146;1994;10;3;402;4.5;4;1;5;3;1;2;1;0;0.90;0.22;1.12;0.67;0.90;Matches
+135;Martín Fernández;URU;MF;Atlante;25-151;2001;7;4;349;3.9;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+136;Rafael Fernández;MEX;DF;Tijuana;26-062;2000;6;6;523;5.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+137;Gustavo Ferrareis;BRA;DF,MF;Atlas;30-277;1996;5;3;314;3.5;0;1;1;0;0;0;1;0;0.00;0.29;0.29;0.00;0.29;Matches
+138;Iker Fimbres;MEX;MF;Monterrey;21-126;2005;6;1;106;1.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+139;Leonardo Flores;MEX;FW;Atlético San Luis;23-168;2003;9;3;374;4.2;0;2;2;0;0;0;0;0;0.00;0.48;0.48;0.00;0.48;Matches
+140;Alexis Francisco Peña;MEX;DF;Necaxa;30-266;1996;7;6;549;6.1;0;1;1;0;0;0;0;0;0.00;0.16;0.16;0.00;0.16;Matches
+141;Alan Franco;ARG;DF;UANL;29-360;1996;8;7;626;7.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+142;Adonis Frías;ARG;DF;Atlas;28-203;1998;2;2;135;1.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+143;Raymundo Fulgencio;MEX;MF;FC Juárez;26-236;2000;4;1;107;1.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+144;Eduardo Gabriel;BRA;DF;Pachuca;30-235;1996;9;9;752;8.4;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+145;Benjamín Galdames;MEX;MF;Atlético San Luis;25-224;2001;4;0;68;0.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+146;Benjamín Galindo Jr.;MEX;DF;Atlético San Luis;27-210;1999;5;4;336;3.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+147;Jesús Gallardo;MEX;DF,MF;Toluca;32-052;1994;7;5;520;5.8;1;1;2;1;0;0;1;0;0.17;0.17;0.35;0.17;0.35;Matches
+148;Isac Galván;MEX;MF;UANL;21-206;2005;3;0;24;0.3;0;1;1;0;0;0;0;0;0.00;3.75;3.75;0.00;3.75;Matches
+149;Omar Gálvez;MEX;MF;Monterrey;20-171;2006;2;1;88;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+150;Amaury García;MEX;DF,MF;Cruz Azul;24-291;2001;7;3;328;3.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+151;Brian García;MEX;DF;Toluca;28-340;1997;5;3;301;3.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+152;Denzell García;MEX;MF;FC Juárez;23-052;2003;9;8;735;8.2;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+153;Luan Garcia;BRA;DF;Toluca;33-149;1993;7;3;318;3.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+154;Miguel Garcia;MEX;DF;Atlético San Luis;24-357;2001;7;6;476;5.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+155;Oscar Garcia;MEX;GK;León;23-096;2003;9;9;810;9.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+156;Santiago Garcia;MEX;DF;Atlante;21-225;2005;1;0;15;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+157;Stanley García;MEX;MF;UNAM;20-014;2006;1;1;45;0.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+158;Bryan Garnica;MEX;MF;Puebla;30-132;1996;8;7;526;5.8;0;1;1;0;0;0;0;0;0.00;0.17;0.17;0.00;0.17;Matches
+159;César Garza;MEX;MF;Monterrey;21-097;2005;2;2;155;1.7;1;0;1;1;0;0;1;0;0.58;0.00;0.58;0.58;0.58;Matches
+160;Jesús Garza;MEX;DF;UANL;26-122;2000;9;9;809;9.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+161;Mourad El Ghezouani;MAR;FW;Tijuana;28-132;1998;8;5;481;5.3;3;0;3;1;2;3;0;0;0.56;0.00;0.56;0.19;0.19;Matches
+162;Enzo Giménez;PAR;MF;Querétaro;28-231;1998;9;8;672;7.5;0;2;2;0;0;0;1;0;0.00;0.27;0.27;0.00;0.27;Matches
+163;Alejandro Gómez;MEX;DF;Tijuana;24-248;2002;9;9;810;9.0;1;0;1;1;0;0;0;0;0.11;0.00;0.11;0.11;0.11;Matches
+164;Emiliano Gómez;URU;FW,MF;UANL;25-018;2001;2;0;18;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+165;Emiliano Gómez;URU;MF;Puebla;25-018;2001;4;4;351;3.9;1;0;1;1;0;0;0;0;0.26;0.00;0.26;0.26;0.26;Matches
+166;Luis Gómez;MEX;MF,DF;Santos Laguna;19-277;2007;4;2;141;1.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+167;Miguel Gómez;MEX;DF;Guadalajara;24-007;2002;4;2;156;1.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+168;Alfonso González;MEX;MF;Atlas;32-031;1994;9;8;523;5.8;1;1;2;1;0;0;0;0;0.17;0.17;0.34;0.17;0.34;Matches
+169;Armando González;MEX;FW;Guadalajara;23-169;2003;3;2;195;2.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+170;Bryan González;MEX;MF;Guadalajara;23-179;2003;5;4;359;4.0;2;0;2;2;0;0;0;0;0.50;0.00;0.50;0.50;0.50;Matches
+171;Diego González;PAR;MF,FW;Santos Laguna;23-272;2003;10;7;605;6.7;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+172;Hugo González Durán;MEX;GK;Toluca;36-066;1990;4;3;286;3.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+173;Fernando González;MEX;MF;Guadalajara;32-252;1994;10;9;734;8.2;0;1;1;0;0;0;1;0;0.00;0.12;0.12;0.00;0.12;Matches
+174;Francisco González;ARG;MF;Tijuana;25-183;2001;5;3;266;3.0;0;1;1;0;0;0;0;0;0.00;0.34;0.34;0.00;0.34;Matches
+175;José González;MEX;MF;Atlante;21-328;2004;7;2;272;3.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+176;Owen González;MEX;MF,FW;Necaxa;23-078;2003;5;5;284;3.2;2;0;2;2;0;0;1;0;0.63;0.00;0.63;0.63;0.63;Matches
+177;Rogelio González;MEX;DF;Cruz Azul;21-243;2005;5;2;172;1.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+178;Fernando Gorriarán;URU;MF;UANL;31-313;1994;9;9;804;8.9;1;0;1;1;0;0;4;1;0.11;0.00;0.11;0.11;0.11;Matches
+179;Omar Govea;MEX;MF;Guadalajara;30-261;1996;9;8;684;7.6;0;1;1;0;0;0;0;1;0.00;0.13;0.13;0.00;0.13;Matches
+180;Carlos Gruezo;ECU;MF;Santos Laguna;31-170;1995;2;2;151;1.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+181;Andrés Gudiño;MEX;GK;Cruz Azul;29-252;1997;2;2;180;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+182;Javier Güemez;MEX;MF;Santos Laguna;34-354;1991;4;0;68;0.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+183;Edgar Guerra;COL;MF;León;25-211;2001;6;1;229;2.5;0;1;1;0;0;0;0;0;0.00;0.39;0.39;0.00;0.39;Matches
+184;Rafael Guerrero;MEX;DF;UANL;23-266;2003;5;2;185;2.1;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+185;Juan Guevara;COL;DF;León;25-102;2001;9;9;810;9.0;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+186;Alexis Gutiérrez;MEX;MF;América;26-222;2000;6;2;194;2.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+187;Brian Gutiérrez;MEX;MF;Guadalajara;23-111;2003;9;4;424;4.7;0;1;1;0;0;0;0;0;0.00;0.21;0.21;0.00;0.21;Matches
+188;Erick Gutiérrez;MEX;MF;Toluca;31-113;1995;4;3;240;2.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+189;Ricardo Gutiérrez;MEX;GK;Puebla;29-111;1997;10;10;900;10.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+190;Nahuel Guzmán;ARG;GK;UANL;40-238;1986;10;10;900;10.0;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+191;Víctor Guzmán;MEX;DF;Monterrey;24-213;2002;5;5;450;5.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+192;Víctor Guzmán;MEX;MF;Toluca;31-245;1995;8;2;287;3.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+193;Helinho;BRA;MF;Toluca;26-164;2000;9;5;498;5.5;3;3;6;2;1;1;3;0;0.54;0.54;1.08;0.36;0.90;Matches
+194;Luifer Hernández;VEN;FW;Puebla;25-161;2001;7;1;147;1.6;0;1;1;0;0;0;0;0;0.00;0.61;0.61;0.00;0.61;Matches
+195;Sergio Hernandez;MEX;MF;Atlas;22-157;2004;9;3;451;5.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+196;Alberto Herrera;MEX;MF;Puebla;25-225;2001;3;2;146;1.6;0;2;2;0;0;0;0;0;0.00;1.23;1.23;0.00;1.23;Matches
+197;Ozziel Herrera;MEX;MF,FW;UANL;25-136;2001;6;4;366;4.1;1;0;1;1;0;0;0;0;0.25;0.00;0.25;0.25;0.25;Matches
+198;Santiago Homenchenko;URU;MF;Querétaro;23-037;2003;9;9;810;9.0;4;2;6;2;2;2;4;0;0.44;0.22;0.67;0.22;0.44;Matches
+199;César Huerta;MEX;MF;UNAM;25-307;2000;2;1;112;1.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+200;Nicolás Ibáñez;ARG;FW;Cruz Azul;32-044;1994;10;8;650;7.2;4;1;5;4;0;1;2;0;0.55;0.14;0.69;0.55;0.69;Matches
+201;Javier Ibarra;MEX;MF;Atlante;28-242;1998;1;0;15;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+202;Ícaro;BRA;MF;América;19-136;2007;6;3;278;3.1;1;0;1;1;0;0;1;0;0.32;0.00;0.32;0.32;0.32;Matches
+203;Oussama Idrissi;MAR;MF,FW;Pachuca;30-222;1996;10;9;694;7.7;1;2;3;1;0;0;3;0;0.13;0.26;0.39;0.13;0.39;Matches
+204;Mauricio Isais;MEX;MF,DF;Pachuca;25-180;2001;8;2;262;2.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+205;José Iván Rodríguez;MEX;MF;León;30-111;1996;8;8;656;7.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+206;Derek Jiménez;MEX;MF;América;19-130;2007;1;0;9;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+207;Edgar Jiménez;MEX;DF;Atlante;25-192;2001;3;2;152;1.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+208;Luis Jiménez;MEX;GK;Necaxa;22-040;2004;9;9;809;9.0;0;0;0;0;0;0;0;1;0.00;0.00;0.00;0.00;0.00;Matches
+209;Oscar Jiménez;MEX;GK;Atlante;37-359;1988;10;10;900;10.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+210;Tahiel Jiménez;MEX;FW;Santos Laguna;20-257;2006;1;0;7;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+211;Joaquim;BRA;DF;UANL;27-282;1998;10;9;813;9.0;0;2;2;0;0;0;1;0;0.00;0.22;0.22;0.00;0.22;Matches
+212;Juan José Sánchez;MEX;DF;Atlas;28-270;1998;4;4;339;3.8;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+213;Juanpe;ESP;DF;Atlético San Luis;35-159;1991;1;0;1;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+214;Ramón Juárez;MEX;DF;América;25-150;2001;7;6;548;6.1;0;1;1;0;0;0;1;0;0.00;0.16;0.16;0.00;0.16;Matches
+215;Ricardo Juárez;MEX;DF;FC Juárez;21-033;2005;2;0;48;0.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+216;Jhojan Julio;ECU;FW,MF;Atlante;28-237;1998;10;10;872;9.7;2;4;6;1;1;2;1;0;0.21;0.41;0.62;0.10;0.52;Matches
+217;Juninho;BRA;FW,MF;UNAM;29-319;1996;10;9;681;7.6;5;0;5;3;2;2;0;0;0.66;0.00;0.66;0.40;0.40;Matches
+218;Heriberto Jurado;MEX;MF;Puebla;21-276;2005;3;0;26;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+219;Sebastián Jurado;MEX;GK;FC Juárez;29-008;1997;10;10;900;10.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+220;Kenedy;BRA;MF,FW;Pachuca;30-240;1996;7;7;407;4.5;1;0;1;1;0;0;3;0;0.22;0.00;0.22;0.22;0.22;Matches
+221;Roberto de la Rosa;MEX;MF;Monterrey;26-275;2000;5;1;155;1.7;1;0;1;1;0;0;0;0;0.58;0.00;0.58;0.58;0.58;Matches
+222;Diego Lainez;MEX;MF;UANL;26-119;2000;9;8;679;7.5;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+223;Mauro Laínez;MEX;DF;UANL;30-150;1996;6;3;344;3.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+224;Gibran Lajud;MEX;GK;Atlético San Luis;32-285;1993;4;3;328;3.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+225;Emilio Lara;MEX;DF;América;24-141;2002;4;4;360;4.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+226;Jesús Lara;MEX;MF;León;21-239;2005;7;3;360;4.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+227;Richy Ledezma;MEX;MF;Guadalajara;26-030;2000;9;5;472;5.2;1;0;1;1;0;0;0;0;0.19;0.00;0.19;0.19;0.19;Matches
+228;Antonio Leone;MEX;DF;UNAM;22-161;2004;4;1;95;1.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+229;Ángel Leyva;MEX;DF;Puebla;19-358;2006;2;1;115;1.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+230;Danny Leyva;USA;MF;Necaxa;23-154;2003;10;7;643;7.1;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+231;Erik Lira;MEX;MF;Cruz Azul;26-151;2000;7;5;478;5.3;1;1;2;1;0;0;1;0;0.19;0.19;0.38;0.19;0.38;Matches
+232;Santiago Londoño;COL;FW;León;18-219;2008;1;0;3;0.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+233;Aldo López;MEX;MF;Santos Laguna;26-136;2000;8;5;437;4.9;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+234;Eder López;MEX;DF;FC Juárez;20-253;2006;3;1;96;1.1;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+235;Edgar López;MEX;FW;Toluca;27-168;1999;1;1;58;0.6;1;1;2;1;0;0;0;0;1.55;1.55;3.10;1.55;3.10;Matches
+236;Rodrigo López;MEX;DF,MF;UNAM;24-328;2001;10;10;875;9.7;1;2;3;1;0;0;1;0;0.10;0.21;0.31;0.10;0.31;Matches
+237;Santiago López;CAN;FW;UNAM;21-118;2005;1;0;2;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+238;Vladimir Loroña;MEX;DF;UANL;27-324;1998;7;5;338;3.8;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+239;Esteban Lozano;MEX;FW;Santos Laguna;23-210;2003;4;2;227;2.5;1;0;1;1;0;0;0;0;0.40;0.00;0.40;0.40;0.40;Matches
+240;José Lozano;MEX;DF,MF;Atlas;28-001;1998;3;0;23;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+241;José Luis Rodríguez;PAN;MF,FW;FC Juárez;28-109;1998;9;8;722;8.0;1;3;4;1;0;0;0;0;0.12;0.37;0.50;0.12;0.50;Matches
+242;Israel Luna;MEX;MF;UNAM;24-197;2002;5;1;148;1.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+243;Oscar Macías;MEX;MF;Atlético San Luis;28-089;1998;10;10;812;9.0;1;1;2;1;0;0;1;0;0.11;0.11;0.22;0.11;0.22;Matches
+244;Waldo Madrid;MEX;MF;Querétaro;23-042;2003;5;0;121;1.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+245;Madson;BRA;MF,FW;FC Juárez;27-041;1999;8;3;294;3.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+246;Ignacio Maestro Puch;ARG;FW;Puebla;23-054;2003;5;4;355;3.9;1;1;2;1;0;0;2;0;0.25;0.25;0.51;0.25;0.51;Matches
+247;Alejandro Magallon;MEX;DF;Tijuana;20-270;2006;1;0;50;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+248;Joshua Mancha;MEX;MF;Santos Laguna;22-001;2004;3;0;28;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+249;Elias Manoel;BRA;FW;Tijuana;24-310;2001;1;0;45;0.5;2;0;2;2;0;0;0;0;4.00;0.00;4.00;4.00;4.00;Matches
+250;Luis Manuel García;MEX;GK;Toluca;33-279;1992;6;6;524;5.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+251;Antonio María;MEX;FW;UANL;22-177;2004;2;0;6;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+252;Ricardo Marín;MEX;FW,MF;Guadalajara;28-202;1998;10;7;604;6.7;5;2;7;3;2;2;1;0;0.75;0.30;1.04;0.45;0.75;Matches
+253;Salvador Mariscal;MEX;MF;Santos Laguna;23-167;2003;7;6;485;5.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+254;Jeremy Márquez;MEX;DF,MF;Cruz Azul;26-107;2000;9;9;719;8.0;3;1;4;3;0;0;2;0;0.38;0.13;0.50;0.38;0.50;Matches
+255;Henry Martín;MEX;FW;América;33-322;1992;8;8;658;7.3;6;2;8;3;3;4;2;0;0.82;0.27;1.09;0.41;0.68;Matches
+256;Jose Martin;MEX;FW;Atlas;19-140;2007;3;1;89;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+257;Guillermo Martínez Ayala;MEX;FW;UNAM;31-205;1995;5;0;55;0.6;1;1;2;1;0;0;0;0;1.64;1.64;3.27;1.64;3.27;Matches
+258;Guillermo Martínez Ayala;MEX;FW;UANL;31-205;1995;2;1;114;1.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+259;Irving Martinez;MEX;GK;León;22-214;2004;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+260;Juan Martínez Jr.;MEX;MF;Querétaro;16-208;2010;4;0;41;0.5;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+261;Luca Martínez;MEX;FW;FC Juárez;25-262;2001;5;0;104;1.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+262;Raúl Martínez;MEX;DF;Necaxa;23-215;2003;9;7;670;7.4;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+263;Ulises Martínez;MEX;DF;Pachuca;18-130;2008;1;0;14;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+264;Alejandro Mayorga;MEX;DF;FC Juárez;29-130;1997;9;7;637;7.1;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+265;Alan Medina;MEX;MF;UNAM;29-048;1997;10;1;274;3.0;0;1;1;0;0;0;0;0;0.00;0.33;0.33;0.00;0.33;Matches
+266;Diego Medina;MEX;MF;Santos Laguna;25-208;2001;1;0;9;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+267;Stefan Medina;COL;DF;Monterrey;34-114;1992;4;2;184;2.0;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+268;Leonardo Mejía;MEX;MF;Atlante;25-050;2001;3;0;56;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+269;Aaron Mejía Montoya;MEX;DF;Tijuana;25-122;2001;2;0;19;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+270;Bruno Méndez;URU;DF;Toluca;27-026;1999;8;7;628;7.0;0;1;1;0;0;0;1;0;0.00;0.14;0.14;0.00;0.14;Matches
+271;Francisco Méndez;MEX;DF;Necaxa;21-155;2005;4;2;223;2.5;0;1;1;0;0;0;0;0;0.00;0.40;0.40;0.00;0.40;Matches
+272;Roberto Meraz;MEX;MF;Atlético San Luis;27-063;1999;6;0;92;1.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+273;Kevin Mier;COL;GK;Cruz Azul;26-141;2000;8;8;720;8.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+274;Ryan Mmaee;MAR;FW,MF;Atlas;28-339;1997;6;5;402;4.5;1;0;1;1;0;0;0;0;0.22;0.00;0.22;0.22;0.22;Matches
+275;Fernando Monárrez;MEX;DF;Puebla;27-076;1999;10;10;806;9.0;1;0;1;1;0;0;2;0;0.11;0.00;0.11;0.11;0.11;Matches
+276;Monchu;ESP;MF;FC Juárez;27-023;1999;10;5;536;6.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+277;Ricardo Monreal;MEX;MF;Necaxa;25-238;2001;4;4;289;3.2;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+278;Ricardo Monreal;MEX;MF;UANL;25-238;2001;5;3;231;2.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+279;Andres Montaño;MEX;MF;Cruz Azul;24-137;2002;6;2;157;1.7;0;2;2;0;0;0;1;0;0.00;1.15;1.15;0.00;1.15;Matches
+280;Alán Montes;MEX;DF;Cruz Azul;25-345;2000;2;1;92;1.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+281;Elias Montiel;MEX;MF;Pachuca;20-364;2005;7;7;514;5.7;1;1;2;1;0;0;0;0;0.18;0.18;0.35;0.18;0.35;Matches
+282;Elias Montiel;MEX;MF;Atlas;20-364;2005;3;2;199;2.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+283;Florián Monzón;ARG;FW;Atlas;25-276;2001;7;7;630;7.0;3;0;3;3;0;0;0;0;0.43;0.00;0.43;0.43;0.43;Matches
+284;Adrián Mora;MEX;DF;Atlas;29-052;1997;1;0;2;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+285;Christopher Mora;MEX;DF;León;21-169;2005;1;1;70;0.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+286;Felipe Mora;CHI;FW;Atlético San Luis;33-065;1993;6;4;321;3.6;1;1;2;1;0;0;0;0;0.28;0.28;0.56;0.28;0.56;Matches
+287;Gilberto Mora;MEX;MF;Tijuana;17-357;2008;7;6;495;5.5;5;1;6;1;4;4;0;0;0.91;0.18;1.09;0.18;0.36;Matches
+288;Robert Morales;PAR;FW,MF;UNAM;27-203;1999;9;9;794;8.8;2;3;5;2;0;0;0;0;0.23;0.34;0.57;0.23;0.57;Matches
+289;Carlos Moreno;MEX;GK;Pachuca;28-250;1998;10;10;900;10.0;1;0;1;1;0;0;1;0;0.10;0.00;0.10;0.10;0.10;Matches
+290;Iker Moreno;MEX;DF;Puebla;23-022;2003;9;6;554;6.2;0;0;0;0;0;0;0;1;0.00;0.00;0.00;0.00;0.00;Matches
+291;Iván Moreno;MEX;DF;León;28-262;1998;10;8;672;7.5;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+292;Omar Moreno;MEX;FW;Puebla;21-249;2005;6;1;138;1.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+293;Joaquín Moxica;MEX;FW;Atlante;20-252;2006;7;1;128;1.4;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+294;Alan Mozo;MEX;DF;Pachuca;29-184;1997;4;3;252;2.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+295;Alan Mozo;MEX;DF;Cruz Azul;29-184;1997;4;1;184;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+296;Denilson Muñoz;MEX;MF;Querétaro;22-205;2004;1;0;11;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+297;Santiago Muñóz;MEX;FW,MF;Atlético San Luis;24-053;2002;4;0;30;0.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+298;Eduardo Mustre;MEX;FW;Puebla;23-258;2003;6;4;353;3.9;3;1;4;3;0;0;1;0;0.76;0.25;1.02;0.76;1.02;Matches
+299;Ronaldo Nájera;MEX;MF;Atlético San Luis;23-224;2003;6;0;119;1.3;1;0;1;1;0;0;0;0;0.76;0.00;0.76;0.76;0.76;Matches
+300;Keylor Navas;CRC;GK;UNAM;39-295;1986;10;10;900;10.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+301;Kaiky Naves;BRA;DF;Necaxa;24-151;2002;7;7;558;6.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+302;Francisco Nevarez;MEX;DF;FC Juárez;25-307;2000;10;6;590;6.6;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+303;Lucas Ocampos;ARG;MF,FW;Monterrey;32-087;1994;7;7;593;6.6;5;1;6;3;2;2;0;0;0.76;0.15;0.91;0.46;0.61;Matches
+304;Diego Ochoa;MEX;DF;Necaxa;21-169;2005;1;1;90;1.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+305;Agustín Oliveros;URU;DF;Necaxa;28-050;1998;8;8;641;7.1;0;0;0;0;0;0;2;1;0.00;0.00;0.00;0.00;0.00;Matches
+306;Fernando Ordóñez;MEX;DF;UANL;25-126;2001;3;1;54;0.6;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+307;Luca Orellano;ARG;MF;Monterrey;26-198;2000;9;7;622;6.9;1;0;1;1;0;0;0;0;0.14;0.00;0.14;0.14;0.14;Matches
+308;Alejandro Organista;MEX;MF,FW;Puebla;26-126;2000;10;10;825;9.2;0;1;1;0;0;0;1;0;0.00;0.11;0.11;0.00;0.11;Matches
+309;Efraín Orona;MEX;DF;Santos Laguna;27-226;1999;5;5;380;4.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+310;Jesús Orozco;MEX;DF;Cruz Azul;24-229;2002;9;9;765;8.5;1;0;1;1;0;0;1;0;0.12;0.00;0.12;0.12;0.12;Matches
+311;Haret Ortega;MEX;DF;FC Juárez;26-140;2000;5;4;297;3.3;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+312;Pablo Ortiz;MEX;DF;Tijuana;24-184;2002;7;5;350;3.9;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+313;Ebere Osinachi;NGA;FW,MF;Cruz Azul;28-185;1998;9;4;310;3.4;1;0;1;1;0;0;1;0;0.29;0.00;0.29;0.29;0.29;Matches
+314;Diogo Osmar Bagüí;ECU;DF;Atlante;21-200;2005;1;0;21;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+315;Juan Pablo Vargas;CRC;DF;Puebla;31-122;1995;10;10;900;10.0;0;1;1;0;0;0;1;0;0.00;0.10;0.10;0.00;0.10;Matches
+316;Juan Pablo Vigón;MEX;MF;UANL;35-078;1991;5;1;74;0.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+317;Rodrigo Pachuca;MEX;DF;Puebla;21-074;2005;6;3;225;2.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+318;Axl Padilla;MEX;DF;Atlante;25-317;2000;1;0;7;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+319;Yael Padilla;MEX;MF;Tijuana;20-291;2005;9;4;418;4.6;0;1;1;0;0;0;2;0;0.00;0.22;0.22;0.00;0.22;Matches
+320;Kevin Palacios;COL;FW,MF;Santos Laguna;26-248;2000;8;4;402;4.5;1;0;1;1;0;0;0;0;0.22;0.00;0.22;0.22;0.22;Matches
+321;Agustín Palavecino;ARG;MF;Cruz Azul;29-331;1996;9;8;661;7.3;1;0;1;1;0;0;1;0;0.14;0.00;0.14;0.14;0.14;Matches
+322;José Paradela;ARG;MF,DF;Cruz Azul;27-295;1998;10;8;743;8.3;2;5;7;2;0;0;2;0;0.24;0.61;0.85;0.24;0.85;Matches
+323;Franco Pardo;ARG;DF;Santos Laguna;29-184;1997;9;9;787;8.7;0;0;0;0;0;1;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+324;Bernardo Parra;MEX;MF;Querétaro;21-273;2005;5;0;50;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+325;Paulinho;POR;FW;Toluca;33-331;1992;4;3;304;3.4;2;0;2;2;0;0;0;0;0.59;0.00;0.59;0.59;0.59;Matches
+326;Pedro Pedraza;MEX;MF;Necaxa;26-159;2000;7;4;438;4.9;0;1;1;0;0;0;3;0;0.00;0.21;0.21;0.00;0.21;Matches
+327;Miguel Pedroza;MEX;MF;Necaxa;23-206;2003;3;0;39;0.4;1;0;1;1;0;0;0;0;2.31;0.00;2.31;2.31;2.31;Matches
+328;Óscar Perea;COL;MF;América;21-009;2005;5;2;200;2.2;2;0;2;2;0;0;0;0;0.90;0.00;0.90;0.90;0.90;Matches
+329;Federico Pereira;URU;DF,MF;Toluca;26-224;2000;9;9;765;8.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+330;Aldahir Perez;MEX;MF;Tijuana;22-002;2004;3;1;95;1.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+331;Sebastián Pérez Bouquet;MEX;FW;Atlético San Luis;23-106;2003;6;1;105;1.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+332;Geovanni Pérez;MEX;DF;Santos Laguna;20-344;2005;4;2;204;2.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+333;Jonathan Perez;MEX;MF;Guadalajara;23-261;2003;2;0;16;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+334;Pavel Pérez;MEX;MF;Toluca;28-102;1998;4;1;148;1.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+335;Eduardo Pérez Reyes;MEX;FW;Querétaro;33-161;1993;3;0;8;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+336;Kevin Picón;MEX;DF;Santos Laguna;22-224;2004;3;0;62;0.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+337;Daniel Piña;CHI;DF;FC Juárez;24-324;2001;2;2;180;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+338;Orbelín Pineda;MEX;MF;Monterrey;30-196;1996;7;5;486;5.4;1;1;2;1;0;0;0;0;0.19;0.19;0.37;0.19;0.37;Matches
+339;Gonzalo Piovi;ARG;DF;Cruz Azul;32-028;1994;6;5;393;4.4;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+340;Rodolfo Pizarro;MEX;MF;Pachuca;32-233;1994;9;4;430;4.8;0;1;1;0;0;0;0;0;0.00;0.21;0.21;0.00;0.21;Matches
+341;Eugenio Pizzuto;MEX;MF;Atlante;24-146;2002;10;10;798;8.9;2;0;2;2;0;0;2;0;0.23;0.00;0.23;0.23;0.23;Matches
+342;Jackson Porozo;ECU;DF;Tijuana;26-063;2000;8;8;720;8.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+343;Walter Portales;USA;DF,MF;Atlante;22-193;2004;10;10;886;9.8;1;2;3;1;0;0;1;0;0.10;0.20;0.30;0.10;0.30;Matches
+344;Adonis Preciado;ECU;MF;Tijuana;29-197;1997;9;9;801;8.9;0;2;2;0;0;0;2;0;0.00;0.22;0.22;0.00;0.22;Matches
+345;Luis Puente;MEX;FW;Atlante;23-235;2003;10;8;686;7.6;2;0;2;2;0;1;1;0;0.26;0.00;0.26;0.26;0.26;Matches
+346;Aaron Quirós;ARG;DF;Atlante;24-340;2001;7;7;609;6.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+347;Rafita;ESP;FW,MF;Atlético San Luis;23-304;2002;10;9;742;8.2;3;0;3;3;0;0;1;0;0.36;0.00;0.36;0.36;0.36;Matches
+348;Alonso Ramírez;MEX;MF;Puebla;25-047;2001;5;3;220;2.4;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+349;Diego Ramirez;MEX;FW;UANL;19-264;2007;1;0;3;0.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+350;Paulo Ramírez;MEX;MF;Atlas;23-355;2002;9;4;437;4.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+351;Luciano Ramón Herrera;ARG;MF,FW;UNAM;30-128;1996;8;5;529;5.9;1;1;2;1;0;0;2;0;0.17;0.17;0.34;0.17;0.34;Matches
+352;Raúl Rangel;MEX;GK;Guadalajara;26-223;2000;9;9;810;9.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+353;Luis Rey;MEX;DF;Guadalajara;24-022;2002;6;1;192;2.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+354;Diego Reyes;MEX;DF;Querétaro;34-017;1992;9;9;810;9.0;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+355;Francisco Reyes;MEX;DF;UANL;28-002;1998;3;1;162;1.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+356;Israel Reyes;MEX;DF,MF;América;26-136;2000;5;3;331;3.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+357;Salvador Reyes;MEX;DF;León;28-155;1998;7;3;363;4.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+358;Ricardinho;POR;MF;FC Juárez;28-061;1998;8;4;307;3.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+359;Luis Ricardo Reyes;MEX;DF;Monterrey;35-186;1991;5;1;119;1.3;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+360;Víctor Ríos;MEX;MF;Atlas;22-237;2004;6;3;297;3.3;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+361;Jesús Rivas;MEX;DF;UNAM;23-342;2002;1;0;17;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+362;Christian Rivera;COL;MF;Pachuca;30-265;1996;9;9;781;8.7;0;0;0;0;0;0;2;1;0.00;0.00;0.00;0.00;0.00;Matches
+363;Ignacio Rivero;URU;MF;Tijuana;34-179;1992;6;4;303;3.4;2;0;2;2;0;0;1;0;0.59;0.00;0.59;0.59;0.59;Matches
+364;Jorge Roberto Díaz;MEX;FW,MF;Toluca;28-071;1998;9;5;492;5.5;1;0;1;1;0;0;0;0;0.18;0.00;0.18;0.18;0.18;Matches
+365;Aldo Rocha;MEX;MF;Atlas;33-334;1992;4;4;320;3.6;1;0;1;0;1;1;2;0;0.28;0.00;0.28;0.00;0.00;Matches
+366;Jorge Rodarte;MEX;DF;Cruz Azul;22-166;2004;1;0;18;0.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+367;Brian Rodríguez;URU;MF;América;26-139;2000;6;3;330;3.7;3;1;4;3;0;0;0;0;0.82;0.27;1.09;0.82;1.09;Matches
+368;Charly Rodríguez;MEX;MF;Cruz Azul;29-276;1997;10;9;801;8.9;0;5;5;0;0;0;2;0;0.00;0.56;0.56;0.00;0.56;Matches
+369;David Rodriguez;USA;MF,FW;Atlético San Luis;24-154;2002;10;10;742;8.2;3;1;4;3;0;0;0;0;0.36;0.12;0.49;0.36;0.49;Matches
+370;Jorge Rodríguez;MEX;DF;Atlas;25-033;2001;7;3;279;3.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+371;Miguel Rodríguez;MEX;MF,DF;Necaxa;23-168;2003;10;2;427;4.7;1;1;2;1;0;0;2;0;0.21;0.21;0.42;0.21;0.42;Matches
+372;Sergio Rodríguez;MEX;MF;Pachuca;22-248;2004;6;5;403;4.5;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+373;Jhohan Romaña;COL;DF;León;28-023;1998;8;8;695;7.7;0;1;1;0;0;0;0;1;0.00;0.13;0.13;0.00;0.13;Matches
+374;Franco Romero;ARG;MF;Toluca;26-166;2000;8;7;589;6.5;0;0;0;0;0;0;2;0;0.00;0.00;0.00;0.00;0.00;Matches
+375;Lucas Romero;PAR;MF;FC Juárez;24-038;2002;1;1;6;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+376;Luka Romero;ARG;MF;Cruz Azul;21-322;2004;9;4;395;4.4;1;2;3;1;0;0;1;0;0.23;0.46;0.68;0.23;0.68;Matches
+377;Luis Romo;MEX;DF;Guadalajara;31-123;1995;10;10;900;10.0;0;1;1;0;0;0;1;0;0.00;0.10;0.10;0.00;0.10;Matches
+378;Romulo;BRA;MF,DF;UANL;26-219;2000;8;8;699;7.8;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+379;Salomón Rondón;VEN;FW;Pachuca;37-020;1989;10;10;807;9.0;10;0;10;8;2;2;0;0;1.12;0.00;1.12;0.89;0.89;Matches
+380;Kevin Rosero;COL;MF;Necaxa;27-307;1998;4;1;155;1.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+381;Franco Rossano;MEX;DF;América;21-071;2005;1;0;5;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+382;Diego Rossi;URU;MF,FW;Monterrey;28-215;1998;8;6;535;5.9;2;3;5;2;0;0;1;0;0.34;0.50;0.84;0.34;0.84;Matches
+383;Carlos Rotondi;ARG;MF,DF;Cruz Azul;29-208;1997;3;2;191;2.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+384;Javier Ruiz;ARG;MF,FW;Necaxa;22-012;2004;9;8;659;7.3;0;1;1;0;0;0;2;0;0.00;0.14;0.14;0.00;0.14;Matches
+385;Patricio Salas;MEX;FW;América;22-231;2004;2;0;35;0.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+386;Carlos Salcedo;MEX;DF;Monterrey;33-007;1993;5;5;404;4.5;0;1;1;0;0;0;2;1;0.00;0.22;0.22;0.00;0.22;Matches
+387;Sebastien Salles-Lamonge;FRA;MF;Atlético San Luis;30-251;1996;10;10;882;9.8;3;1;4;1;2;2;0;0;0.31;0.10;0.41;0.10;0.20;Matches
+388;Sergio Sanabria;PAR;MF;Puebla;27-143;1999;10;7;692;7.7;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+389;Andrés Sánchez;MEX;GK;Atlético San Luis;29-003;1997;7;7;572;6.4;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+390;Antonio Sánchez;MEX;GK;Atlas;26-257;2000;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+391;Carlos Sánchez;MEX;DF;Pachuca;24-176;2002;9;6;571;6.3;0;2;2;0;0;0;5;0;0.00;0.32;0.32;0.00;0.32;Matches
+392;Diego Sánchez;MEX;MF;UANL;21-177;2005;9;6;532;5.9;1;0;1;1;0;0;0;0;0.17;0.00;0.17;0.17;0.17;Matches
+393;Erick Sánchez;MEX;MF;América;27-009;1999;9;6;580;6.4;0;1;1;0;0;0;2;0;0.00;0.16;0.16;0.00;0.16;Matches
+394;Felipe Sánchez;ARG;DF;Santos Laguna;22-182;2004;10;10;900;10.0;0;1;1;0;0;0;1;0;0.00;0.10;0.10;0.00;0.10;Matches
+395;Jorge Sánchez;MEX;DF,MF;Atlas;28-300;1997;6;4;343;3.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+396;Luis Sánchez;MEX;DF;Atlante;26-156;2000;3;3;270;3.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+397;Santiago Sandoval;MEX;MF;Guadalajara;19-060;2007;7;6;470;5.2;3;0;3;3;0;0;0;0;0.57;0.00;0.57;0.57;0.57;Matches
+398;Sebastian Santos;MEX;MF;León;23-258;2003;1;1;54;0.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+399;Sebastian Santos;MEX;DF;Pachuca;23-258;2003;2;1;77;0.9;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+400;Martín Sarrafiore;ARG;MF;Atlante;29-078;1997;7;5;501;5.6;2;0;2;2;0;0;0;0;0.36;0.00;0.36;0.36;0.36;Matches
+401;Rodrigo Schlegel;ARG;DF;Atlas;29-186;1997;7;7;630;7.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+402;Edher Segura;MEX;MF;Toluca;20-296;2005;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+403;Ángel Sepúlveda;MEX;FW;Guadalajara;35-233;1991;9;3;293;3.3;0;2;2;0;0;0;0;1;0.00;0.61;0.61;0.00;0.61;Matches
+404;Gilberto Sepúlveda;MEX;DF;FC Juárez;27-244;1999;8;8;684;7.6;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+405;Jesús Serrato;MEX;MF;Atlas;20-289;2005;4;0;38;0.4;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+406;Juan Sigala;MEX;MF;FC Juárez;19-183;2007;2;0;43;0.5;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+407;Iván Silva;MEX;MF;Cruz Azul;20-091;2006;1;0;6;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+408;Leonardo Silva;MEX;MF;FC Juárez;22-097;2004;2;1;105;1.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+409;Nathan Silva;BRA;DF;UNAM;29-153;1997;10;10;900;10.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+410;Henrique Simeone;MEX;MF;UANL;19-116;2007;2;1;59;0.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+411;Santiago Simón;ARG;DF;Toluca;24-115;2002;3;2;185;2.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+412;Ramiro Sordo;ARG;MF,FW;Santos Laguna;26-099;2000;9;4;377;4.2;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+413;José Suárez;VEN;DF;Cruz Azul;20-155;2006;1;0;5;0.1;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+414;Fernando Tapia;MEX;GK;América;25-111;2001;2;2;180;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+415;Eduardo Tercero;MEX;DF;Atlante;30-153;1996;10;10;880;9.8;1;0;1;1;0;0;2;0;0.10;0.00;0.10;0.10;0.10;Matches
+416;Mathias Tomas;URU;MF;Puebla;25-249;2001;7;3;338;3.8;2;0;2;2;0;0;0;0;0.53;0.00;0.53;0.53;0.53;Matches
+417;Iván Tona;MEX;MF;Tijuana;26-188;2000;9;9;800;8.9;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+418;Jairo Torres;MEX;MF;FC Juárez;26-093;2000;8;5;512;5.7;0;1;1;0;0;0;2;0;0.00;0.18;0.18;0.00;0.18;Matches
+419;Juan Torres;COL;MF,FW;Necaxa;22-106;2004;10;3;379;4.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+420;Óliver Torres;ESP;MF;Monterrey;31-330;1994;9;7;687;7.6;0;2;2;0;0;0;2;0;0.00;0.26;0.26;0.00;0.26;Matches
+421;Román Torres;MEX;MF,DF;Atlético San Luis;21-288;2004;10;10;866;9.6;0;1;1;0;0;0;1;0;0.00;0.10;0.10;0.00;0.10;Matches
+422;Santiago Trigos;MEX;MF;UNAM;24-257;2002;4;1;67;0.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+423;Jean Unjanque;SEN;MF;Querétaro;21-200;2005;3;1;68;0.8;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+424;Luis Valadez;MEX;MF;León;22-244;2004;5;1;176;2.0;0;1;1;0;0;0;0;0;0.00;0.51;0.51;0.00;0.51;Matches
+425;Juan Valencia;COL;FW;Necaxa;22-180;2004;6;2;227;2.5;1;1;2;1;0;0;1;0;0.40;0.40;0.79;0.40;0.79;Matches
+426;Milton Valenzuela;ARG;DF;Atlas;28-054;1998;8;6;600;6.7;0;0;0;0;0;0;1;1;0.00;0.00;0.00;0.00;0.00;Matches
+427;Nicolás Vallejo;ARG;MF;Pachuca;22-276;2004;10;2;383;4.3;0;3;3;0;0;0;0;0;0.00;0.70;0.70;0.00;0.70;Matches
+428;Camilo Vargas;COL;GK;Atlas;37-211;1989;9;9;810;9.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+429;Miguel Vázquez;MEX;DF;América;22-241;2004;6;6;540;6.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+430;Octavio Vázquez;MEX;MF;Atlante;21-131;2005;3;2;93;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+431;Alexis Vega;MEX;MF;Toluca;28-315;1997;8;8;543;6.0;4;2;6;2;2;2;1;0;0.66;0.33;0.99;0.33;0.66;Matches
+432;Jesús Vega;MEX;DF;Tijuana;26-202;2000;9;4;484;5.4;0;2;2;0;0;0;0;0;0.00;0.37;0.37;0.00;0.37;Matches
+433;Sebastián Vegas;CHI;DF;León;29-306;1996;7;7;527;5.9;0;0;0;0;0;0;3;0;0.00;0.00;0.00;0.00;0.00;Matches
+434;Raphael Veiga;BRA;MF,FW;América;31-109;1995;8;7;532;5.9;1;2;3;1;0;0;2;0;0.17;0.34;0.51;0.17;0.51;Matches
+435;Kevin Velasco;COL;MF;Puebla;29-159;1997;7;7;584;6.5;1;0;1;0;1;1;0;0;0.15;0.00;0.15;0.00;0.00;Matches
+436;Francisco Venegas;MEX;DF;Pachuca;28-082;1998;9;9;732;8.1;0;0;0;0;0;0;4;0;0.00;0.00;0.00;0.00;0.00;Matches
+437;Paulo Victor;BRA;MF;Querétaro;25-176;2001;9;7;448;5.0;0;0;0;0;0;0;4;0;0.00;0.00;0.00;0.00;0.00;Matches
+438;Oscar Villa;MEX;MF;Puebla;25-224;2001;8;0;177;2.0;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+439;Fran Villalba;ESP;MF;Santos Laguna;28-148;1998;10;7;672;7.5;2;2;4;1;1;1;1;0;0.27;0.27;0.54;0.13;0.40;Matches
+440;Carlos Villanueva López;MEX;DF;Querétaro;32-182;1994;5;0;106;1.2;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches
+441;Federico Viñas;URU;FW,MF;Toluca;28-098;1998;7;5;419;4.7;4;0;4;3;1;1;0;0;0.86;0.00;0.86;0.64;0.64;Matches
+442;Isaías Violante;MEX;MF;América;22-351;2003;7;5;417;4.6;1;1;2;1;0;0;0;0;0.22;0.22;0.43;0.22;0.43;Matches
+443;Oswaldo Virgen;MEX;FW;Toluca;21-182;2005;2;1;81;0.9;1;1;2;1;0;0;0;0;1.11;1.11;2.22;1.11;2.22;Matches
+444;Pedro Vite;ECU;MF;UNAM;24-211;2002;9;8;649;7.2;1;1;2;1;0;0;3;0;0.14;0.14;0.28;0.14;0.28;Matches
+445;Óscar Whalley;ESP;GK;Guadalajara;32-191;1994;1;1;90;1.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+446;Edgar Zaldívar;MEX;MF,DF;Atlas;29-354;1996;8;7;500;5.6;2;1;3;2;0;0;1;0;0.36;0.18;0.54;0.36;0.54;Matches
+447;Mauro Zaleta;MEX;MF;Necaxa;24-187;2002;9;2;358;4.0;0;1;1;0;0;0;1;0;0.00;0.25;0.25;0.00;0.25;Matches
+448;Ángel Zapata;MEX;MF;Tijuana;25-245;2001;7;2;244;2.7;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+449;Alejandro Zendejas;USA;MF;América;28-241;1998;3;2;177;2.0;0;0;0;0;0;0;0;0;0.00;0.00;0.00;0.00;0.00;Matches
+450;Kevin Zenon;ARG;MF;Atlas;25-068;2001;2;1;145;1.6;0;2;2;0;0;0;0;0;0.00;1.24;1.24;0.00;1.24;Matches
+451;Uroš Đurđević;MNE;FW;Monterrey;32-218;1994;5;1;85;0.9;0;0;0;0;0;0;1;0;0.00;0.00;0.00;0.00;0.00;Matches

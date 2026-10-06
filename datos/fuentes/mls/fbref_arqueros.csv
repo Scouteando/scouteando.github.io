@@ -1,0 +1,57 @@
+﻿ranker;player;nationality;position;team;age;birth_year;gk_games;gk_games_starts;gk_minutes;minutes_90s;gk_goals_against;gk_goals_against_per90;gk_shots_on_target_against;gk_saves;gk_save_pct;gk_wins;gk_ties;gk_losses;gk_clean_sheets;gk_clean_sheets_pct;gk_pens_att;gk_pens_allowed;gk_pens_saved;gk_pens_missed;gk_pens_save_pct;matches
+1;Adam Beaudry;USA;GK;Colorado Rapids;20-171;2006;2;2;180;2.0;3;1.50;6;3;50.0;1;0;1;1;50.0;0;0;0;0;;Matches
+2;Andre Blake;JAM;GK;Philadelphia;35-319;1990;25;25;2250;25.0;38;1.52;91;53;58.2;10;6;9;6;24.0;3;2;1;0;33.3;Matches
+3;Isaac Boehmer;USA;GK;Vancouver;24-320;2001;2;1;114;1.3;3;2.37;7;4;57.1;1;0;0;0;0.0;0;0;0;0;;Matches
+4;Jonathan Bond;ENG;GK;Houston;33-140;1993;27;27;2385;26.5;32;1.21;99;67;67.7;13;5;9;11;40.7;3;2;1;0;33.3;Matches
+5;Chris Brady;USA;GK;Chicago Fire;22-217;2004;25;25;2250;25.0;38;1.52;108;70;64.8;11;6;8;6;24.0;5;5;0;0;0.0;Matches
+6;Sebastian Breza;CAN;GK;CF Montréal;28-205;1998;8;8;720;8.0;12;1.50;34;22;64.7;1;1;6;0;0.0;4;4;0;0;0.0;Matches
+7;Roman Bürki;SUI;GK;St. Louis City;35-326;1990;25;25;2250;25.0;34;1.36;96;62;64.6;11;8;6;3;12.0;3;3;0;0;0.0;Matches
+8;Rafael Cabral;BRA;GK;Real Salt Lake;36-139;1990;26;26;2340;26.0;42;1.62;113;71;62.8;9;5;12;3;11.5;2;2;0;0;0.0;Matches
+9;Drake Callender;USA;GK;Minnesota Utd;28-364;1997;27;27;2385;26.5;47;1.77;132;85;64.4;7;8;12;5;18.5;8;8;0;0;0.0;Matches
+10;Cabral Carter;USA;GK;LAFC;22-093;2004;2;1;151;1.7;3;1.79;13;10;76.9;0;0;1;0;0.0;1;0;1;0;100.0;Matches
+11;Roman Celentano;USA;GK;FC Cincinnati;26-022;2000;24;24;2160;24.0;57;2.37;135;78;57.8;7;9;8;2;8.3;9;8;1;0;11.1;Matches
+12;Stefan Cleveland;USA;GK;Sporting KC;32-134;1994;18;18;1620;18.0;40;2.22;105;65;61.9;5;2;11;1;5.6;3;3;0;0;0.0;Matches
+13;Josh Cohen;USA;GK;Chicago Fire;34-049;1992;1;1;90;1.0;0;0.00;2;2;100.0;1;0;0;1;100.0;0;0;0;0;;Matches
+14;Michael Collodi;USA;GK;FC Dallas;25-134;2001;13;13;1170;13.0;19;1.46;51;31;62.7;5;4;4;3;23.1;3;2;1;0;33.3;Matches
+15;Maxime Crépeau;CAN;GK;Orlando City;32-148;1994;26;26;2265;25.2;63;2.50;167;104;62.3;9;4;13;4;15.4;4;4;0;0;0.0;Matches
+16;Daniel;BRA;GK;SJ Earthquakes;32-153;1994;15;14;1327;14.7;15;1.02;60;45;75.0;9;2;3;5;35.7;1;1;0;0;0.0;Matches
+17;Daniel;BRA;GK;FC Dallas;32-153;1994;4;4;288;3.2;3;0.94;14;11;78.6;1;2;1;1;25.0;0;0;0;0;;Matches
+18;C.J. dos Santos;CPV;GK;San Diego FC;26-043;2000;12;12;1068;11.9;17;1.43;58;41;70.7;4;3;5;3;25.0;1;0;1;0;100.0;Matches
+19;Earl Edwards Jr.;USA;GK;SJ Earthquakes;34-255;1992;2;2;113;1.3;1;0.80;8;7;87.5;2;0;0;0;0.0;0;0;0;0;;Matches
+20;Duran Ferree;USA;GK;San Diego FC;20-008;2006;16;14;1270;14.1;27;1.91;73;46;63.0;4;4;6;4;28.6;1;1;0;0;0.0;Matches
+21;Matt Freese;USA;GK;NYCFC;28-034;1998;26;26;2340;26.0;34;1.31;123;88;72.4;8;8;10;5;19.2;6;5;1;0;16.7;Matches
+22;Luka Gavran;CAN;GK;Toronto FC;26-150;2000;27;27;2430;27.0;51;1.89;143;92;64.3;6;11;10;3;11.1;4;4;0;0;0.0;Matches
+23;Thomas Gillier;CHI;GK;CF Montréal;22-131;2004;19;19;1710;19.0;42;2.21;97;55;56.7;5;5;9;4;21.1;2;2;0;0;0.0;Matches
+24;Angus Gunn;SCO;GK;SJ Earthquakes;30-257;1996;11;11;990;11.0;23;2.09;58;34;60.3;2;4;5;2;18.2;1;1;0;0;0.0;Matches
+25;Nicholas Hansen;DEN;GK;Colorado Rapids;25-088;2001;16;16;1440;16.0;20;1.25;65;45;69.2;7;2;7;6;37.5;2;2;0;0;0.0;Matches
+26;Thomas Hasal;CAN;GK;LAFC;27-089;1999;3;3;209;2.3;3;1.29;8;5;62.5;1;0;2;1;33.3;0;0;0;0;;Matches
+27;Ethan Horvath;USA;GK;RB New York;31-119;1995;27;27;2430;27.0;51;1.89;145;94;64.8;9;6;12;4;14.8;4;4;0;0;0.0;Matches
+28;Lucas Hoyos;ARG;GK;Atlanta Utd;37-160;1989;27;27;2430;27.0;45;1.67;112;67;59.8;7;6;14;3;11.1;1;0;0;1;;Matches
+29;Sean Johnson;USA;GK;D.C. United;37-128;1989;26;26;2340;26.0;42;1.62;134;91;68.7;6;12;8;6;23.1;5;4;1;0;20.0;Matches
+30;Kristijan Kahlina;CRO;GK;Charlotte;34-074;1992;27;27;2430;27.0;38;1.41;157;119;75.8;12;7;8;5;18.5;1;1;0;0;0.0;Matches
+31;Damian Las;USA;GK;Austin FC;24-178;2002;2;2;180;2.0;4;2.00;13;9;69.2;1;1;0;0;0.0;0;0;0;0;;Matches
+32;Hugo Lloris;FRA;GK;LAFC;39-284;1986;24;24;2160;24.0;24;1.00;99;74;75.8;10;8;6;12;50.0;2;2;0;0;0.0;Matches
+33;Evan Louro;USA;GK;FC Cincinnati;30-260;1996;2;2;180;2.0;7;3.50;14;7;50.0;1;0;1;0;0.0;1;1;0;0;0.0;Matches
+34;Benjamin Lundt;GER;GK;St. Louis City;31-012;1995;2;2;180;2.0;2;1.00;5;3;60.0;2;0;0;1;50.0;0;0;0;0;;Matches
+35;J.T. Marcinkowski;USA;GK;LA Galaxy;29-150;1997;22;22;1957;21.7;30;1.38;113;83;73.5;8;8;6;3;13.6;5;4;1;0;20.0;Matches
+36;Jimmy Maurer;USA;GK;Houston;37-357;1988;1;0;45;0.5;0;0.00;3;3;100.0;0;0;0;1;;0;0;0;0;;Matches
+37;Novak Mićović;SRB;GK;LA Galaxy;24-346;2001;7;6;559;6.2;14;2.25;25;11;44.0;1;1;4;1;16.7;2;2;0;0;0.0;Matches
+38;Javier Otero;VEN;GK;Orlando City;23-322;2002;2;1;162;1.8;6;3.33;10;4;40.0;1;0;0;0;0.0;1;1;0;0;0.0;Matches
+39;James Pantemis;CAN;GK;Portland Timbers;29-227;1997;27;27;2430;27.0;51;1.89;163;112;68.7;9;5;13;1;3.7;2;2;0;0;0.0;Matches
+40;John Pulskamp;USA;GK;Sporting KC;25-170;2001;9;9;810;9.0;25;2.78;50;25;50.0;1;1;7;0;0.0;2;0;2;0;100.0;Matches
+41;Andrew Rick;USA;GK;Philadelphia;20-249;2006;2;2;180;2.0;6;3.00;8;2;25.0;1;0;1;0;0.0;1;1;0;0;0.0;Matches
+42;Rocco Ríos Novo;ARG;GK;Inter Miami;24-124;2002;6;6;540;6.0;10;1.67;30;20;66.7;2;2;2;2;33.3;0;0;0;0;;Matches
+43;Tomas Romero;SLV;GK;NYCFC;25-291;2000;1;1;90;1.0;2;2.00;5;3;60.0;0;1;0;0;0.0;0;0;0;0;;Matches
+44;Patrick Schulte;USA;GK;Columbus Crew;25-207;2001;27;27;2430;27.0;43;1.59;120;77;64.2;8;5;14;5;18.5;3;3;0;0;0.0;Matches
+45;Brian Schwake;USA;GK;Nashville SC;25-043;2001;26;26;2340;26.0;21;0.81;88;67;76.1;17;6;3;12;46.2;4;2;2;0;50.0;Matches
+46;Jonathan Sirois;CAN;GK;FC Dallas;25-101;2001;11;10;972;10.8;20;1.85;66;46;69.7;7;2;1;2;20.0;1;0;1;0;100.0;Matches
+47;Pablo Sisniega;MEX;GK;San Diego FC;31-091;1995;1;1;90;1.0;3;3.00;8;5;62.5;0;1;0;0;0.0;1;1;0;0;0.0;Matches
+48;Alec Smir;JOR;GK;Minnesota Utd;27-176;1999;1;0;45;0.5;2;4.00;4;2;50.0;0;0;0;0;;0;0;0;0;;Matches
+49;Dayne St. Clair;CAN;GK;Inter Miami;29-150;1997;21;21;1890;21.0;40;1.90;95;55;57.9;10;8;3;2;9.5;6;5;1;0;16.7;Matches
+50;Mason Stajduhar;USA;GK;Real Salt Lake;28-308;1997;1;1;90;1.0;2;2.00;3;1;33.3;0;0;1;0;0.0;0;0;0;0;;Matches
+51;Zack Steffen;USA;GK;Colorado Rapids;31-187;1995;9;9;810;9.0;15;1.67;43;28;65.1;3;1;5;2;22.2;1;1;0;0;0.0;Matches
+52;Brad Stuver;USA;GK;Austin FC;35-173;1991;25;25;2250;25.0;43;1.72;155;112;72.3;6;9;10;5;20.0;5;3;0;2;0.0;Matches
+53;Yohei Takaoka;JPN;GK;Vancouver;30-204;1996;25;25;2223;24.7;24;0.97;71;47;66.2;14;5;6;11;44.0;1;1;0;0;0.0;Matches
+54;Andrew Thomas;RUS;GK;Seattle Sounders;28-035;1998;27;27;2430;27.0;35;1.30;138;103;74.6;10;8;9;7;25.9;1;1;0;0;0.0;Matches
+55;Matt Turner;USA;GK;NE Revolution;32-104;1994;27;27;2430;27.0;36;1.33;139;103;74.1;14;4;9;5;18.5;3;3;0;0;0.0;Matches
+56;Joe Willis;USA;GK;Nashville SC;38-057;1988;1;1;90;1.0;0;0.00;3;3;100.0;1;0;0;1;100.0;0;0;0;0;;Matches

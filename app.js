@@ -238,7 +238,8 @@ function mostrarEquipos() {
     const plantel = jugadores.filter(j => j.equipo === equipo);
     return `
       <button class="equipo" data-equipo="${equipo}">
-        <img class="equipo__escudo" src="${escudo(plantel[0].equipoId)}" alt="Escudo de ${equipo}" loading="lazy">
+        ${plantel[0].equipoId ? `<img class="equipo__escudo" src="${escudo(plantel[0].equipoId)}" alt="Escudo de ${equipo}" loading="lazy">`
+          : `<span class="equipo__escudo equipo__escudo--letras">${iniciales(equipo)}</span>`}
         <span class="equipo__nombre">${equipo}</span>
       </button>`;
   }).join("");
@@ -1812,6 +1813,10 @@ const tiposZona = {
   sud: "Copa Sudamericana",
   play: "Clasifica a octavos",
   cuadr: "Clasifica a cuadrangulares",
+  liguilla: "Clasifica a la Liguilla",
+  playin: "Play-in",
+  playoffs: "Clasifica a playoffs",
+  wildcard: "Wild card",
   desc: "Descenso"
 };
 const zonaDe = (t, pos) => (t.zonas || []).find(z => pos >= z.desde && pos <= z.hasta);
@@ -1860,7 +1865,7 @@ function mostrarPosiciones() {
   resumen.textContent = esPromedios
     ? "Promedio de puntos de las últimas temporadas: define los descensos"
     : `${competenciaElegida} · ${ligaActual.nombre}`;
-  if (tablasLiga.some(t => (t.zonas || []).some(z => !["play", "cuadr", "desc"].includes(z.tipo))))
+  if (tablasLiga.some(t => (t.zonas || []).some(z => !["play", "cuadr", "liguilla", "playin", "playoffs", "wildcard", "desc"].includes(z.tipo))))
     vistaPosiciones.insertAdjacentHTML("beforeend", `<p class="nota-zonas">Las zonas de copas son de referencia: las plazas finales dependen también de los campeones de las copas nacionales.</p>`);
 }
 

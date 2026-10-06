@@ -1,0 +1,29 @@
+﻿ranker;player;nationality;position;team;age;birth_year;gk_games;gk_games_starts;gk_minutes;minutes_90s;gk_goals_against;gk_goals_against_per90;gk_shots_on_target_against;gk_saves;gk_save_pct;gk_wins;gk_ties;gk_losses;gk_clean_sheets;gk_clean_sheets_pct;gk_pens_att;gk_pens_allowed;gk_pens_saved;gk_pens_missed;gk_pens_save_pct;matches
+1;Carlos Acevedo;MEX;GK;Santos Laguna;30-170;1996;10;10;900;10.0;15;1.50;61;45;75.4;3;1;6;2;20.0;2;2;0;0;0.0;Matches
+2;Guillermo Allison;MEX;GK;Querétaro;36-011;1990;9;9;810;9.0;8;0.89;37;29;78.4;5;2;2;3;33.3;4;3;1;0;25.0;Matches
+3;Esteban Andrada;ARG;GK;Monterrey;35-253;1991;3;3;270;3.0;4;1.33;14;10;71.4;1;1;1;2;66.7;0;0;0;0;;Matches
+4;Christopher Andrade;MEX;GK;Necaxa;25-096;2001;1;1;90;1.0;3;3.00;6;3;50.0;0;0;1;0;0.0;0;0;0;0;;Matches
+5;José Antonio Rodríguez;MEX;GK;Tijuana;34-094;1992;9;9;810;9.0;13;1.44;46;33;71.7;4;2;3;3;33.3;2;2;0;0;0.0;Matches
+6;Luis Cárdenas;MEX;GK;Monterrey;33-021;1993;6;6;540;6.0;10;1.67;23;13;56.5;3;0;3;1;16.7;1;1;0;0;0.0;Matches
+7;Rodolfo Cota;MEX;GK;América;39-095;1987;7;7;630;7.0;10;1.43;34;24;70.6;4;2;1;2;28.6;2;1;1;0;50.0;Matches
+8;Ronaldo Dimas;MEX;GK;Toluca;24-192;2002;1;1;90;1.0;2;2.00;2;0;0.0;1;0;0;0;0.0;0;0;0;0;;Matches
+9;Oscar Garcia;MEX;GK;León;23-096;2003;9;9;810;9.0;10;1.11;37;27;73.0;4;2;3;3;33.3;3;2;1;0;33.3;Matches
+10;Hugo González Durán;MEX;GK;Toluca;36-066;1990;4;3;286;3.2;3;0.94;10;7;70.0;2;0;1;2;66.7;1;0;0;1;;Matches
+11;Andrés Gudiño;MEX;GK;Cruz Azul;29-252;1997;2;2;180;2.0;6;3.00;14;8;57.1;0;1;1;0;0.0;2;2;0;0;0.0;Matches
+12;Ricardo Gutiérrez;MEX;GK;Puebla;29-111;1997;10;10;900;10.0;12;1.20;44;32;72.7;4;2;4;2;20.0;2;2;0;0;0.0;Matches
+13;Nahuel Guzmán;ARG;GK;UANL;40-238;1986;10;10;900;10.0;13;1.30;40;27;67.5;2;4;4;4;40.0;5;3;2;0;40.0;Matches
+14;Luis Jiménez;MEX;GK;Necaxa;22-040;2004;9;9;809;9.0;17;1.89;52;35;67.3;2;2;5;0;0.0;3;3;0;0;0.0;Matches
+15;Oscar Jiménez;MEX;GK;Atlante;37-359;1988;10;10;900;10.0;15;1.50;54;39;72.2;2;5;3;1;10.0;3;2;1;0;33.3;Matches
+16;Sebastián Jurado;MEX;GK;FC Juárez;29-008;1997;10;10;900;10.0;25;2.50;70;45;64.3;1;0;9;1;10.0;3;2;1;0;33.3;Matches
+17;Gibran Lajud;MEX;GK;Atlético San Luis;32-285;1993;4;3;328;3.6;6;1.65;19;13;68.4;2;0;1;0;0.0;1;1;0;0;0.0;Matches
+18;Luis Manuel García;MEX;GK;Toluca;33-279;1992;6;6;524;5.8;7;1.20;24;17;70.8;3;2;1;3;50.0;0;0;0;0;;Matches
+19;Irving Martinez;MEX;GK;León;22-214;2004;1;1;90;1.0;1;1.00;1;0;0.0;1;0;0;0;0.0;1;1;0;0;0.0;Matches
+20;Kevin Mier;COL;GK;Cruz Azul;26-141;2000;8;8;720;8.0;12;1.50;39;27;69.2;5;0;3;1;12.5;0;0;0;0;;Matches
+21;Carlos Moreno;MEX;GK;Pachuca;28-250;1998;10;10;900;10.0;11;1.10;45;34;75.6;3;3;4;3;30.0;3;3;0;0;0.0;Matches
+22;Keylor Navas;CRC;GK;UNAM;39-295;1986;10;10;900;10.0;16;1.60;43;27;62.8;3;3;4;1;10.0;4;4;0;0;0.0;Matches
+23;Raúl Rangel;MEX;GK;Guadalajara;26-223;2000;9;9;810;9.0;8;0.89;38;30;78.9;5;3;1;4;44.4;2;2;0;0;0.0;Matches
+24;Andrés Sánchez;MEX;GK;Atlético San Luis;29-003;1997;7;7;572;6.4;12;1.89;32;20;62.5;1;3;3;1;14.3;1;1;0;0;0.0;Matches
+25;Antonio Sánchez;MEX;GK;Atlas;26-257;2000;1;1;90;1.0;2;2.00;8;6;75.0;1;0;0;0;0.0;0;0;0;0;;Matches
+26;Fernando Tapia;MEX;GK;América;25-111;2001;2;2;180;2.0;0;0.00;8;8;100.0;2;0;0;2;100.0;0;0;0;0;;Matches
+27;Camilo Vargas;COL;GK;Atlas;37-211;1989;9;9;810;9.0;15;1.67;37;22;59.5;4;2;3;2;22.2;6;4;2;0;33.3;Matches
+28;Óscar Whalley;ESP;GK;Guadalajara;32-191;1994;1;1;90;1.0;2;2.00;6;4;66.7;0;0;1;0;0.0;0;0;0;0;;Matches

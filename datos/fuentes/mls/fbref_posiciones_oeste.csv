@@ -1,0 +1,16 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;attendance_per_g;top_team_scorers;top_keeper;notes
+1;Vancouver;26;15;5;6;59;26;+33;50;1.92;L W L W D;25003;Brian White - 17;Yohei Takaoka;
+2;St. Louis City;27;13;8;6;48;36;+12;47;1.74;W D W W W;22409;Simon Becher - 9;Roman Bürki;
+3;FC Dallas;27;13;8;6;50;42;+8;47;1.74;W W W D W;10980;Petar Musa - 18;Michael Collodi;
+4;SJ Earthquakes;27;13;6;8;49;39;+10;45;1.67;D W W D W;19799;Preston Judd - 15;Daniel;
+5;Houston;27;13;5;9;34;32;+2;44;1.63;D W L D L;18632;Guilherme - 14;Jonathan Bond;
+6;LAFC;28;11;8;9;43;30;+13;41;1.46;D W L D L;26266;Denis Bouanga - 14;Hugo Lloris;
+7;Seattle Sounders;27;10;8;9;35;35;0;38;1.41;D D W W W;31478;Cristian Roldan, Paul Rothrock - 5;Andrew Thomas;
+8;Colorado Rapids;27;11;3;13;38;38;0;36;1.33;L D W D L;20474;Rafael Navarro - 10;Nicholas Hansen;
+9;LA Galaxy;28;9;9;10;37;44;-7;36;1.29;W L D W W;20161;Marco Reus, Klauss - 7;J.T. Marcinkowski;
+10;Portland Timbers;27;9;5;13;48;51;-3;32;1.19;W D L L L;22265;Kevin Kelsy - 9;James Pantemis;
+11;Real Salt Lake;27;9;5;13;40;44;-4;32;1.19;L L L L W;20725;Sergi Solans - 11;Rafael Cabral;
+12;San Diego FC;27;8;8;11;47;47;0;32;1.19;L L L D D;23425;Marcus Ingvartsen - 12;Duran Ferree;
+13;Austin FC;27;7;10;10;35;47;-12;31;1.15;D D W D D;20738;Christian Ramirez - 9;Brad Stuver;
+14;Minnesota Utd;27;7;8;12;40;49;-9;29;1.07;L L L L L;19260;Kelvin Yeboah - 14;Drake Callender;
+15;Sporting KC;27;6;3;18;32;65;-33;21;0.78;L W L W L;16005;Dejan Joveljić - 8;Stefan Cleveland;

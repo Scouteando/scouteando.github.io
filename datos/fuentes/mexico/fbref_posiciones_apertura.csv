@@ -1,0 +1,19 @@
+﻿rank;team;games;wins;ties;losses;goals_for;goals_against;goal_diff;points;points_avg;last_5;notes
+1;Toluca;10;6;2;2;23;12;+11;20;2.00;W W W L D;
+2;América;9;6;2;1;21;10;+11;20;2.22;W W L D W;
+3;Guadalajara;10;5;3;2;17;10;+7;18;1.80;D W W D L;
+4;Querétaro;9;5;2;2;13;8;+5;17;1.89;L W W D W;
+5;León;10;5;2;3;14;11;+3;17;1.70;D L W D W;
+6;Atlas;10;5;2;3;16;17;-1;17;1.70;L D L D W;
+7;Cruz Azul;10;5;1;4;19;18;+1;16;1.60;W W W L D;
+8;Tijuana;9;4;2;3;14;13;+1;14;1.56;L W L D L;
+9;Puebla;10;4;2;4;11;12;-1;14;1.40;L W L D L;
+10;Monterrey;9;4;1;4;16;14;+2;13;1.44;L L D W L;
+11;Pachuca;10;3;3;4;15;11;+4;12;1.20;D W W D L;
+12;UNAM;10;3;3;4;14;16;-2;12;1.20;L W L D L;
+13;Atlético San Luis;10;3;3;4;14;18;-4;12;1.20;W L L W W;
+14;Atlante;10;2;5;3;12;15;-3;11;1.10;D D L D W;
+15;UANL;10;2;4;4;10;13;-3;10;1.00;D D D L W;
+16;Santos Laguna;10;3;1;6;10;15;-5;10;1.00;D L W W W;
+17;Necaxa;10;2;2;6;12;20;-8;8;0.80;L D L L L;
+18;FC Juárez;10;1;0;9;7;25;-18;3;0.30;L L L W L;
